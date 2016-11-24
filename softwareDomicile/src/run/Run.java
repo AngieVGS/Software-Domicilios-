@@ -1,10 +1,15 @@
 package run;
 
+import controller.Controller;
+
 public class Run {
-
+	Controller controller;
+ 
+ 	public Run() {
+		 controller = new Controller();
+	}
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		new Run();
 	}
 
 }
