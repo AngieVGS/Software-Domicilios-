@@ -1,5 +1,9 @@
 package model.entity;
 
+import java.util.ArrayList;
+
+import exceptions.NotFoundOrderToList;
+
 public class User {
 	private int id;
 	private String name;
