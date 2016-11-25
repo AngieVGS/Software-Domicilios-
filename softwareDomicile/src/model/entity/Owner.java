@@ -17,9 +17,9 @@ public class Owner {
 		this.productList = productList;
 	}
 	
-//	public static Product createProduct(int id, String name, String description, double price, State state) {
-//		return new Product(id, name, description, price, state);
-//	}
+	public static Product createProduct(int id, String name, String description, double price, State state) {
+		return new Product(id, name, description, price, state);
+	}
 	
 	public void addProduct(Product product) {
 		productList.add(product);
@@ -33,9 +33,9 @@ public class Owner {
 	
 	public Product searchProductById(int id) throws ExceptionSearchId {
 		for (Product product : productList) {
-//			if (product.getId() == id) {
+			if (product.getId() == id) {
 				return product;
-//			}
+			}
 		}
 		throw new ExceptionSearchId(); 
 	}
@@ -43,20 +43,29 @@ public class Owner {
 	public ArrayList<Product> searchProductByName(String name) {
 		ArrayList<Product> productSearchList = new ArrayList<>();
 		for (Product product : productList) {
-//			if (product.getName().equalsIgnoreCase(name)) {
+			if (product.getName().equalsIgnoreCase(name)) {
 				productSearchList.add(product);
-//			}
+			}
 		}
 		return productSearchList;
 	}
 	
-	public void edit(Product product) throws ExceptionSearchId {
+	public void editProduct(Product product) throws ExceptionSearchId {
 		for (int i = 0; i < productList.size(); i++) {
-//			if (productList.get(i).getId() == product.getId()) {
+			if (productList.get(i).getId() == product.getId()) {
 				productList.remove(i);
 				productList.add(i, product); 
 				break;
-//			}
+			}
+		}
+	}
+	
+	public void deleteProduct(int id) {
+		for (Product product : productList) {
+			if (product.getId() == id) {
+				productList.remove(product);
+				break;
+			}
 		}
 	}
 }
