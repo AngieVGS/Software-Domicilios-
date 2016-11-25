@@ -5,6 +5,6 @@ public class ExceptionSearchId extends Exception{
 	private static final long serialVersionUID = 1L;
 
 	public ExceptionSearchId() {
-		super("The monster you are looking for does not exist.");
+		super("The element you are looking for does not exist.");
 	}
 }
