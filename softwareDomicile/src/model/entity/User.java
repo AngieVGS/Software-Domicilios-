@@ -32,6 +32,10 @@ public class User {
 	public String getName() {
 		return name;
 	}
+	
+	public int getId(){
+		return id;
+	}
 
 	public Order searchOrderAddedtoListToName(String nameOrder) throws NotFoundOrderToList {
 		for (Order order : orders) {
@@ -58,4 +62,6 @@ public class User {
 	public void adithOrder() {
 
 	}
+
+	
 }
