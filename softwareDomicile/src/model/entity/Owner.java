@@ -21,6 +21,10 @@ public class Owner {
 		return new Product(id, name, description, price, state);
 	}
 	
+	public int getId(){
+		return id;
+	}
+	
 	public void addProduct(Product product) {
 		productList.add(product);
 	}

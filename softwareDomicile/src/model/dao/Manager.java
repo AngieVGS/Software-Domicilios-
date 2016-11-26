@@ -16,9 +16,9 @@ public class Manager {
 		userList = new ArrayList<>(); 
 	}
 	
-//	public Owner createOwner(int id, String name, String password, ArrayList<Product> productList){
-//		return new Owner(id, name, password,productList);
-//	}
+	public Owner createOwner(int id, String name, String password, ArrayList<Product> productList){
+		return new Owner(id, name, password,productList);
+	}
 	
 	public void addOwner(Owner owner){
 		ownerList.add(owner);
@@ -26,9 +26,9 @@ public class Manager {
 	
 	public Owner searchOwner(int id){
 		for (Owner owner : ownerList) {
-//			if(owner.getId() == id){
-//				return owner;
-//			}
+			if(owner.getId() == id){
+				return owner;
+			}
 		}
 		return null;
 	}
