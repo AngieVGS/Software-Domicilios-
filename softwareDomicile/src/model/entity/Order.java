@@ -106,4 +106,8 @@ public class Order {
 			throw new ProductNotFound();
 		}
 	}
+	
+	public void editOrder(){
+		
+	}
 }
