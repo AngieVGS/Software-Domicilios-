@@ -37,15 +37,6 @@ public class User {
 		return id;
 	}
 
-	public Order searchOrderAddedtoListToName(String nameOrder) throws NotFoundOrderToList {
-		for (Order order : orders) {
-			if (order.getName().equals(nameOrder)) {
-				return order;
-			}
-		}
-		throw new NotFoundOrderToList();
-	}
-
 	public Order searchOrderAddedtoListToId(int idOrder) throws NotFoundOrderToList {
 		for (Order order : orders) {
 			if (order.getId() == idOrder) {
