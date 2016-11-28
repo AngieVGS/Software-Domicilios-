@@ -21,14 +21,34 @@ public class Controller implements ActionListener{
 	private Nueve dialogAddOwner;
 	
 	public Controller() {
-//		mainWindow = new MainWindow(Controller );
-//		manager = new Manager();
+
+		mainWindow = new MainWindow(this );
+		mainWindow.setVisible(true);
+		
+		User userActual = null;
+		Owner ownerActual = null;		
 		dialogAddOwner = new Nueve(this, mainWindow);
+
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent event) {
+		
 		switch (Actions.valueOf(event.getActionCommand())) {
+		case LETS_DO_IT:
+			letsDoIt();
+			break;
+		case LOG_IN:
+			logIn();
+			break;
 		}
+	}
+	
+	public void letsDoIt() {
+	
+	}
+	
+	public void logIn(){
+		
 	}
 }
