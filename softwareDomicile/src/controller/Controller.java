@@ -49,6 +49,9 @@ public class Controller implements ActionListener{
 	}
 	
 	public void logIn(){
-		
+	}
+	
+	public void closeAllWindows(){
+		mainWindow.setVisible(false);
 	}
 }
