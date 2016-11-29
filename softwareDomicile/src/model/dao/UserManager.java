@@ -3,13 +3,13 @@ package model.dao;
 import java.util.ArrayList;
 
 import exceptions.ExceptionSearchId;
-import model.entity.AssignOrder;
+import model.entity.AssignOrderToUser;
 import model.entity.Order;
 import model.entity.User;
 
 public class UserManager {
 	private ArrayList<User> userList;
-	private ArrayList<AssignOrder> assignOrderList;
+	private ArrayList<AssignOrderToUser> assignOrderList;
 	
 	public UserManager(){
 		userList = new ArrayList<>();
@@ -40,15 +40,15 @@ public class UserManager {
 		public void editUser(User user, int id) {
 			userList.set(id, user);
 		}
-public static AssignOrder createAssignOrder(Order order, User user){
-	return new AssignOrder(order, user);
+public static AssignOrderToUser createAssignOrder(Order order, User user){
+	return new AssignOrderToUser(order, user);
 }
-public void addAssignProductoToOwner(AssignOrder assignOrder) {
+public void addAssignProductoToOwner(AssignOrderToUser assignOrder) {
 	assignOrderList.add(assignOrder);
 }
 
-public AssignOrder searchAssignProductoToOwner(int id) throws ExceptionSearchId {
-	for (AssignOrder assignOrder : assignOrderList) {
+public AssignOrderToUser searchAssignProductoToOwner(int id) throws ExceptionSearchId {
+	for (AssignOrderToUser assignOrder : assignOrderList) {
 		if (assignOrder.getUser().getId() == id) {
 			return assignOrder;
 		}
@@ -56,7 +56,7 @@ public AssignOrder searchAssignProductoToOwner(int id) throws ExceptionSearchId 
 	throw new ExceptionSearchId();
 }
 
-public void deleteAssignProduct(AssignOrder assignOrder) {
+public void deleteAssignProduct(AssignOrderToUser assignOrder) {
 	assignOrderList.remove(assignOrder);
 }
 }

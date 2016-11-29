@@ -1,11 +1,11 @@
 package model.entity;
 
-public class AssignProduct {
+public class AssignProductToOwner {
 
 	private Product product;
 	private Owner owner;
 
-	public AssignProduct(Product product, Owner owner) {
+	public AssignProductToOwner(Product product, Owner owner) {
 		this.product = product;
 		this.owner = owner;
 	}

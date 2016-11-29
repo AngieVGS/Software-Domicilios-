@@ -1,11 +1,11 @@
 package model.entity;
 
-public class AssignOrder {
+public class AssignOrderToUser {
 
 	private Order order;
 	private User user;
 
-	public AssignOrder(Order order, User user) {
+	public AssignOrderToUser(Order order, User user) {
 		this.order = order;
 		this.user = user;
 	}
