@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import exceptions.ExceptionSearchId;
 import model.entity.AssignOrderToUser;
 import model.entity.Order;
+import model.entity.Product;
 import model.entity.User;
 
 public class UserManager {
@@ -43,15 +44,17 @@ public class UserManager {
 public static AssignOrderToUser createAssignOrder(Order order, User user){
 	return new AssignOrderToUser(order, user);
 }
-public void addAssignProductoToOwner(AssignOrderToUser assignOrder) {
+public void addAssignOrderToUser(AssignOrderToUser assignOrder) {
 	assignOrderList.add(assignOrder);
 }
 
-public AssignOrderToUser searchAssignProductoToOwner(int id) throws ExceptionSearchId {
+public ArrayList<Order> searchAssignOrderToUser(int id) throws ExceptionSearchId {
+	ArrayList<Order> orders = new ArrayList<>();
 	for (AssignOrderToUser assignOrder : assignOrderList) {
 		if (assignOrder.getUser().getId() == id) {
-			return assignOrder;
+		    orders.add(assignOrder.getOrder());
 		}
+		return orders;
 	}
 	throw new ExceptionSearchId();
 }
