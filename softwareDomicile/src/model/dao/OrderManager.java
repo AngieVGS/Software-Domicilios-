@@ -2,9 +2,7 @@ package model.dao;
 
 import java.util.ArrayList;
 
-import exceptions.AggregatedProduct;
 import exceptions.ExceptionSearchId;
-import exceptions.ProductNotFound;
 import model.entity.AssignProductToOrder;
 import model.entity.Order;
 import model.entity.Product;
@@ -13,7 +11,7 @@ import model.entity.State;
 public class OrderManager {
 
 	private ArrayList<Order> orderList;
-	private ArrayList<Product> productsOfTheOrder;
+	private ArrayList<AssignProductToOrder> productsOfTheOrder;
 
 	public OrderManager() {
 		this.orderList = new ArrayList<>();
@@ -46,8 +44,8 @@ public class OrderManager {
 	}
 
 	public boolean isToSend() {
-		for (Product product : productsOfTheOrder) {
-			if (product.getState().equals(State.TO_SEND)) {
+		for (AssignProductToOrder assignProductToOrder : productsOfTheOrder) {
+			if (assignProductToOrder.getProduct().getState().equals(State.TO_SEND)) {
 				return true;
 			}
 		}
@@ -55,8 +53,8 @@ public class OrderManager {
 	}
 
 	public boolean isSend() {
-		for (Product product : productsOfTheOrder) {
-			if (!product.getState().equals(State.SEND)) {
+		for (AssignProductToOrder assignProductToOrder : productsOfTheOrder) {
+			if (!assignProductToOrder.getProduct().getState().equals(State.SEND)) {
 				return false;
 			}
 		}
@@ -64,8 +62,8 @@ public class OrderManager {
 	}
 
 	public boolean isRecived() {
-		for (Product product : productsOfTheOrder) {
-			if (product.getState().equals(State.RECEIVED)) {
+		for (AssignProductToOrder assignProductToOrder : productsOfTheOrder) {
+			if (assignProductToOrder.getProduct().getState().equals(State.RECEIVED)) {
 				return false;
 			}
 		}
@@ -73,24 +71,12 @@ public class OrderManager {
 	}
 
 	public boolean isProductToOrder(Product product) {
-		for (Product productFromOrder : productsOfTheOrder) {
-			if (product.equals(productFromOrder)) {
+		for (AssignProductToOrder assignProductToOrder : productsOfTheOrder) {
+			if (assignProductToOrder.getProduct().equals(assignProductToOrder)) {
 				return true;
 			}
 		}
 		return false;
-	}
-
-	public void addProduct(Product product) throws AggregatedProduct {
-		if (!isProductToOrder(product)) {
-			productsOfTheOrder.add(product);
-		} else {
-			throw new AggregatedProduct();
-		}
-	}
-
-	public void addListProduct(ArrayList<Product> productsToOrder) throws AggregatedProduct {
-		productsOfTheOrder.addAll(productsToOrder);
 	}
 
 	public State getState(Order order) {
@@ -115,16 +101,24 @@ public class OrderManager {
 		return productsFounds;
 	}
 
-	public void deleteProduct(Product product) throws ProductNotFound {
-		if (isProductToOrder(product)) {
-			productsOfTheOrder.remove(product);
-		} else {
-			throw new ProductNotFound();
-		}
-	}
-	
 	public static AssignProductToOrder createAssignProductToOrder(Order order, Product product){
 		return new AssignProductToOrder(order, product);
+	}
+	public void addAssignProductoToOrder(AssignProductToOrder assignProductToOrder) {
+		productsOfTheOrder.add(assignProductToOrder);
+	}
+
+	public AssignProductToOrder searchAssignProductToOrder(int id) throws ExceptionSearchId {
+		for (AssignProductToOrder assignProductToOrder : productsOfTheOrder) {
+			if (assignProductToOrder.getOrder().getId() == id) {
+				return assignProductToOrder;
+			}
+		}
+		throw new ExceptionSearchId();
+	}
+
+	public void deleteAssignProductToOrder(AssignProductToOrder assignProductToOrder) {
+		productsOfTheOrder.remove(assignProductToOrder);
 	}
 	
 }
