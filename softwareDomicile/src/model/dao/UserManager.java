@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import exceptions.ExceptionSearchId;
 import model.entity.AssignOrder;
-import model.entity.AssignProduct;
 import model.entity.Order;
 import model.entity.User;
 
