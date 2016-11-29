@@ -32,8 +32,7 @@ public class Order {
 		}
 		if (isRecived()) {
 			state = State.RECEIVED;
-		}
-		else {
+		} else {
 			state = State.RECEIVED;
 		}
 		return state;
