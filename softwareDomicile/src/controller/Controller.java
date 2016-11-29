@@ -2,7 +2,6 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import model.dao.Manager;
 import model.entity.Owner;
 import model.entity.User;
@@ -17,6 +16,7 @@ public class Controller implements ActionListener{
 	
 	public Controller() {
 //		mainWindow = new MainWindow(Controller );
+//		manager = new Manager();
 	}
 	
 	@Override
