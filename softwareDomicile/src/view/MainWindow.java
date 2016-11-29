@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import controller.Actions;
 import controller.Controller;
 import model.entity.User;
 
@@ -37,6 +39,12 @@ public class MainWindow extends JFrame {
 		gridSystem.addExternalBorder(0,0,0,0);
 		principalPanel.add(title, gridSystem.insertComponent(0, 1, 11, 1));
 		
+		
+		buttonLetsDoIt.setActionCommand(Actions.LETS_DO_IT.toString());
+		buttonLetsDoIt.addActionListener(controller);
+		
+		buttonSignIn.setActionCommand(Actions.SIGN_IN.toString());
+		buttonSignIn.addActionListener(controller);
 		
 		JPanel panelButtons = new JPanel();
 		panelButtons.add(Box.createRigidArea(new Dimension(10, 200)));

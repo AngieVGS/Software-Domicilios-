@@ -38,17 +38,18 @@ public class Controller implements ActionListener{
 		case LETS_DO_IT:
 			letsDoIt();
 			break;
-		case LOG_IN:
+		case SIGN_IN:
 			logIn();
 			break;
 		}
 	}
 	
 	public void letsDoIt() {
-	
+		closeAllWindows();
 	}
 	
 	public void logIn(){
+		closeAllWindows();
 	}
 	
 	public void closeAllWindows(){

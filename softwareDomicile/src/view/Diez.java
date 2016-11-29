@@ -34,7 +34,7 @@ public class Diez extends JDialog{
 	public void addPanelsToDialogForProducts(ArrayList<Product> products){
 		panelContainer.removeAll();
 		for (Product product : products) {
-			panelContainer.add(new PanelAddProducts(product));
+		//	panelContainer.add(new PanelAddProducts(product));
 			panelContainer.updateUI();
 		}
 	}

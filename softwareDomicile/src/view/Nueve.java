@@ -187,7 +187,7 @@ public class Nueve extends JDialog {
 			}
 		});
 		
-		setVisible(true);
+		//setVisible(true);
 	}
 	
 	public void addImage(String pathImg) {
