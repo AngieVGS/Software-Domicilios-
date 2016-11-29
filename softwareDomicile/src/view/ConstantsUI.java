@@ -22,6 +22,7 @@ public class ConstantsUI {
 	
 	//imagen
 	public static final String IMAGE_DEFAULT = "src/image/ImageDefault.png";
+	public static final Color FOREGROUND_LOGIN = Color.decode("#BDBDBD");
 	
 	public static final NumberFormatter getIntegerFormatter(){
 		NumberFormat format = NumberFormat.getInstance();
