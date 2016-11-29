@@ -1,21 +1,28 @@
 package model.entity;
 
-public class Product {
+import javax.swing.ImageIcon;
 
+public class Product {
+	
+	private static int AUXILIAR = 0;
 	private int id;
 	private String name;
 	private String description;
 	private double price;
 	private State state;
-	private String img;
+	private ImageIcon img;
 
-	public Product(int id, String name, String description, double price, State state, String img) {
-		this.id = id;
+	public Product(String name, String description, double price, State state, ImageIcon img) {
 		this.name = name;
 		this.description = description;
 		this.price = price;
 		this.state = state;
 		this.img = img;
+		this.id = AUXILIAR;
+	}
+	
+	public static void increaseCount(){
+		AUXILIAR = AUXILIAR+1;
 	}
 
 	@Override
@@ -47,7 +54,7 @@ public class Product {
 		return state;
 	}
 
-	public String getImg() {
+	public ImageIcon getImg() {
 		return img;
 	}
 }
