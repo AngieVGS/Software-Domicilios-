@@ -49,11 +49,13 @@ public class OwnerManager {
 		assignProductList.add(assignProduct);
 	}
 
-	public AssignProductToOwner searchAssignProductoToOwner(int id) throws ExceptionSearchId {
+	public ArrayList<Product> searchAssignProductoToOwner(int id) throws ExceptionSearchId {
+		ArrayList<Product> products = new ArrayList<>();
 		for (AssignProductToOwner assignProduct : assignProductList) {
 			if (assignProduct.getOwner().getId() == id) {
-				return assignProduct;
+				products.add(assignProduct.getProduct());
 			}
+			return products;
 		}
 		throw new ExceptionSearchId();
 	}
