@@ -1,19 +1,14 @@
 package view;
 
-
 import java.awt.Color;
 import java.awt.Dimension;
-
 import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 import controller.Controller;
-import model.dao.Manager;
-import model.entity.Owner;
 import model.entity.User;
 
 public class MainWindow extends JFrame {
