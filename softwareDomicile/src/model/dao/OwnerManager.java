@@ -13,6 +13,7 @@ public class OwnerManager {
 
 	public OwnerManager() {
 		ownerList = new ArrayList<>();
+		assignProductList = new ArrayList<>();
 	}
 
 	public Owner createOwner(int id, String name, String password) {
