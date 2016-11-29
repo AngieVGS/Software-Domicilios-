@@ -28,13 +28,13 @@ public class Manager {
 		ownerList.add(owner);
 	}
 
-	public Owner searchOwner(int id) {
+	public Owner searchOwner(int id) throws ExceptionSearchId {
 		for (Owner owner : ownerList) {
 			if (owner.getId() == id) {
 				return owner;
 			}
 		}
-		return null;
+		throw new ExceptionSearchId();
 	}
 
 	public void deleteOwner(Owner owner) {
@@ -54,13 +54,13 @@ public class Manager {
 		userList.add(user);
 	}
 
-	public User searchUser(int id) {
+	public User searchUser(int id) throws ExceptionSearchId {
 		for (User user : userList) {
 			if (user.getId() == id) {
 				return user;
 			}
 		}
-		return null;
+		throw new ExceptionSearchId();
 	}
 
 	public void deleteUser(User user) {
@@ -116,5 +116,4 @@ public class Manager {
 			}
 		}
 	}
-
 }
