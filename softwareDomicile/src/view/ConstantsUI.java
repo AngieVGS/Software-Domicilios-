@@ -11,6 +11,7 @@ public class ConstantsUI {
 	public static final Color BACKGROUND_COLOR = Color.decode("#ff9900");
 	public static final Color BACKGROUND_COLOR_BUTTON = Color.decode("#FF8100");
 	public static final Color BACKGROUND_COLOR_TEXTFILE = Color.decode("#F2F2F2");
+	public static final Color BACKGROUND_COLOR_TOOLBAR_RESTAURANT =  Color.decode("#f27500");
 	
 	public static final String TIITLE = "Order Manager v1";
 	
