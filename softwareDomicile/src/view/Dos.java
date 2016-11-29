@@ -167,7 +167,6 @@ public class Dos extends JDialog{
 				}
 			});
 			
-			setVisible(true);
 		}
 		
 		public void clear() {

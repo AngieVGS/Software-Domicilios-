@@ -20,11 +20,14 @@ public class Controller implements ActionListener{
 	private Owner owner;
 	private Nueve dialogAddOwner;
 	private Cuatro viewCuatro;
+	private Dos viewdos;
 	
 	public Controller() {
 		
 		mainWindow = new MainWindow(this );
 		mainWindow.setVisible(true);
+		viewdos = new Dos(this, mainWindow);
+		
 		viewCuatro = new Cuatro(this);
 		User userActual = null;
 		Owner ownerActual = null;		
@@ -51,20 +54,22 @@ public class Controller implements ActionListener{
 		}
 	}
 	public void businessOwnerLogin(){
-		closeAllWindows();
+		viewCuatro.setVisible(false);
 		dialogAddOwner.setVisible(true);
 	}
 	
 	public void userLogin(){
-		closeAllWindows();
+		viewCuatro.setVisible(false);
+		viewdos.setVisible(true);
+		
 	}
 	
 	public void letsDoIt() {
-		closeAllWindows();
+		mainWindow.setVisible(false);
 	}
 	
 	public void logIn(){
-		closeAllWindows();
+		mainWindow.setVisible(false);
 		viewCuatro.setVisible(true);
 		 
 	}
@@ -72,6 +77,6 @@ public class Controller implements ActionListener{
 	public void closeAllWindows(){
 		mainWindow.setVisible(false);
 		viewCuatro.setVisible(false);
-	    dialogAddOwner.setVisible(false);
+	   
 	}
 }
