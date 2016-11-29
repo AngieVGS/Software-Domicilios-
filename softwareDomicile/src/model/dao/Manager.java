@@ -71,8 +71,8 @@ public class Manager {
 		userList.set(id, user);
 	}
 
-	public static Product createProduct(int id, String name, String description, double price, State state) {
-		return new Product(id, name, description, price, state);
+	public static Product createProduct(int id, String name, String description, double price, State state, String img) {
+		return new Product(id, name, description, price, state,img);
 	}
 
 	public void addProduct(Product product) {
