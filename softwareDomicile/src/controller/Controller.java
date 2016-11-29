@@ -1,14 +1,14 @@
 package controller;
 
 import java.awt.event.ActionEvent;
+import view.*;
 import java.awt.event.ActionListener;
 import model.dao.OwnerManager;
 import model.dao.ProductManager;
 import model.dao.UserManager;
 import model.entity.Owner;
 import model.entity.User;
-import view.Nueve;
-import view.MainWindow;
+
 
 public class Controller implements ActionListener{
 	
@@ -19,12 +19,13 @@ public class Controller implements ActionListener{
 	private User user;
 	private Owner owner;
 	private Nueve dialogAddOwner;
+	private Cuatro viewCuatro;
 	
 	public Controller() {
-
+		
 		mainWindow = new MainWindow(this );
 		mainWindow.setVisible(true);
-		
+		viewCuatro = new Cuatro(this);
 		User userActual = null;
 		Owner ownerActual = null;		
 		dialogAddOwner = new Nueve(this, mainWindow);
@@ -41,7 +42,21 @@ public class Controller implements ActionListener{
 		case SIGN_IN:
 			logIn();
 			break;
+		case USER:
+			userLogin();
+			break;
+		case BUSINESS_OWNER:
+			businessOwnerLogin();
+			break;
 		}
+	}
+	public void businessOwnerLogin(){
+		closeAllWindows();
+		dialogAddOwner.setVisible(true);
+	}
+	
+	public void userLogin(){
+		closeAllWindows();
 	}
 	
 	public void letsDoIt() {
@@ -50,9 +65,13 @@ public class Controller implements ActionListener{
 	
 	public void logIn(){
 		closeAllWindows();
+		viewCuatro.setVisible(true);
+		 
 	}
 	
 	public void closeAllWindows(){
 		mainWindow.setVisible(false);
+		viewCuatro.setVisible(false);
+	    dialogAddOwner.setVisible(false);
 	}
 }

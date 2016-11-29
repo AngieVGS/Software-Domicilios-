@@ -63,7 +63,7 @@ public class MainWindow extends JFrame {
 		
 		
 		add(principalPanel);
-		setVisible(true);
+		
 	}
 
 	public MainWindow(User user , Controller controller) {
