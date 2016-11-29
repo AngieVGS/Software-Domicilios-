@@ -7,7 +7,7 @@ import model.dao.ProductManager;
 import model.dao.UserManager;
 import model.entity.Owner;
 import model.entity.User;
-import view.DialogAddOwner;
+import view.Nueve;
 import view.MainWindow;
 
 public class Controller implements ActionListener{
@@ -18,12 +18,12 @@ public class Controller implements ActionListener{
 	private UserManager userManager;
 	private User user;
 	private Owner owner;
-	private DialogAddOwner dialogAddOwner;
+	private Nueve dialogAddOwner;
 	
 	public Controller() {
 //		mainWindow = new MainWindow(Controller );
 //		manager = new Manager();
-		dialogAddOwner = new DialogAddOwner(this, mainWindow);
+		dialogAddOwner = new Nueve(this, mainWindow);
 	}
 	
 	@Override

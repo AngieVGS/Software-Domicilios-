@@ -29,7 +29,7 @@ import javax.swing.JTextField;
 
 import controller.Controller;
 
-public class DialogAddOwner extends JDialog {
+public class Nueve extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private JLabel lblTitle, lblImage;
@@ -39,7 +39,7 @@ public class DialogAddOwner extends JDialog {
 	private JFormattedTextField ftxfContactNumber;
 	private String imageDefault;
 
-	public DialogAddOwner(Controller controller, MainWindow mainWindow) {
+	public Nueve(Controller controller, MainWindow mainWindow) {
 		super(mainWindow, true);
 		setSize(410, 720);
 		setLocationRelativeTo(null);
