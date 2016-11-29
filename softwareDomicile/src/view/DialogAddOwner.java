@@ -98,7 +98,7 @@ public class DialogAddOwner extends JDialog {
         	}
         	
         	public void focusLost(FocusEvent e) {
-        		txfRestaurantName.setText("Restaurant Name");
+//        		txfRestaurantName.setText("Restaurant Name");
         	}
         });
 		add(txfRestaurantName, gbc);
@@ -130,7 +130,7 @@ public class DialogAddOwner extends JDialog {
         	}
         	
         	public void focusLost(FocusEvent e) {
-        		txPassword.setText("Password");
+//        		txPassword.setText("Password");
         	}
         });
 		add(txPassword, gbc);
@@ -148,7 +148,7 @@ public class DialogAddOwner extends JDialog {
 			}
 			
 			public void focusLost(FocusEvent e) {
-				txConfirmPasword.setText("Password");
+//				txConfirmPasword.setText("Password");
 			}
 		});
 		add(txConfirmPasword, gbc);
@@ -165,7 +165,7 @@ public class DialogAddOwner extends JDialog {
 			}
 			
 			public void focusLost(FocusEvent e) {
-				ftxfContactNumber.setText("Phone");
+//				ftxfContactNumber.setText("Phone");
 			}
 		});
 		add(ftxfContactNumber, gbc);
@@ -183,7 +183,7 @@ public class DialogAddOwner extends JDialog {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				super.windowClosing(e);
-//				clear();
+				clear();
 			}
 		});
 		
@@ -198,9 +198,9 @@ public class DialogAddOwner extends JDialog {
 	
 	public void clear() {
 		lblImage.setIcon(new ImageIcon(imageDefault));
-		txfRestaurantName.setText("");
-		txPassword.setText("");
-		txConfirmPasword.setText("");
-		ftxfContactNumber.setValue(0);
+		txfRestaurantName.setText("Restaurant Name");
+		txPassword.setText("Password");
+		txConfirmPasword.setText("Password");
+		ftxfContactNumber.setText("Phone");
 	}
 }
