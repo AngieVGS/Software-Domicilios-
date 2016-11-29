@@ -17,7 +17,7 @@ public class Manager {
 	public Manager() {
 		ownerList = new ArrayList<>();
 		userList = new ArrayList<>();
-		this.productList = new ArrayList<>();
+		productList = new ArrayList<>();
 	}
 
 	public Owner createOwner(int id, String name, String password) {
