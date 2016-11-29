@@ -3,10 +3,13 @@ package model.dao;
 import java.util.ArrayList;
 
 import exceptions.ExceptionSearchId;
+import model.entity.AssignProduct;
 import model.entity.Owner;
+import model.entity.Product;
 
 public class OwnerManager {
 	private ArrayList<Owner> ownerList;
+	private ArrayList<AssignProduct> assignProductList;
 
 	public OwnerManager() {
 		ownerList = new ArrayList<>();
@@ -37,7 +40,24 @@ public class OwnerManager {
 		ownerList.set(id, owner);
 	}
 
+	public AssignProduct createAssignProductoToOwner(Product product, Owner owner){
+		return new AssignProduct(product, owner);
+	}
 	
+	public void addAssignProductoToOwner(AssignProduct assignProduct) {
+		assignProductList.add(assignProduct);
+	}
 
-	
+	public AssignProduct searchAssignProductoToOwner(int id) throws ExceptionSearchId {
+		for (AssignProduct assignProduct : assignProductList) {
+			if (assignProduct.getOwner().getId() == id) {
+				return assignProduct;
+			}
+		}
+		throw new ExceptionSearchId();
+	}
+
+	public void deleteAssignProduct(AssignProduct assignProduct) {
+		assignProductList.remove(assignProduct);
+	}
 }
