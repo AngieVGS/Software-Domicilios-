@@ -16,6 +16,9 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 
+import controller.Actions;
+import controller.Controller;
+
 public class DialogLogIn extends JDialog {
 
 	private static final String TEXT_PASSWORD_INIT = "Password";
@@ -28,7 +31,7 @@ public class DialogLogIn extends JDialog {
 	private JTextArea txUser;
 	private JPasswordField txPassword;
 
-	public DialogLogIn() {
+	public DialogLogIn(Controller controller) {
 		setTitle("Fast & Luscious");
 		setIconImage(new ImageIcon("src/image/logoIcon.png").getImage());
 		setSize(410, 720);
@@ -106,8 +109,14 @@ public class DialogLogIn extends JDialog {
 		panelButtons.add(buttonSignUp);
 		panelButtons.setBackground(null);
 		
-		buttonLogIn.setBorder(null);;
-		buttonSignUp.setBorder(null);;
+		buttonLogIn.setBorder(null);
+		
+		buttonLogIn.setActionCommand(Actions.LOGIN.toString());
+		buttonLogIn.addActionListener(controller);
+		buttonSignUp.setBorder(null);
+		
+		buttonSignUp.setActionCommand(Actions.SIGN_UP.toString());
+		buttonSignUp.addActionListener(controller);
 		
 		
 		principalPanel.add(Box.createRigidArea(new Dimension(5, 290)));

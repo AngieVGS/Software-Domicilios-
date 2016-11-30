@@ -34,6 +34,16 @@ public class UserManager {
 		}
 		throw new ExceptionSearchId();
 	}
+	
+	
+	public User searchUserByName(String name) throws ExceptionSearchId {
+		for (User user : userList) {
+			if (user.getName().equals(name)) {
+				return user;
+			}
+		}
+		throw new ExceptionSearchId();
+	}
 
 	public void deleteUser(User user) {
 		userList.remove(user);
@@ -50,6 +60,8 @@ public class UserManager {
 	public void addAssignOrderToUser(AssignOrderToUser assignOrder) {
 		assignOrderList.add(assignOrder);
 	}
+	
+	
 
 	public ArrayList<Order> searchAssignOrderToUser(int id) throws ExceptionSearchId {
 		ArrayList<Order> orders = new ArrayList<>();

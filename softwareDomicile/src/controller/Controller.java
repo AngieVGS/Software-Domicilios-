@@ -7,6 +7,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
+
 import exceptions.ExceptionSearchId;
 import model.dao.OwnerManager;
 import model.dao.ProductManager;
@@ -32,24 +34,19 @@ public class Controller implements ActionListener, KeyListener {
 	private DialogLogIn dialogLogIn;
 
 	public Controller() {
-//		user = new User(1, "joan", "zzz", null, true);
-//		productManager = new ProductManager();
-//		Cinco cinco = new Cinco();
-//		ArrayList<Product> listProductOfStore = new ArrayList<>();
-//		for (int i = 0; i < 20; i++) {
-//			productManager.addProduct(new Product("name" + 1, "....", i + 1000, State.TO_SEND, "src/image/ImageDefault.png"));
-//		}
-//		cinco.fillCenter(productManager.getProductList(), this);
-
-		// dialogLogIn = new DialogLogIn();
-		// mainWindow = new MainWindow(this );
-		// mainWindow.setVisible(true);
-		// viewdos = new Dos(this, mainWindow);
-		// viewCuatro = new Cuatro(this);
-		// viewDiez = new Diez(this);
-		// User userActual = null;
-		// Owner ownerActual = null;
-		// dialogAddOwner = new Nueve(this, mainWindow);
+		
+		 ownerManager = new OwnerManager();
+		 userManager = new UserManager();
+		 dialogLogIn = new DialogLogIn(this);
+		 mainWindow = new MainWindow(this );
+		 mainWindow.setVisible(true);
+		 viewdos = new Dos(this, mainWindow);
+		 viewCuatro = new Cuatro(this);
+		 viewDiez = new Diez(this);
+		 User userActual = null;
+		 Owner ownerActual = null;
+		 dialogAddOwner = new Nueve(this, mainWindow);
+		 ownerManager.addOwner(ownerManager.createOwner(0, "Felipe", "s"));
 	}
 
 	@Override
@@ -60,7 +57,7 @@ public class Controller implements ActionListener, KeyListener {
 			letsDoIt();
 			break;
 		case SIGN_IN:
-			logIn();
+			signIn();
 			break;
 		case USER:
 			userLogin();
@@ -71,6 +68,14 @@ public class Controller implements ActionListener, KeyListener {
 		case PRODUCT_ADD_MY_CAR:
 			addMyProductToListOrder(Integer.parseInt(((JButton) event.getSource()).getName()));
 			break;
+		case JOIN:
+			join();
+		case LOGIN:
+			login();
+			break;	
+		case SIGN_UP:
+			break;
+		
 		}
 	}
 
@@ -82,6 +87,29 @@ public class Controller implements ActionListener, KeyListener {
 			e.printStackTrace();
 		}
 		System.out.println(user.getProductsdese());
+	}
+	
+	public void join(){
+		viewdos.setVisible(false);
+		
+	}
+	
+	public void login(){
+		String nameUser =  dialogLogIn.dataLogIn()[0];
+		System.out.println(nameUser);
+		try {
+			userManager.searchUserByName(nameUser);
+			
+		} catch (ExceptionSearchId e) {
+			try {
+				ownerManager.searchOwnerByName(nameUser);
+				viewDiez.setVisible(true);
+			}catch (ExceptionSearchId f) {
+				JOptionPane.showMessageDialog(mainWindow, f.getMessage());
+			}
+		}
+		
+		
 	}
 
 	public void businessOwnerLogin() {
@@ -100,7 +128,7 @@ public class Controller implements ActionListener, KeyListener {
 		dialogLogIn.setVisible(true);
 	}
 
-	public void logIn() {
+	public void signIn() {
 		mainWindow.setVisible(false);
 		viewCuatro.setVisible(true);
 
