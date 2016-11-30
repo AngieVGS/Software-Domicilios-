@@ -94,7 +94,9 @@ public class Nueve extends JDialog {
         gbc.gridy = 2;
         txfRestaurantName.addFocusListener(new FocusListener() {
         	public void focusGained(FocusEvent e) {
-        		txfRestaurantName.setText("");
+        		if (txfRestaurantName.getText().equals(ConstantsUI.RESTAURANT_NAME)) {
+        			txfRestaurantName.setText("");
+        		}
         	}
         	
         	public void focusLost(FocusEvent e) {
@@ -126,7 +128,9 @@ public class Nueve extends JDialog {
         gbc.gridy = 3;
         txPassword.addFocusListener(new FocusListener() {
         	public void focusGained(FocusEvent e) {
-        		txPassword.setText("");
+        		if (txPassword.getText().equals(ConstantsUI.PASSWORD)) {
+        			txPassword.setText("");
+				}
         	}
         	
         	public void focusLost(FocusEvent e) {
@@ -144,7 +148,9 @@ public class Nueve extends JDialog {
 		gbc.gridy = 4;
 		txConfirmPasword.addFocusListener(new FocusListener() {
 			public void focusGained(FocusEvent e) {
-				txConfirmPasword.setText("");
+				if (txConfirmPasword.getText().equals(ConstantsUI.PHONE_NUMBER)) {
+					txConfirmPasword.setText("");
+					}
 			}
 			
 			public void focusLost(FocusEvent e) {
@@ -161,7 +167,9 @@ public class Nueve extends JDialog {
 		gbc.gridy = 5;
 		ftxfContactNumber.addFocusListener(new FocusListener() {
 			public void focusGained(FocusEvent e) {
-				ftxfContactNumber.setText("");
+				if (ftxfContactNumber.getText().equals(ConstantsUI.PHONE_NUMBER)) {
+					ftxfContactNumber.setText("");
+					}
 			}
 			
 			public void focusLost(FocusEvent e) {
@@ -198,9 +206,9 @@ public class Nueve extends JDialog {
 	
 	public void clear() {
 		lblImage.setIcon(new ImageIcon(imageDefault));
-		txfRestaurantName.setText("Restaurant Name");
-		txPassword.setText("Password");
-		txConfirmPasword.setText("Password");
-		ftxfContactNumber.setText("Phone");
+		txfRestaurantName.setText(ConstantsUI.RESTAURANT_NAME);
+		txPassword.setText(ConstantsUI.PASSWORD);
+		txConfirmPasword.setText(ConstantsUI.PASSWORD);
+		ftxfContactNumber.setText(ConstantsUI.PHONE_NUMBER);
 	}
 }
