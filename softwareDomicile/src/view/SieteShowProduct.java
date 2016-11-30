@@ -56,14 +56,14 @@ public class SieteShowProduct extends JPanel{
 	
 	}
 	
-	public static void main(String[] args) {
-		JFrame frame = new JFrame();
-		JPanel panel = new JPanel(new GridLayout(10, 1));
-		JScrollPane jScrollPane = new JScrollPane(panel);
-		for (int i = 0; i < 10; i++) {
-			panel.add(new SieteShowProduct(new AssignProductToOwner(new Product("sdfghjklñ", "sdfghjkl", 124, State.RECEIVED, "src/image/Buttons/LetsDoItButton.png"), new Owner(01, "ya", "123"))));
-		}
-		frame.add(jScrollPane);
-		frame.setVisible(true);
-	}
+//	public static void main(String[] args) {
+//		JFrame frame = new JFrame();
+//		JPanel panel = new JPanel(new GridLayout(10, 1));
+//		JScrollPane jScrollPane = new JScrollPane(panel);
+//		for (int i = 0; i < 10; i++) {
+//			panel.add(new SieteShowProduct(new AssignProductToOwner(new Product("sdfghjklñ", "sdfghjkl", 124, State.RECEIVED, "src/image/Buttons/LetsDoItButton.png"), new Owner(01, "ya", "123"))));
+//		}
+//		frame.add(jScrollPane);
+//		frame.setVisible(true);
+//	}
 }

@@ -11,6 +11,7 @@ import model.dao.ProductManager;
 import model.dao.UserManager;
 import model.entity.Owner;
 import model.entity.User;
+import view.DialogLogIn;
 
 
 public class Controller implements ActionListener, KeyListener{
@@ -25,8 +26,10 @@ public class Controller implements ActionListener, KeyListener{
 	private Cuatro viewCuatro;
 	private Dos viewdos;
 	private Diez viewDiez;
+	private DialogLogIn dialogLogIn;
 	
 	public Controller() {
+		dialogLogIn = new DialogLogIn();
 		mainWindow = new MainWindow(this );
 		mainWindow.setVisible(true);
 		viewdos = new Dos(this, mainWindow);
@@ -68,6 +71,7 @@ public class Controller implements ActionListener, KeyListener{
 	
 	public void letsDoIt() {
 		mainWindow.setVisible(false);
+		dialogLogIn.setVisible(true);
 	}
 	
 	public void logIn(){
