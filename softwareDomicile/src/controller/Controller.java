@@ -49,7 +49,7 @@ public class Controller implements ActionListener, KeyListener {
 		 User userActual = null;
 		 Owner ownerActual = null;
 		 dialogAddOwner = new Nueve(this, mainWindow);
-		 ownerManager.addOwner(ownerManager.createOwner(0, "Felipe", "s"));
+		 ownerManager.addOwner(ownerManager.createOwner(0, "Felipe", "s","src/image/mcDonalds.jpg"));
 		 userManager.addUser(userManager.createUser(1, "Juan", "X",null,true));
 		
 	}

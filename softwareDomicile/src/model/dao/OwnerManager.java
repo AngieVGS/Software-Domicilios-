@@ -16,8 +16,8 @@ public class OwnerManager {
 		assignProductList = new ArrayList<>();
 	}
 
-	public Owner createOwner(int id, String name, String password) {
-		return new Owner(id, name, password);
+	public Owner createOwner(int id, String name, String password, String url) {
+		return new Owner(id, name, password, url);
 	}
 
 	public void addOwner(Owner owner) {
