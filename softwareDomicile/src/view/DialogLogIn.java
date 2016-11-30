@@ -26,6 +26,7 @@ public class DialogLogIn extends JDialog {
 	private JButton buttonLogIn;
 	private JButton buttonSignUp;
 	private JTextArea txUser;
+	private JPasswordField txPassword;
 
 	public DialogLogIn() {
 		setTitle("Fast & Luscious");
@@ -69,7 +70,7 @@ public class DialogLogIn extends JDialog {
 			}
 		});
 		panelInformation.add(txUser);
-		JPasswordField txPassword = new  JPasswordField(TEXT_PASSWORD_INIT);
+		txPassword = new  JPasswordField(TEXT_PASSWORD_INIT);
 		txPassword.setForeground(ConstantsUI.FOREGROUND_LOGIN);
 		txPassword.setBorder(null);
 		txPassword.setBackground(ConstantsUI.BACKGROUND_COLOR_TEXTFILE);
@@ -115,5 +116,11 @@ public class DialogLogIn extends JDialog {
 		
 		add(principalPanel);
 		setVisible(true);
+	}
+	
+	public String[] dataLogIn(){
+		@SuppressWarnings("deprecation")
+		String data[] = { txUser.getText(), txPassword.getText()};
+		return data;
 	}
 }
