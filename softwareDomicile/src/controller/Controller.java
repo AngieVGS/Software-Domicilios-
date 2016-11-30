@@ -18,6 +18,8 @@ import model.entity.Product;
 import model.entity.State;
 import model.entity.User;
 import view.DialogLogIn;
+import view.Seis;
+
 
 public class Controller implements ActionListener, KeyListener {
 
@@ -32,9 +34,10 @@ public class Controller implements ActionListener, KeyListener {
 	private Dos viewdos;
 	private Diez viewDiez;
 	private DialogLogIn dialogLogIn;
+	private Seis seis;
 
 	public Controller() {
-		
+		 seis = new Seis();
 		 ownerManager = new OwnerManager();
 		 userManager = new UserManager();
 		 dialogLogIn = new DialogLogIn(this);
@@ -47,6 +50,8 @@ public class Controller implements ActionListener, KeyListener {
 		 Owner ownerActual = null;
 		 dialogAddOwner = new Nueve(this, mainWindow);
 		 ownerManager.addOwner(ownerManager.createOwner(0, "Felipe", "s"));
+		 userManager.addUser(userManager.createUser(1, "Juan", "X",null,true));
+		
 	}
 
 	@Override
@@ -97,13 +102,17 @@ public class Controller implements ActionListener, KeyListener {
 	public void login(){
 		String nameUser =  dialogLogIn.dataLogIn()[0];
 		System.out.println(nameUser);
+		
 		try {
 			userManager.searchUserByName(nameUser);
+			seis.setVisible(true);
+			dialogLogIn.setVisible(false);
 			
 		} catch (ExceptionSearchId e) {
 			try {
 				ownerManager.searchOwnerByName(nameUser);
 				viewDiez.setVisible(true);
+				dialogLogIn.setVisible(false);
 			}catch (ExceptionSearchId f) {
 				JOptionPane.showMessageDialog(mainWindow, f.getMessage());
 			}
