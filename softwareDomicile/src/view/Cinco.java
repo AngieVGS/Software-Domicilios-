@@ -12,7 +12,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
-
 import model.entity.*;
 import controller.*;
 
@@ -97,8 +96,6 @@ public class Cinco extends JDialog {
 		JLabel nameProduct = new JLabel(product.getName(), JLabel.CENTER);
 		panel.add(nameProduct, BorderLayout.PAGE_START);
 
-		JLabel quantity = new JLabel(" ");
-
 		JLabel price = new JLabel("" + product.getPrice());
 		price.setHorizontalAlignment(JLabel.CENTER);
 
@@ -116,5 +113,4 @@ public class Cinco extends JDialog {
 	public void changeNameOwner(String name) {
 		back.setText(name);
 	}
-
 }

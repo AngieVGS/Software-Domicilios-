@@ -7,12 +7,4 @@ import model.entity.User;
 
 public class FileRead {
 	
-	private ArrayList<User> readUsers(){
-		return null;
-	}
-
-	private ArrayList<Owner> readOwners(){
-		return null;
-	}
-	
 }

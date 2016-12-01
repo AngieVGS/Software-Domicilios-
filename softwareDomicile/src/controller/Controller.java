@@ -20,7 +20,6 @@ import model.entity.User;
 import view.DialogLogIn;
 import view.Seis;
 
-
 public class Controller implements ActionListener, KeyListener {
 
 	private MainWindow mainWindow;
@@ -40,41 +39,47 @@ public class Controller implements ActionListener, KeyListener {
 	private Cinco cinco;
 
 	public Controller() {
-		 seis = new Seis();
-		 cinco= new Cinco(this);
-		 ownerManager = new OwnerManager();
-		 userManager = new UserManager();
-		 dialogLogIn = new DialogLogIn(this);
-		 productManager = new ProductManager();
-		 mainWindow = new MainWindow(this );
-		 mainWindow.setVisible(true);
-		 viewdos = new Dos(this, mainWindow);
-		 viewCuatro = new Cuatro(this);
-		 viewDiez = new Diez(this);
-		  userActual = null;
-		  ownerActual = null;
-		 dialogAddOwner = new Nueve(this, mainWindow);
-		 ownerManager.addOwner(OwnerManager.createOwner("Mc Donalds", "s","src/image/mcDonalds.jpg"));
-		 ownerManager.addOwner(OwnerManager.createOwner("El Pirata", "z","src/image/ElPirata.jpg"));
-		 ownerManager.addOwner(OwnerManager.createOwner("Al Toque", "z","src/image/AlToque.png"));
-		 userManager.addUser(UserManager.createUser("Juan", "X",null,true));
-		 
-		 productManager.addProduct(ProductManager.createProduct("hamburguesa", "deliciosa", 3000, State.RECEIVED, "src/image/HamburguerProduct.png"));
-		 productManager.addProduct(ProductManager.createProduct("2", "deliciosa", 3000, State.RECEIVED, "src/image/BebidaProducto.png"));
-		 productManager.addProduct(ProductManager.createProduct("23", "deliciosa", 3000, State.RECEIVED, "src/image/logoicon.png"));
-		 productManager.addProduct(ProductManager.createProduct("hamb3rguesa", "deliciosa", 3000, State.RECEIVED, "src/image/logoicon.png"));
-	     try {
-			ownerManager.addAssignProductoToOwner(ownerManager.createAssignProductoToOwner(productManager.searchProductById(0), ownerManager.searchOwner(1)));
-			ownerManager.addAssignProductoToOwner(ownerManager.createAssignProductoToOwner(productManager.searchProductById(1), ownerManager.searchOwner(1)));
-			ownerManager.addAssignProductoToOwner(ownerManager.createAssignProductoToOwner(productManager.searchProductById(2), ownerManager.searchOwner(1)));
-			ownerManager.addAssignProductoToOwner(ownerManager.createAssignProductoToOwner(productManager.searchProductById(3), ownerManager.searchOwner(1)));
+		seis = new Seis();
+		cinco = new Cinco(this);
+		ownerManager = new OwnerManager();
+		userManager = new UserManager();
+		dialogLogIn = new DialogLogIn(this);
+		productManager = new ProductManager();
+		mainWindow = new MainWindow(this);
+		mainWindow.setVisible(true);
+		viewdos = new Dos(this, mainWindow);
+		viewCuatro = new Cuatro(this);
+		viewDiez = new Diez(this);
+		userActual = null;
+		ownerActual = null;
+		dialogAddOwner = new Nueve(this, mainWindow);
+		ownerManager.addOwner(OwnerManager.createOwner("Mc Donalds", "s", "src/image/mcDonalds.jpg"));
+		ownerManager.addOwner(OwnerManager.createOwner("El Pirata", "z", "src/image/ElPirata.jpg"));
+		ownerManager.addOwner(OwnerManager.createOwner("Al Toque", "z", "src/image/AlToque.png"));
+		userManager.addUser(UserManager.createUser("Juan", "X", null, true));
+
+		productManager.addProduct(ProductManager.createProduct("hamburguesa", "deliciosa", 3000, State.RECEIVED,
+				"src/image/HamburguerProduct.png"));
+		productManager.addProduct(
+				ProductManager.createProduct("2", "deliciosa", 3000, State.RECEIVED, "src/image/BebidaProducto.png"));
+		productManager.addProduct(
+				ProductManager.createProduct("23", "deliciosa", 3000, State.RECEIVED, "src/image/logoicon.png"));
+		productManager.addProduct(ProductManager.createProduct("hamb3rguesa", "deliciosa", 3000, State.RECEIVED,
+				"src/image/logoicon.png"));
+		try {
+			ownerManager.addAssignProductoToOwner(ownerManager
+					.createAssignProductoToOwner(productManager.searchProductById(0), ownerManager.searchOwner(1)));
+			ownerManager.addAssignProductoToOwner(ownerManager
+					.createAssignProductoToOwner(productManager.searchProductById(1), ownerManager.searchOwner(1)));
+			ownerManager.addAssignProductoToOwner(ownerManager
+					.createAssignProductoToOwner(productManager.searchProductById(2), ownerManager.searchOwner(1)));
+			ownerManager.addAssignProductoToOwner(ownerManager
+					.createAssignProductoToOwner(productManager.searchProductById(3), ownerManager.searchOwner(1)));
 		} catch (ExceptionSearchId e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	     
-	     
-	    
+
 	}
 
 	@Override
@@ -99,21 +104,21 @@ public class Controller implements ActionListener, KeyListener {
 			join();
 		case LOGIN:
 			login();
-			break;	
+			break;
 		case SIGN_UP:
 			break;
 		case JOIN_ACCOUNT_OWNER:
 			joinOwner();
 			break;
 		case RESTAURANT:
-			testingButtons(Integer.parseInt (((JButton) event.getSource()).getName()));
+			testingButtons(Integer.parseInt(((JButton) event.getSource()).getName()));
 			break;
 		case CREATE_PRODUCT:
 			break;
 		}
 	}
-	
-	//Este metodo arroja por consola los ID unicos para cada resturante
+
+	// Este metodo arroja por consola los ID unicos para cada resturante
 	private void testingButtons(int idOwner) {
 		try {
 			Owner owner = ownerManager.searchOwner(idOwner);
@@ -121,8 +126,6 @@ public class Controller implements ActionListener, KeyListener {
 			cinco.changeNameOwner(owner.getName());
 			cinco.setVisible(true);
 		} catch (ExceptionSearchId e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
 		}
 	}
 
@@ -132,32 +135,34 @@ public class Controller implements ActionListener, KeyListener {
 			cinco.counttotal(product.getPrice());
 			userActual.addProductToMy(product);
 		} catch (ExceptionSearchId e) {
-			e.printStackTrace();
 		}
-
 	}
-	
+
 	public void joinOwner() {
 		try {
 			ownerManager.addOwner(dialogAddOwner.createOwner());
 			dialogAddOwner.clear();
 			dialogAddOwner.setVisible(false);
 		} catch (ExceptionIncorrectPassword e) {
-//			e.printStackTrace();
 			dialogAddOwner.validatePasswordField();
-		}	
 		}
-	
-	public void join(){
-		viewdos.setVisible(false);
 	}
-	
-	public void login(){
-		
-		String nameUser =  dialogLogIn.dataLogIn()[0];
+
+	public void join(){
 		try {
-		    User user = userManager.searchUserByName(nameUser);
-		    userActual = user;
+			userManager.addUser(viewdos.createUser());
+			viewdos.clear();
+			viewdos.setVisible(false);
+		} catch (ExceptionIncorrectPassword e) {
+			viewdos.validatePasswordField();
+		}		
+	}
+
+	public void login() {
+		String nameUser = dialogLogIn.dataLogIn()[0];
+		try {
+			User user = userManager.searchUserByName(nameUser);
+			userActual = user;
 			seis.addPanelsToDialogForProducts(ownerManager.getOwnerList(), this);
 			seis.setVisible(true);
 			dialogLogIn.setVisible(false);
@@ -167,11 +172,10 @@ public class Controller implements ActionListener, KeyListener {
 				ownerActual = owner;
 				viewDiez.setVisible(true);
 				dialogLogIn.setVisible(false);
-			}catch (ExceptionSearchId f) {
+			} catch (ExceptionSearchId f) {
 				JOptionPane.showMessageDialog(mainWindow, f.getMessage());
 			}
 		}
-		
 	}
 
 	public void businessOwnerLogin() {
@@ -199,7 +203,6 @@ public class Controller implements ActionListener, KeyListener {
 	public void closeAllWindows() {
 		mainWindow.setVisible(false);
 		viewCuatro.setVisible(false);
-
 	}
 
 	@Override
