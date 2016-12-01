@@ -1,7 +1,7 @@
 package model.entity;
 
 public class Product {
-	
+
 	private static int AUXILIAR = 0;
 	private int id;
 	private String name;
@@ -16,11 +16,7 @@ public class Product {
 		this.price = price;
 		this.state = state;
 		this.img = img;
-		this.id = AUXILIAR;
-	}
-	
-	public static void increaseCount(){
-		AUXILIAR = AUXILIAR+1;
+		this.id = AUXILIAR++;
 	}
 
 	@Override

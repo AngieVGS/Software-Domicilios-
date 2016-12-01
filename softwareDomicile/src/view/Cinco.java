@@ -33,36 +33,22 @@ public class Cinco extends JDialog {
 		for (Product product : listProductOfStore) {
 			JPanel panel = new JPanel();
 			panel.setLayout(new BorderLayout());
-			JLabel image = new JLabel(new ImageIcon(""+product.getImg()));
+			JButton image = new JButton(new ImageIcon("" + product.getImg()));
 			image.setHorizontalAlignment(JLabel.CENTER);
+			image.setActionCommand(Actions.PRODUCT_ADD_MY_CAR.toString());
+			image.addActionListener(controller);
+			image.setHorizontalAlignment(JCheckBox.CENTER);
+			image.setName("" + product.getId());
+			image.setBackground(null);
+			image.setToolTipText("Add My Count");
+			image.setBorder(null);
 			panel.add(image, BorderLayout.CENTER);
 
-			JPanel end = new JPanel();
-			end.setLayout(new GridLayout(1, 2));
 			JLabel price = new JLabel("" + product.getPrice());
 			price.setHorizontalAlignment(JLabel.CENTER);
-			end.add(price);
-
-			JButton addProduct = new JButton("ADD");
-			addProduct.setActionCommand(Actions.PRODUCT_ADD_MY_CAR.toString());
-			addProduct.addActionListener(controller);
-			addProduct.setHorizontalAlignment(JCheckBox.CENTER);
-			addProduct.setName("" + product.getId());
-			addProduct.setBackground(null);
-			addProduct.setToolTipText("Add My Count");
-			addProduct.setBorder(null);
-
-			end.add(addProduct);
-			panel.setBorder(BorderFactory.createSoftBevelBorder(JPanel.WIDTH, Color.BLUE, Color.yellow));
-			panel.add(end, BorderLayout.PAGE_END);
+			panel.add(price, BorderLayout.PAGE_END);
 			panelCenter.add(panel);
 			revalidate();
 		}
 	}
-
-	private JPanel header() {
-
-		return null;
-	}
-
 }
