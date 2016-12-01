@@ -17,6 +17,7 @@ import model.entity.Owner;
 import model.entity.Product;
 import model.entity.State;
 import model.entity.User;
+import persistence.FileWrite;
 import view.DialogLogIn;
 import view.Seis;
 
@@ -37,9 +38,11 @@ public class Controller implements ActionListener, KeyListener {
 	private User userActual;
 	private Owner ownerActual;
 	private Cinco cinco;
+	private FileWrite fileWrite;
 
 	public Controller() {
 		seis = new Seis();
+		fileWrite = new FileWrite();
 		cinco = new Cinco(this);
 		ownerManager = new OwnerManager();
 		userManager = new UserManager();
@@ -115,7 +118,14 @@ public class Controller implements ActionListener, KeyListener {
 			break;
 		case CREATE_PRODUCT:
 			break;
+		case GENERATE_ORDER:
+			fileWriten();
+			break;
 		}
+	}
+
+	private void fileWriten() {
+		userActual.getProductsdese();
 	}
 
 	// Este metodo arroja por consola los ID unicos para cada resturante
