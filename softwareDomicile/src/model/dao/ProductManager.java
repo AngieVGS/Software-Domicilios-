@@ -1,21 +1,19 @@
 package model.dao;
 
 import java.util.ArrayList;
-
-import javax.swing.ImageIcon;
-
 import exceptions.ExceptionSearchId;
 import model.entity.Product;
 import model.entity.State;
 
 public class ProductManager {
 	private ArrayList<Product> productList;
-	
-	public ProductManager(){
+
+	public ProductManager() {
 		productList = new ArrayList<>();
 	}
-	public static Product createProduct(String name, String description, double price, State state, ImageIcon img) {
-		return new Product(name, description, price, state,img);
+
+	public static Product createProduct(String name, String description, double price, State state, String img) {
+		return new Product(name, description, price, state, img);
 	}
 
 	public void addProduct(Product product) {
@@ -59,5 +57,4 @@ public class ProductManager {
 			}
 		}
 	}
-
 }

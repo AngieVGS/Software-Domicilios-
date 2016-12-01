@@ -10,9 +10,9 @@ public class Product {
 	private String description;
 	private double price;
 	private State state;
-	private ImageIcon img;
+	private String img;
 
-	public Product(String name, String description, double price, State state, ImageIcon img) {
+	public Product(String name, String description, double price, State state, String img) {
 		this.name = name;
 		this.description = description;
 		this.price = price;
@@ -54,7 +54,7 @@ public class Product {
 		return state;
 	}
 
-	public ImageIcon getImg() {
+	public String getImg() {
 		return img;
 	}
 }
