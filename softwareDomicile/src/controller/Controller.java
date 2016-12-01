@@ -51,7 +51,7 @@ public class Controller implements ActionListener, KeyListener {
 		 ownerManager.addOwner(OwnerManager.createOwner("Mc Donalds", "s","src/image/mcDonalds.jpg"));
 		 ownerManager.addOwner(OwnerManager.createOwner("El Pirata", "z","src/image/ElPirata.jpg"));
 		 ownerManager.addOwner(OwnerManager.createOwner("Al Toque", "z","src/image/AlToque.png"));
-		 userManager.addUser(userManager.createUser(1, "Juan", "X",null,true));
+		 userManager.addUser(UserManager.createUser("Juan", "X",null,true));
 	}
 
 	@Override
