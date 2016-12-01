@@ -22,6 +22,7 @@ public class Cinco extends JDialog {
 	private JToolBar toolbar;
 	private JButton generateOrder;
 	private JLabel priceTotal;
+	private double pricet=0;
 
 	public Cinco(Controller controller) {
 		setTitle("");
@@ -78,7 +79,10 @@ public class Cinco extends JDialog {
 		JPanel panel = new JPanel();
 		panel.setBackground(ConstantsUI.BACKGROUND_COLOR_SHOW_PRODUCT_LIST);
 		panel.setLayout(new BorderLayout());
-		JButton image = new JButton(new ImageIcon("" + product.getImg()));
+		
+		JButton image = new JButton();
+		image.setIcon(new ImageIcon(new ImageIcon("" + product.getImg()).getImage().getScaledInstance(180, 230, 100)));
+		
 		image.setBackground(ConstantsUI.BACKGROUND_COLOR_SHOW_PRODUCT_LIST);
 		image.setHorizontalAlignment(JButton.CENTER);
 		image.setActionCommand(Actions.PRODUCT_ADD_MY_CAR.toString());
@@ -94,13 +98,18 @@ public class Cinco extends JDialog {
 		
 		JLabel quantity = new JLabel(" ");
 
-		JLabel price = new JLabel("$" + product.getPrice());
+		JLabel price = new JLabel("" + product.getPrice());
 		price.setHorizontalAlignment(JLabel.CENTER);
 		
 		end.add(price, BorderLayout.PAGE_END);
 		panel.add(end, BorderLayout.PAGE_END);
 		panelCenter.add(panel);
 		return panel;
+	}
+
+	public void counttotal(double price) {
+		pricet+=price;
+		priceTotal.setText("$"+pricet);
 	}
 
 }

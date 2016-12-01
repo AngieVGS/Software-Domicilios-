@@ -59,8 +59,8 @@ public class Controller implements ActionListener, KeyListener {
 		 ownerManager.addOwner(OwnerManager.createOwner("Al Toque", "z","src/image/AlToque.png"));
 		 userManager.addUser(UserManager.createUser("Juan", "X",null,true));
 		 
-		 productManager.addProduct(ProductManager.createProduct("hamburguesa", "deliciosa", 3000, State.RECEIVED, "src/image/logoicon.png"));
-		 productManager.addProduct(ProductManager.createProduct("2", "deliciosa", 3000, State.RECEIVED, "src/image/logoicon.png"));
+		 productManager.addProduct(ProductManager.createProduct("hamburguesa", "deliciosa", 3000, State.RECEIVED, "src/image/HamburguerProduct.png"));
+		 productManager.addProduct(ProductManager.createProduct("2", "deliciosa", 3000, State.RECEIVED, "src/image/BebidaProducto.png"));
 		 productManager.addProduct(ProductManager.createProduct("23", "deliciosa", 3000, State.RECEIVED, "src/image/logoicon.png"));
 		 productManager.addProduct(ProductManager.createProduct("hamb3rguesa", "deliciosa", 3000, State.RECEIVED, "src/image/logoicon.png"));
 	     try {
@@ -128,11 +128,12 @@ public class Controller implements ActionListener, KeyListener {
 	private void addMyProductToListOrder(int idProdcut) {
 		try {
 			Product product = productManager.searchProductById(idProdcut);
-			user.addProductToMy(product);
+			cinco.counttotal(product.getPrice());
+			userActual.addProductToMy(product);
 		} catch (ExceptionSearchId e) {
 			e.printStackTrace();
 		}
-		System.out.println(user.getProductsdese());
+
 	}
 	
 	public void joinOwner() {
