@@ -39,8 +39,10 @@ public class Controller implements ActionListener, KeyListener {
 	private Owner ownerActual;
 	private Cinco cinco;
 	private FileWrite fileWrite;
+	private Doce doce;
 
 	public Controller() {
+		doce = new Doce(this, mainWindow);
 		seis = new Seis();
 		fileWrite = new FileWrite();
 		cinco = new Cinco(this);
@@ -117,17 +119,22 @@ public class Controller implements ActionListener, KeyListener {
 			testingButtons(Integer.parseInt(((JButton) event.getSource()).getName()));
 			break;
 		case CREATE_PRODUCT:
+			createProduct();
 			break;
 		case GENERATE_ORDER:
-			fileWriten();
+			break;
+		case CREATE_PRODUCT_NEW:
+			createProduct();
 			break;
 		}
 	}
 
-	private void fileWriten() {
-		userActual.getProductsdese();
+	public void createProduct() {
+		productManager.addProduct(doce.createProduct());
+		doce.clear();
+		doce.setVisible(false);
 	}
-
+	
 	// Este metodo arroja por consola los ID unicos para cada resturante
 	private void testingButtons(int idOwner) {
 		try {
@@ -180,6 +187,7 @@ public class Controller implements ActionListener, KeyListener {
 			try {
 				Owner owner = ownerManager.searchOwnerByName(nameUser);
 				ownerActual = owner;
+				viewDiez.addPanelsToDialogForProducts(ownerManager.searchAssignProductoToOwner(ownerActual.getId()));
 				viewDiez.setVisible(true);
 				dialogLogIn.setVisible(false);
 			} catch (ExceptionSearchId f) {
