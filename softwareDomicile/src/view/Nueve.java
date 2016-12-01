@@ -118,7 +118,7 @@ public class Nueve extends JDialog {
 		gbc.gridy = 5;
 		add(new JLabel(new ImageIcon("src/image/Phone.JPG")), gbc);
 		
-		txPassword = new JPasswordField("Passswor");
+		txPassword = new JPasswordField(ConstantsUI.PASSWORD);
 		txPassword.setBackground(ConstantsUI.BACKGROUND_COLOR_TEXTFILE);
 		txPassword.setBorder(null);
 		txPassword.setForeground(ConstantsUI.BACKGROUND_COLOR);
@@ -140,7 +140,7 @@ public class Nueve extends JDialog {
 		add(txPassword, gbc);
 		
 		
-		txConfirmPasword = new JPasswordField("Passswor");
+		txConfirmPasword = new JPasswordField(ConstantsUI.PASSWORD);
 		txConfirmPasword.setBackground(ConstantsUI.BACKGROUND_COLOR_TEXTFILE);
 		txConfirmPasword.setBorder(null);
 		txConfirmPasword.setForeground(ConstantsUI.BACKGROUND_COLOR);
@@ -148,7 +148,7 @@ public class Nueve extends JDialog {
 		gbc.gridy = 4;
 		txConfirmPasword.addFocusListener(new FocusListener() {
 			public void focusGained(FocusEvent e) {
-				if (txConfirmPasword.getText().equals(ConstantsUI.PHONE_NUMBER)) {
+				if (txConfirmPasword.getText().equals(ConstantsUI.PASSWORD)) {
 					txConfirmPasword.setText("");
 					}
 			}
