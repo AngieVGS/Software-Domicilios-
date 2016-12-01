@@ -2,6 +2,7 @@ package view;
 
 import java.awt.Color;
 
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,6 +18,7 @@ public class PanelAddProducts extends JPanel {
 	public PanelAddProducts(Product product) {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		setBackground(Color.WHITE);
+		setBorder(BorderFactory.createLineBorder(Color.ORANGE));
 		
 		JLabel lblImageProduct = new JLabel();
 		lblImageProduct.setIcon(new ImageIcon(product.getImg()));
@@ -31,6 +33,6 @@ public class PanelAddProducts extends JPanel {
 		JButton btnEdit = new JButton("Edit");
 		btnEdit.setToolTipText("Reserve element");
 		btnEdit.setName(String.valueOf(product.getId()));
-		add(btnEdit);
+//		add(btnEdit);
 	}
 }
