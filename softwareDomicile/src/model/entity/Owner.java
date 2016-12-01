@@ -26,4 +26,10 @@ public class Owner {
 	public String getImg() {
 		return img;
 	}
+
+	@Override
+	public String toString() {
+		return "Owner [id=" + id + ", name=" + name + ", password=" + password + ", img=" + img + "]";
+	}
+	
 }

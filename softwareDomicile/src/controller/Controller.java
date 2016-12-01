@@ -15,6 +15,7 @@ import model.dao.ProductManager;
 import model.dao.UserManager;
 import model.entity.Owner;
 import model.entity.Product;
+import model.entity.State;
 import model.entity.User;
 import view.DialogLogIn;
 import view.Seis;
@@ -35,9 +36,13 @@ public class Controller implements ActionListener, KeyListener {
 	private DialogLogIn dialogLogIn;
 	private Seis seis;
 	private Doce doce;
+	private User userActual;
+	private Owner ownerActual;
+	private Cinco cinco;
 
 	public Controller() {
 		 seis = new Seis();
+		 cinco= new Cinco();
 		 ownerManager = new OwnerManager();
 		 userManager = new UserManager();
 		 dialogLogIn = new DialogLogIn(this);
@@ -47,6 +52,8 @@ public class Controller implements ActionListener, KeyListener {
 		 viewCuatro = new Cuatro(this);
 		 viewDiez = new Diez(this);
 		 doce = new Doce(this, mainWindow);
+		 userActual = null;
+		  ownerActual = null;
 		 User userActual = null;
 		 Owner ownerActual = null;
 		 dialogAddOwner = new Nueve(this, mainWindow);
@@ -54,6 +61,20 @@ public class Controller implements ActionListener, KeyListener {
 		 ownerManager.addOwner(OwnerManager.createOwner("El Pirata", "z","src/image/ElPirata.jpg"));
 		 ownerManager.addOwner(OwnerManager.createOwner("Al Toque", "z","src/image/AlToque.png"));
 		 userManager.addUser(UserManager.createUser("Juan", "X",null,true));
+	
+		 productManager.addProduct(ProductManager.createProduct("hamburguesa", "deliciosa", 3000, State.RECEIVED, "src/image/logoicon.png"));
+		 productManager.addProduct(ProductManager.createProduct("2", "deliciosa", 3000, State.RECEIVED, "src/image/logoicon.png"));
+		 productManager.addProduct(ProductManager.createProduct("23", "deliciosa", 3000, State.RECEIVED, "src/image/logoicon.png"));
+		 productManager.addProduct(ProductManager.createProduct("hamb3rguesa", "deliciosa", 3000, State.RECEIVED, "src/image/logoicon.png"));
+	     try {
+			ownerManager.addAssignProductoToOwner(ownerManager.createAssignProductoToOwner(productManager.searchProductById(0), ownerManager.searchOwner(1)));
+			ownerManager.addAssignProductoToOwner(ownerManager.createAssignProductoToOwner(productManager.searchProductById(1), ownerManager.searchOwner(1)));
+			ownerManager.addAssignProductoToOwner(ownerManager.createAssignProductoToOwner(productManager.searchProductById(2), ownerManager.searchOwner(1)));
+			ownerManager.addAssignProductoToOwner(ownerManager.createAssignProductoToOwner(productManager.searchProductById(3), ownerManager.searchOwner(1)));
+		} catch (ExceptionSearchId e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override

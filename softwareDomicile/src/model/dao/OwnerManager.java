@@ -64,13 +64,15 @@ public class OwnerManager {
 
 	public ArrayList<Product> searchAssignProductoToOwner(int id) throws ExceptionSearchId {
 		ArrayList<Product> products = new ArrayList<>();
+		
 		for (AssignProductToOwner assignProduct : assignProductList) {
+			System.out.println("entro " + assignProduct.getOwner().getId()+ "  / " + id);
 			if (assignProduct.getOwner().getId() == id) {
 				products.add(assignProduct.getProduct());
 			}
-			return products;
 		}
-		throw new ExceptionSearchId();
+		return products;
+//		throw new ExceptionSearchId();
 	}
 
 	public void deleteAssignProduct(AssignProductToOwner assignProduct) {

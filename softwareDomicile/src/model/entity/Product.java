@@ -21,7 +21,8 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return "Producto: " + " " + name + " " + description + " " + price + " " + state;
+		return "Product [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price + ", img="
+				+ img + "]";
 	}
 
 	public void changeStatus(State state) {
@@ -51,4 +52,5 @@ public class Product {
 	public String getImg() {
 		return img;
 	}
+	
 }
