@@ -3,6 +3,9 @@ package controller;
 import java.awt.event.ActionEvent;
 import view.*;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 import model.dao.OwnerManager;
 import model.dao.ProductManager;
 import model.dao.UserManager;
@@ -10,7 +13,7 @@ import model.entity.Owner;
 import model.entity.User;
 
 
-public class Controller implements ActionListener{
+public class Controller implements ActionListener, KeyListener{
 	
 	private MainWindow mainWindow;
 	private OwnerManager ownerManager;
@@ -21,18 +24,17 @@ public class Controller implements ActionListener{
 	private Nueve dialogAddOwner;
 	private Cuatro viewCuatro;
 	private Dos viewdos;
+	private Diez viewDiez;
 	
 	public Controller() {
-		
 		mainWindow = new MainWindow(this );
 		mainWindow.setVisible(true);
 		viewdos = new Dos(this, mainWindow);
-		
 		viewCuatro = new Cuatro(this);
+		viewDiez = new Diez(this);
 		User userActual = null;
 		Owner ownerActual = null;		
 		dialogAddOwner = new Nueve(this, mainWindow);
-
 	}
 	
 	@Override
@@ -78,5 +80,27 @@ public class Controller implements ActionListener{
 		mainWindow.setVisible(false);
 		viewCuatro.setVisible(false);
 	   
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		limitCharactersForToolbar(e);
+	}
+	
+	public void limitCharactersForToolbar(KeyEvent e){
+		int limit = 38;
+		if (viewDiez.getWordOnSpace().length() == limit){
+		     e.consume();
+		}
 	}
 }
