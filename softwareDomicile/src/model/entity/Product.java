@@ -1,7 +1,5 @@
 package model.entity;
 
-import javax.swing.ImageIcon;
-
 public class Product {
 	
 	private static int AUXILIAR = 0;
