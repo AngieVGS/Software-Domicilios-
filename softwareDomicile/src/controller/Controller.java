@@ -6,9 +6,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
-
 import javax.swing.JButton;
-
+import exceptions.ExceptionSearchId;
 import model.dao.OwnerManager;
 import model.dao.ProductManager;
 import model.dao.UserManager;
@@ -33,13 +32,14 @@ public class Controller implements ActionListener, KeyListener {
 	private DialogLogIn dialogLogIn;
 
 	public Controller() {
-		Cinco cinco = new Cinco();
-		ArrayList<Product> listProductOfStore = new ArrayList<>();
-		for (int i = 0; i < 20; i++) {
-			listProductOfStore.add(new Product("name" + 1, "....", i + 1000, State.TO_SEND, "src/image/ImageDefault.png"));
-		}
-
-		cinco.fillCenter(listProductOfStore, this);
+//		user = new User(1, "joan", "zzz", null, true);
+//		productManager = new ProductManager();
+//		Cinco cinco = new Cinco();
+//		ArrayList<Product> listProductOfStore = new ArrayList<>();
+//		for (int i = 0; i < 20; i++) {
+//			productManager.addProduct(new Product("name" + 1, "....", i + 1000, State.TO_SEND, "src/image/ImageDefault.png"));
+//		}
+//		cinco.fillCenter(productManager.getProductList(), this);
 
 		// dialogLogIn = new DialogLogIn();
 		// mainWindow = new MainWindow(this );
@@ -69,15 +69,19 @@ public class Controller implements ActionListener, KeyListener {
 			businessOwnerLogin();
 			break;
 		case PRODUCT_ADD_MY_CAR:
-			addMyProductToListOrder(Integer.parseInt(((JButton)event.getSource()).getName()));
-			break;
-		default:
+			addMyProductToListOrder(Integer.parseInt(((JButton) event.getSource()).getName()));
 			break;
 		}
 	}
 
 	private void addMyProductToListOrder(int idProdcut) {
-		System.out.println(idProdcut);
+		try {
+			Product product = productManager.searchProductById(idProdcut);
+			user.addProductToMy(product);
+		} catch (ExceptionSearchId e) {
+			e.printStackTrace();
+		}
+		System.out.println(user.getProductsdese());
 	}
 
 	public void businessOwnerLogin() {

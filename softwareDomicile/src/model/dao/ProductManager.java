@@ -29,6 +29,10 @@ public class ProductManager {
 		throw new ExceptionSearchId();
 	}
 
+	public ArrayList<Product> getProductList() {
+		return productList;
+	}
+
 	public ArrayList<Product> searchProductByName(String name) {
 		ArrayList<Product> productSearchList = new ArrayList<>();
 		for (Product product : productList) {

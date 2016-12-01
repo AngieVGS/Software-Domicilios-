@@ -8,7 +8,6 @@ import exceptions.ProductNotFound;
 public class Order {
 
 	private int id;
-	
 	private State state;
 	private String direction;
 	

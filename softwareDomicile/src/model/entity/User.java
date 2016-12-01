@@ -10,6 +10,7 @@ public class User {
 	private String password;
 	private ArrayList<Order> orders;
 	private boolean state;
+	private ArrayList<Product> productsdese = new ArrayList<>();
 
 	public User(int id, String name, String password, ArrayList<Order> orders, boolean state) {
 		this.id = id;
@@ -23,6 +24,10 @@ public class User {
 		orders.add(order);
 	}
 
+	public void addProductToMy(Product product) {
+		productsdese.add(product);
+	}
+
 	public ArrayList<Order> addListOder(Order order) {
 		ArrayList<Order> listTotal = new ArrayList<>();
 		listTotal.addAll(orders);
@@ -32,8 +37,8 @@ public class User {
 	public String getName() {
 		return name;
 	}
-	
-	public int getId(){
+
+	public int getId() {
 		return id;
 	}
 
@@ -52,5 +57,9 @@ public class User {
 
 	public void adithOrder() {
 
+	}
+
+	public ArrayList<Product> getProductsdese() {
+		return productsdese;
 	}
 }
