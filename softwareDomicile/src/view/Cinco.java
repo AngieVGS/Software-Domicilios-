@@ -21,8 +21,9 @@ public class Cinco extends JDialog {
 	private JPanel panelCenter;
 	private JToolBar toolbar;
 	private JButton generateOrder;
+	private JButton back;
 	private JLabel priceTotal;
-	private double pricet=0;
+	private double pricet = 0;
 
 	public Cinco(Controller controller) {
 		setTitle("");
@@ -33,7 +34,7 @@ public class Cinco extends JDialog {
 		toolbar = new JToolBar();
 		toolbar.setFloatable(false);
 		toolbar.setBackground(ConstantsUI.BACKGROUND_COLOR_TOOLBAR_RESTAURANT);
-		JButton back = new JButton("name restaurant");
+		back = new JButton();
 		back.setBackground(ConstantsUI.BACKGROUND_COLOR_TOOLBAR_RESTAURANT);
 		back.setBorder(null);
 		back.setFont(new Font("Arial Narrow", Font.BOLD, 20));
@@ -43,7 +44,7 @@ public class Cinco extends JDialog {
 		JPanel count = new JPanel();
 		count.setLayout(new GridLayout(1, 2));
 		count.setBackground(ConstantsUI.BACKGROUND_COLOR_BUTTON_GENERATE_ORDER);
-		
+
 		generateOrder = new JButton("generate");
 		generateOrder.setBorder(null);
 		generateOrder.setBackground(ConstantsUI.BACKGROUND_COLOR_BUTTON_GENERATE_ORDER);
@@ -52,8 +53,8 @@ public class Cinco extends JDialog {
 		generateOrder.addActionListener(controller);
 		generateOrder.setActionCommand(Actions.GENERATE_ORDER.toString());
 		count.add(generateOrder);
-		
-		priceTotal = new JLabel("total: $ 0.0",JLabel.RIGHT);
+
+		priceTotal = new JLabel("total: $ 0.0", JLabel.RIGHT);
 		priceTotal.setBackground(ConstantsUI.BACKGROUND_COLOR_BUTTON_GENERATE_ORDER);
 		priceTotal.setForeground(Color.WHITE);
 		priceTotal.setFont(new Font("Arial", Font.PLAIN, 20));
@@ -67,7 +68,7 @@ public class Cinco extends JDialog {
 
 	public void fillCenter(ArrayList<Product> listProductOfStore, Controller controller) {
 		panelCenter.removeAll();
-		panelCenter.setLayout(new GridLayout((listProductOfStore.size() + 1) / 2, 2, 10,10));
+		panelCenter.setLayout(new GridLayout((listProductOfStore.size() + 1) / 2, 2, 10, 10));
 		for (Product product : listProductOfStore) {
 			header(controller, product);
 			revalidate();
@@ -79,10 +80,10 @@ public class Cinco extends JDialog {
 		JPanel panel = new JPanel();
 		panel.setBackground(ConstantsUI.BACKGROUND_COLOR_SHOW_PRODUCT_LIST);
 		panel.setLayout(new BorderLayout());
-		
+
 		JButton image = new JButton();
 		image.setIcon(new ImageIcon(new ImageIcon("" + product.getImg()).getImage().getScaledInstance(180, 230, 100)));
-		
+
 		image.setBackground(ConstantsUI.BACKGROUND_COLOR_SHOW_PRODUCT_LIST);
 		image.setHorizontalAlignment(JButton.CENTER);
 		image.setActionCommand(Actions.PRODUCT_ADD_MY_CAR.toString());
@@ -93,14 +94,14 @@ public class Cinco extends JDialog {
 		panel.add(image, BorderLayout.CENTER);
 		JPanel end = new JPanel();
 		end.setBackground(ConstantsUI.BACKGROUND_COLOR_SHOW_PRODUCT_LIST);
-		JLabel nameProduct = new JLabel( product.getName(), JLabel.CENTER);
+		JLabel nameProduct = new JLabel(product.getName(), JLabel.CENTER);
 		panel.add(nameProduct, BorderLayout.PAGE_START);
-		
+
 		JLabel quantity = new JLabel(" ");
 
 		JLabel price = new JLabel("" + product.getPrice());
 		price.setHorizontalAlignment(JLabel.CENTER);
-		
+
 		end.add(price, BorderLayout.PAGE_END);
 		panel.add(end, BorderLayout.PAGE_END);
 		panelCenter.add(panel);
@@ -108,8 +109,12 @@ public class Cinco extends JDialog {
 	}
 
 	public void counttotal(double price) {
-		pricet+=price;
-		priceTotal.setText("$"+pricet);
+		pricet += price;
+		priceTotal.setText("$" + pricet);
+	}
+
+	public void changeNameOwner(String name) {
+		back.setText(name);
 	}
 
 }

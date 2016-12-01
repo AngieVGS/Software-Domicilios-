@@ -106,7 +106,7 @@ public class Controller implements ActionListener, KeyListener {
 			joinOwner();
 			break;
 		case RESTAURANT:
-			testingButtons(event);
+			testingButtons(Integer.parseInt (((JButton) event.getSource()).getName()));
 			break;
 		case CREATE_PRODUCT:
 			break;
@@ -114,10 +114,11 @@ public class Controller implements ActionListener, KeyListener {
 	}
 	
 	//Este metodo arroja por consola los ID unicos para cada resturante
-	private void testingButtons(ActionEvent e) {
-		int id = Integer.parseInt (((JButton) e.getSource()).getName());
+	private void testingButtons(int idOwner) {
 		try {
-			cinco.fillCenter(ownerManager.searchAssignProductoToOwner(id), this);
+			Owner owner = ownerManager.searchOwner(idOwner);
+			cinco.fillCenter(ownerManager.searchAssignProductoToOwner(idOwner), this);
+			cinco.changeNameOwner(owner.getName());
 			cinco.setVisible(true);
 		} catch (ExceptionSearchId e1) {
 			// TODO Auto-generated catch block
