@@ -20,10 +20,11 @@ public class PanelAddRestaurants extends JPanel{
 		setBackground(Color.WHITE);
 		
 		JButton btnImageRestaurant = new JButton();
-		btnImageRestaurant.setIcon(new ImageIcon(new ImageIcon(owner.getImg()).getImage().getScaledInstance(357, 150, 100)));
+		btnImageRestaurant.setIcon(new ImageIcon(new ImageIcon(owner.getImg()).getImage().getScaledInstance(407, 150, 100)));
 		btnImageRestaurant.setBackground(Color.WHITE);
 		btnImageRestaurant.setName(String.valueOf(owner.getId()));
 		btnImageRestaurant.addActionListener(controller);
+		btnImageRestaurant.setBorder(null);
 		btnImageRestaurant.setActionCommand(Actions.RESTAURANT.toString());
 		add(btnImageRestaurant);
 	}
