@@ -23,22 +23,22 @@ public class FileWrite {
 		JsonObject restaurantObject = new JsonObject();
 		JsonObject ownerObject = new JsonObject();
 		restaurantObject.add(ConstantPersistence.RESTAURANT_LISIT, ownerObject);
-		JsonArray productArray = new JsonArray();
+//		JsonArray productArray = new JsonArray();
 //		restaurantObject.add(ConstantPersistence.RESTAURANT_NAME, gson.toJsonTree(ownerList));
 		for (AssignProductToOwner owner : ownerList) {
 //			JsonObject createOwnerObject = new JsonObject();
 			ownerObject.addProperty(ConstantPersistence.RESTAURANT_NAME, owner.getOwner().getName());
-			ownerObject.addProperty(ConstantPersistence.RESTAURANT_PASSWORD, owner.getOwner().getPassword());
+			ownerObject.addProperty(ConstantPersistence.PASSWORD, owner.getOwner().getPassword());
 			ownerObject.addProperty(ConstantPersistence.RESTAURANT_IMAGE, owner.getOwner().getUrl());
-			ownerObject.add(ConstantPersistence.RESTAURANT_PRODUCT_LIST, productArray);
 			JsonObject productsObjetc = new JsonObject();
+			ownerObject.add(ConstantPersistence.PRODUCT_LIST, productsObjetc);
 			productsObjetc.addProperty(ConstantPersistence.PRODUCT_NAME, owner.getProduct().getName());
 			productsObjetc.addProperty(ConstantPersistence.PRODUCT_DESCRIPTION, owner.getProduct().getDescription());
 			productsObjetc.addProperty(ConstantPersistence.PRODUCT_PRICE, owner.getProduct().getPrice());
 			productsObjetc.addProperty(ConstantPersistence.PRODUCT_IMAGE, owner.getProduct().getImg());
 			productsObjetc.addProperty(ConstantPersistence.PRODUCT_STATE, String.valueOf(owner.getProduct().getState()));
 			
-			productArray.add(productsObjetc);
+//			productArray.add(productsObjetc);
 		}
 
 //		FileWriter fileWriter = new FileWriter(archivo);
@@ -46,5 +46,4 @@ public class FileWrite {
 		bufferedWriter.write(restaurantObject.toString());
 		bufferedWriter.close();
 	}
-
 }
