@@ -101,24 +101,26 @@ public class OrderManager {
 		return productsFounds;
 	}
 
-	public static AssignProductToOrder createAssignProductToOrder(Order order, Product product){
+	public static AssignProductToOrder createAssignProductToOrder(Order order, Product product) {
 		return new AssignProductToOrder(order, product);
 	}
+
 	public void addAssignProductoToOrder(AssignProductToOrder assignProductToOrder) {
 		productsOfTheOrder.add(assignProductToOrder);
 	}
 
-	public AssignProductToOrder searchAssignProductToOrder(int id) throws ExceptionSearchId {
+	public ArrayList<Product> searchAssignProductToOrder(int id) throws ExceptionSearchId {
+		ArrayList<Product> products = new ArrayList<>();
 		for (AssignProductToOrder assignProductToOrder : productsOfTheOrder) {
 			if (assignProductToOrder.getOrder().getId() == id) {
-				return assignProductToOrder;
+				products.add(assignProductToOrder.getProduct());
 			}
 		}
-		throw new ExceptionSearchId();
+		return products;
 	}
 
 	public void deleteAssignProductToOrder(AssignProductToOrder assignProductToOrder) {
 		productsOfTheOrder.remove(assignProductToOrder);
 	}
-	
+
 }

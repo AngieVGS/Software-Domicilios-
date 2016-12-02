@@ -35,7 +35,6 @@ public class Controller implements ActionListener, KeyListener {
 	private Diez viewDiez;
 	private DialogLogIn dialogLogIn;
 	private Seis seis;
-	private Doce doce;
 	private User userActual;
 	private Owner ownerActual;
 	private Cinco cinco;
@@ -46,22 +45,20 @@ public class Controller implements ActionListener, KeyListener {
 		 ownerManager = new OwnerManager();
 		 userManager = new UserManager();
 		 dialogLogIn = new DialogLogIn(this);
+		 productManager = new ProductManager();
 		 mainWindow = new MainWindow(this );
 		 mainWindow.setVisible(true);
 		 viewdos = new Dos(this, mainWindow);
 		 viewCuatro = new Cuatro(this);
 		 viewDiez = new Diez(this);
-		 doce = new Doce(this, mainWindow);
-		 userActual = null;
+		  userActual = null;
 		  ownerActual = null;
-		 User userActual = null;
-		 Owner ownerActual = null;
 		 dialogAddOwner = new Nueve(this, mainWindow);
 		 ownerManager.addOwner(OwnerManager.createOwner("Mc Donalds", "s","src/image/mcDonalds.jpg"));
 		 ownerManager.addOwner(OwnerManager.createOwner("El Pirata", "z","src/image/ElPirata.jpg"));
 		 ownerManager.addOwner(OwnerManager.createOwner("Al Toque", "z","src/image/AlToque.png"));
 		 userManager.addUser(UserManager.createUser("Juan", "X",null,true));
-	
+		 
 		 productManager.addProduct(ProductManager.createProduct("hamburguesa", "deliciosa", 3000, State.RECEIVED, "src/image/logoicon.png"));
 		 productManager.addProduct(ProductManager.createProduct("2", "deliciosa", 3000, State.RECEIVED, "src/image/logoicon.png"));
 		 productManager.addProduct(ProductManager.createProduct("23", "deliciosa", 3000, State.RECEIVED, "src/image/logoicon.png"));
@@ -75,6 +72,9 @@ public class Controller implements ActionListener, KeyListener {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	     
+	     
+	    
 	}
 
 	@Override
@@ -109,14 +109,20 @@ public class Controller implements ActionListener, KeyListener {
 			testingButtons(event);
 			break;
 		case CREATE_PRODUCT:
-			createProduct();
 			break;
 		}
 	}
 	
 	//Este metodo arroja por consola los ID unicos para cada resturante
 	private void testingButtons(ActionEvent e) {
-		System.out.println((((JButton) e.getSource()).getName()));
+		int id = Integer.parseInt (((JButton) e.getSource()).getName());
+		try {
+			cinco.fillCenter(ownerManager.searchAssignProductoToOwner(id), this);
+			cinco.setVisible(true);
+		} catch (ExceptionSearchId e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 
 	private void addMyProductToListOrder(int idProdcut) {
@@ -127,12 +133,6 @@ public class Controller implements ActionListener, KeyListener {
 			e.printStackTrace();
 		}
 		System.out.println(user.getProductsdese());
-	}
-	
-	public void createProduct() {
-		productManager.addProduct(doce.createProduct());
-		doce.clear();
-		doce.setVisible(false);
 	}
 	
 	public void joinOwner() {
@@ -147,32 +147,29 @@ public class Controller implements ActionListener, KeyListener {
 		}
 	
 	public void join(){
-		try {
-			userManager.addUser(viewdos.createUser());
-			viewdos.clear();
-			viewdos.setVisible(false);
-		} catch (ExceptionIncorrectPassword e) {
-//			e.printStackTrace();
-			viewdos.validatePasswordField();
-		}
+		viewdos.setVisible(false);
 	}
 	
 	public void login(){
+		
 		String nameUser =  dialogLogIn.dataLogIn()[0];
 		try {
-			userManager.searchUserByName(nameUser);
+		    User user = userManager.searchUserByName(nameUser);
+		    userActual = user;
 			seis.addPanelsToDialogForProducts(ownerManager.getOwnerList(), this);
 			seis.setVisible(true);
 			dialogLogIn.setVisible(false);
 		} catch (ExceptionSearchId e) {
 			try {
-				ownerManager.searchOwnerByName(nameUser);
+				Owner owner = ownerManager.searchOwnerByName(nameUser);
+				ownerActual = owner;
 				viewDiez.setVisible(true);
 				dialogLogIn.setVisible(false);
 			}catch (ExceptionSearchId f) {
 				JOptionPane.showMessageDialog(mainWindow, f.getMessage());
 			}
 		}
+		
 	}
 
 	public void businessOwnerLogin() {

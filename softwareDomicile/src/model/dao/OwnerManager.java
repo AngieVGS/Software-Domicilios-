@@ -72,7 +72,6 @@ public class OwnerManager {
 			}
 		}
 		return products;
-//		throw new ExceptionSearchId();
 	}
 
 	public void deleteAssignProduct(AssignProductToOwner assignProduct) {

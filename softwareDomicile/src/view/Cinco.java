@@ -4,17 +4,13 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.ArrayList;
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JToolBar;
-import javax.swing.Painter;
-import javax.swing.SpringLayout.Constraints;
 
 import model.entity.*;
 import controller.*;
@@ -50,6 +46,7 @@ public class Cinco extends JDialog {
 	}
 
 	public void fillCenter(ArrayList<Product> listProductOfStore, Controller controller) {
+		panelCenter.removeAll();
 		panelCenter.setLayout(new GridLayout((listProductOfStore.size() + 1) / 2, 2));
 		for (Product product : listProductOfStore) {
 			header(controller, product);
@@ -71,11 +68,16 @@ public class Cinco extends JDialog {
 		image.setBorder(null);
 		panel.add(image, BorderLayout.CENTER);
 		JPanel end = new JPanel();
-
+		
+		JLabel nameProduct = new JLabel( product.getName());
+		end.add(nameProduct, BorderLayout.PAGE_START);
+		
 		JLabel quantity = new JLabel("");
 
-		JLabel price = new JLabel("" + product.getPrice());
+		JLabel price = new JLabel("$" + product.getPrice());
 		price.setHorizontalAlignment(JLabel.CENTER);
+		
+		
 		end.add(price, BorderLayout.PAGE_END);
 		panel.add(end, BorderLayout.PAGE_END);
 		panelCenter.add(panel);
