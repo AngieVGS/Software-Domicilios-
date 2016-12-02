@@ -127,12 +127,6 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 			createProduct();
 			break;
 		}
-		
-//		switch (ActionsBack.valueOf(event.getActionCommand())) {
-//		case BACK:
-//			System.out.println("xxxxxxxxxxxxxxx");
-//		}
-		
 	}
 
 	public void createProduct() {

@@ -26,8 +26,7 @@ public class SeisToolbar extends JPanel {
 		btnOptions.setBackground(ConstantsUI.BACKGROUND_COLOR_TOOLBAR_RESTAURANT);
 		btnOptions.setBorder(null);
 
-		btnOptions.setActionCommand(ActionsBack.BACK.toString());
-		btnOptions.addActionListener(c);
+		
 		
 		
 		JButton btnSearch = new JButton();
