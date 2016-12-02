@@ -104,10 +104,12 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 			break;
 		case JOIN:
 			join();
+			break;
 		case LOGIN:
 			login();
 			break;
 		case SIGN_UP:
+			signIn();
 			break;
 		case JOIN_ACCOUNT_OWNER:
 			joinOwner();
@@ -158,6 +160,7 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 			ownerManager.addOwner(dialogAddOwner.createOwner());
 			dialogAddOwner.clear();
 			dialogAddOwner.setVisible(false);
+			dialogLogIn.setVisible(true);
 		} catch (ExceptionIncorrectPassword e) {
 			dialogAddOwner.validatePasswordField();
 		}
@@ -168,6 +171,7 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 			userManager.addUser(viewdos.createUser());
 			viewdos.clear();
 			viewdos.setVisible(false);
+			dialogLogIn.setVisible(true);
 		} catch (ExceptionIncorrectPassword e) {
 			viewdos.validatePasswordField();
 		}
@@ -223,7 +227,6 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-
 	}
 
 	@Override
@@ -245,20 +248,14 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 
 	@Override
 	public void dragEnter(DropTargetDragEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void dragExit(DropTargetEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void dragOver(DropTargetDragEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -283,7 +280,5 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 
 	@Override
 	public void dropActionChanged(DropTargetDragEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 }

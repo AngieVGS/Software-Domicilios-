@@ -34,7 +34,7 @@ public class DialogLogIn extends JDialog {
 		setIconImage(new ImageIcon("src/image/logoIcon.png").getImage());
 		setSize(ConstantsUI.SIZE_WINDOW);
 		buttonLogIn = new JButton(new ImageIcon("src/image/Buttons/LoginButton.png"));
-		buttonSignUp = new JButton(new ImageIcon("src/image/Buttons/SignInButton.png"));
+		buttonSignUp = new JButton(new ImageIcon("src/image/Buttons/SignUpButton.png"));
 		buttonSignUp.setBackground(null);
 		buttonLogIn.setBackground(null);
 
@@ -120,7 +120,7 @@ public class DialogLogIn extends JDialog {
 		principalPanel.add(panelButtons, gridSystem.insertComponent(3, 0, 12, 50));
 
 		add(principalPanel);
-		setVisible(true);
+		
 	}
 
 	public String[] dataLogIn() {
