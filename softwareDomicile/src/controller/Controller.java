@@ -56,7 +56,6 @@ public class Controller implements ActionListener, KeyListener {
 
 	@Override
 	public void actionPerformed(ActionEvent event) {
-
 		switch (Actions.valueOf(event.getActionCommand())) {
 		case LETS_DO_IT:
 			letsDoIt();
@@ -83,7 +82,15 @@ public class Controller implements ActionListener, KeyListener {
 		case JOIN_ACCOUNT_OWNER:
 			joinOwner();
 			break;
+		case RESTAURANT:
+			testingButtons(event);
+			break;
 		}
+	}
+	
+	//Este metodo arroja por consola los ID unicos para cada resturante
+	private void testingButtons(ActionEvent e) {
+		System.out.println((((JButton) e.getSource()).getName()));
 	}
 
 	private void addMyProductToListOrder(int idProdcut) {
@@ -115,7 +122,7 @@ public class Controller implements ActionListener, KeyListener {
 		String nameUser =  dialogLogIn.dataLogIn()[0];
 		try {
 			userManager.searchUserByName(nameUser);
-			seis.addPanelsToDialogForProducts(ownerManager.getOwnerList());
+			seis.addPanelsToDialogForProducts(ownerManager.getOwnerList(), this);
 			seis.setVisible(true);
 			dialogLogIn.setVisible(false);
 		} catch (ExceptionSearchId e) {

@@ -9,6 +9,7 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import controller.Controller;
 import model.entity.Owner;
 
 public class Seis extends JDialog {
@@ -19,6 +20,7 @@ public class Seis extends JDialog {
 	
 	public Seis() {
 		setSize(410, 720);
+		setUndecorated(true);
 		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 		seisToolbar = new SeisToolbar();
 		add(seisToolbar);
@@ -31,10 +33,10 @@ public class Seis extends JDialog {
 		add(scrollProducts);
 	}
 	
-	public void addPanelsToDialogForProducts(ArrayList<Owner> owners){
+	public void addPanelsToDialogForProducts(ArrayList<Owner> owners, Controller controller){
 		panelContainer.removeAll();
 		for (Owner owner : owners) {
-			panelContainer.add(new PanelAddRestaurants(owner));
+			panelContainer.add(new PanelAddRestaurants(owner, controller));
 			panelContainer.updateUI();
 		}
 	}

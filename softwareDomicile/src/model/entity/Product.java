@@ -2,7 +2,7 @@ package model.entity;
 
 public class Product {
 
-	private static int AUXILIAR = 0;
+	private static int AUXILIAR;
 	private int id;
 	private String name;
 	private String description;

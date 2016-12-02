@@ -3,7 +3,6 @@ package model.entity;
 public class Owner {
 	
 	private static int ID_GENERIC;
-	
 	private int id;
 	private String name;
 	private String password;
