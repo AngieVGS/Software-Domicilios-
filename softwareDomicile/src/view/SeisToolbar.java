@@ -8,12 +8,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import controller.Actions;
+import controller.ActionsBack;
+import controller.Controller;
+
 public class SeisToolbar extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
 	private JTextField tfSearchItem;
 	
-	public SeisToolbar() {
+	public SeisToolbar(Controller c) {
 		setLayout(new GridLayout(2, 1));
 		setBackground(ConstantsUI.BACKGROUND_COLOR_TOOLBAR_RESTAURANT);
 		
@@ -21,6 +25,10 @@ public class SeisToolbar extends JPanel {
 		btnOptions.setIcon(new ImageIcon(new ImageIcon("src/image/Buttons/imageOptions.png").getImage().getScaledInstance(60, 60, 100)));
 		btnOptions.setBackground(ConstantsUI.BACKGROUND_COLOR_TOOLBAR_RESTAURANT);
 		btnOptions.setBorder(null);
+
+		btnOptions.setActionCommand(ActionsBack.BACK.toString());
+		btnOptions.addActionListener(c);
+		
 		
 		JButton btnSearch = new JButton();
 		btnSearch.setBackground(ConstantsUI.BACKGROUND_COLOR_TOOLBAR_RESTAURANT);

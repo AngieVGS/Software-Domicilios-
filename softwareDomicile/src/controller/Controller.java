@@ -41,7 +41,7 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 
 	public Controller() {
 		doce = new Doce(this, mainWindow);
-		seis = new Seis();
+		seis = new Seis(this);
 		fileWrite = new FileWrite();
 		cinco = new Cinco(this);
 		ownerManager = new OwnerManager();
@@ -83,6 +83,7 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 			e.printStackTrace();
 		}
 	}
+	
 
 	@Override
 	public void actionPerformed(ActionEvent event) {
@@ -126,6 +127,12 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 			createProduct();
 			break;
 		}
+		
+//		switch (ActionsBack.valueOf(event.getActionCommand())) {
+//		case BACK:
+//			System.out.println("xxxxxxxxxxxxxxx");
+//		}
+		
 	}
 
 	public void createProduct() {
@@ -182,7 +189,7 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 		try {
 			User user = userManager.searchUserByName(nameUser);
 			userActual = user;
-			seis.addPanelsToDialogForProducts(ownerManager.getOwnerList(), this);
+			seis.addPanelsToDialogForProducts(ownerManager.getOwnerList());
 			seis.setVisible(true);
 			dialogLogIn.setVisible(false);
 		} catch (ExceptionSearchId e) {
