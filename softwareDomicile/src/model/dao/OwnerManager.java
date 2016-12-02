@@ -19,6 +19,10 @@ public class OwnerManager {
 	public static Owner createOwner(String name, String password, String url) {
 		return new Owner(name, password, url);
 	}
+	
+	public ArrayList<Owner> getOwnerList() {
+		return ownerList;
+	}
 
 	public void addOwner(Owner owner) {
 		ownerList.add(owner);

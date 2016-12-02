@@ -3,10 +3,13 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+
+import model.entity.Owner;
 
 public class Seis extends JDialog {
 
@@ -26,5 +29,14 @@ public class Seis extends JDialog {
 		JScrollPane scrollProducts = new JScrollPane(panelContainer);
 		scrollProducts.setBackground(Color.WHITE);
 		add(scrollProducts, BorderLayout.CENTER);
+		
+	}
+	
+	public void addPanelsToDialogForProducts(ArrayList<Owner> owners){
+		panelContainer.removeAll();
+		for (Owner owner : owners) {
+			panelContainer.add(new PanelAddRestaurants(owner));
+			panelContainer.updateUI();
+		}
 	}
 }

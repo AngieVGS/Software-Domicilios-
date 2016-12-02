@@ -50,7 +50,8 @@ public class Controller implements ActionListener, KeyListener {
 		 User userActual = null;
 		 Owner ownerActual = null;
 		 dialogAddOwner = new Nueve(this, mainWindow);
-		 ownerManager.addOwner(ownerManager.createOwner("Felipe", "s","src/image/mcDonalds.jpg"));
+		 ownerManager.addOwner(OwnerManager.createOwner("Felipe", "s","src/image/mcDonalds.jpg"));
+		 ownerManager.addOwner(OwnerManager.createOwner("Burger King", "z","src/image/mcDonalds.jpg"));
 		 userManager.addUser(userManager.createUser(1, "Juan", "X",null,true));
 		
 	}
@@ -126,7 +127,8 @@ public class Controller implements ActionListener, KeyListener {
 		} catch (ExceptionSearchId e) {
 			try {
 				ownerManager.searchOwnerByName(nameUser);
-				viewDiez.setVisible(true);
+				seis.addPanelsToDialogForProducts(ownerManager.getOwnerList());
+				seis.setVisible(true);
 				dialogLogIn.setVisible(false);
 			}catch (ExceptionSearchId f) {
 				JOptionPane.showMessageDialog(mainWindow, f.getMessage());
