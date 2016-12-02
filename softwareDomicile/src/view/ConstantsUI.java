@@ -16,6 +16,7 @@ public class ConstantsUI {
 	public static final Color FOREGROUND_NAME_PRODUCT_SHOW_PRODUCT = Color.black;
 	public static final Color FOREGROUND_NAME_OWNER_SHOW_PRODUCT = Color.decode("#F28B15");
 	public static final Color FOREGROUND_PRICE_SHOW_PRODUCT = Color.decode("#FF0000");
+	public static final Color BACKGROUND_COLOR_INVALID_PASSWORD = Color.decode("#FA5858");
 
 	public static final String TIITLE = "Order Manager v1";
 

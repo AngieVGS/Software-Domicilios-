@@ -6,9 +6,10 @@ public class Owner {
 	private String name;
 	private String password;
 	private String url;
+	private static int ID_GENERIC;
 
-	public Owner(int id, String name, String password, String url) {
-		this.id = id;
+	public Owner(String name, String password, String url) {
+		this.id = ID_GENERIC++;
 		this.name = name;
 		this.password = password;
 		this.url = url;

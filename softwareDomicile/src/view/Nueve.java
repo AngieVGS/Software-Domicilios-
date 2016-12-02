@@ -27,7 +27,11 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import controller.Actions;
 import controller.Controller;
+import exceptions.ExceptionIncorrectPassword;
+import model.dao.OwnerManager;
+import model.entity.Owner;
 
 public class Nueve extends JDialog {
 
@@ -128,7 +132,7 @@ public class Nueve extends JDialog {
         gbc.gridy = 3;
         txPassword.addFocusListener(new FocusListener() {
         	public void focusGained(FocusEvent e) {
-        		if (txPassword.getText().equals(ConstantsUI.PASSWORD)) {
+        		if (String.valueOf(txPassword.getPassword()).equals(ConstantsUI.PASSWORD)) {
         			txPassword.setText("");
 				}
         	}
@@ -148,7 +152,7 @@ public class Nueve extends JDialog {
 		gbc.gridy = 4;
 		txConfirmPasword.addFocusListener(new FocusListener() {
 			public void focusGained(FocusEvent e) {
-				if (txConfirmPasword.getText().equals(ConstantsUI.PASSWORD)) {
+				if (String.valueOf(txConfirmPasword.getPassword()).equals(ConstantsUI.PASSWORD)) {
 					txConfirmPasword.setText("");
 					}
 			}
@@ -182,7 +186,7 @@ public class Nueve extends JDialog {
 		btnJoin.setBorder(null);
 		btnJoin.setContentAreaFilled(false);
 		btnJoin.addActionListener(controller);
-//		btnJoin.setActionCommand(Actions.CREATE_ACCOUNT_OWNER.toString());
+		btnJoin.setActionCommand(Actions.JOIN_ACCOUNT_OWNER.toString());
 		gbc.ipady = 20;
 		gbc.gridy = 6;
 		add(btnJoin, gbc);
@@ -196,6 +200,19 @@ public class Nueve extends JDialog {
 		});
 		
 		//setVisible(true);
+	}
+	
+	public Owner createOwner() throws ExceptionIncorrectPassword {
+		if (String.valueOf(txPassword.getPassword()).equals(String.valueOf(txConfirmPasword.getPassword()))) {
+			return OwnerManager.createOwner(txfRestaurantName.getText(), String.valueOf(txPassword.getPassword()), imageDefault);
+		}else{
+			throw new ExceptionIncorrectPassword();
+		}
+	}
+	
+	public void validatePasswordField() {
+		txPassword.setBackground(ConstantsUI.BACKGROUND_COLOR_INVALID_PASSWORD);
+		txConfirmPasword.setBackground(ConstantsUI.BACKGROUND_COLOR_INVALID_PASSWORD);;
 	}
 	
 	public void addImage(String pathImg) {

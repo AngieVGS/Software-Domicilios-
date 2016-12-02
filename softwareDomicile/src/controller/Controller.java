@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
+import exceptions.ExceptionIncorrectPassword;
 import exceptions.ExceptionSearchId;
 import model.dao.OwnerManager;
 import model.dao.ProductManager;
@@ -49,7 +50,7 @@ public class Controller implements ActionListener, KeyListener {
 		 User userActual = null;
 		 Owner ownerActual = null;
 		 dialogAddOwner = new Nueve(this, mainWindow);
-		 ownerManager.addOwner(ownerManager.createOwner(0, "Felipe", "s","src/image/mcDonalds.jpg"));
+		 ownerManager.addOwner(ownerManager.createOwner("Felipe", "s","src/image/mcDonalds.jpg"));
 		 userManager.addUser(userManager.createUser(1, "Juan", "X",null,true));
 		
 	}
@@ -80,6 +81,9 @@ public class Controller implements ActionListener, KeyListener {
 			break;	
 		case SIGN_UP:
 			break;
+		case JOIN_ACCOUNT_OWNER:
+			joinOwner();
+			break;
 		
 		}
 	}
@@ -93,6 +97,17 @@ public class Controller implements ActionListener, KeyListener {
 		}
 		System.out.println(user.getProductsdese());
 	}
+	
+	public void joinOwner() {
+		try {
+			ownerManager.addOwner(dialogAddOwner.createOwner());
+			dialogAddOwner.clear();
+			dialogAddOwner.setVisible(false);
+		} catch (ExceptionIncorrectPassword e) {
+//			e.printStackTrace();
+			dialogAddOwner.validatePasswordField();
+		}	
+		}
 	
 	public void join(){
 		viewdos.setVisible(false);
