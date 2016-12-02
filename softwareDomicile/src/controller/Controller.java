@@ -5,7 +5,6 @@ import view.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
@@ -16,7 +15,6 @@ import model.dao.ProductManager;
 import model.dao.UserManager;
 import model.entity.Owner;
 import model.entity.Product;
-import model.entity.State;
 import model.entity.User;
 import view.DialogLogIn;
 import view.Seis;
@@ -50,10 +48,10 @@ public class Controller implements ActionListener, KeyListener {
 		 User userActual = null;
 		 Owner ownerActual = null;
 		 dialogAddOwner = new Nueve(this, mainWindow);
-		 ownerManager.addOwner(OwnerManager.createOwner("Felipe", "s","src/image/mcDonalds.jpg"));
-		 ownerManager.addOwner(OwnerManager.createOwner("Burger King", "z","src/image/mcDonalds.jpg"));
+		 ownerManager.addOwner(OwnerManager.createOwner("Mc Donalds", "s","src/image/mcDonalds.jpg"));
+		 ownerManager.addOwner(OwnerManager.createOwner("El Pirata", "z","src/image/ElPirata.jpg"));
+		 ownerManager.addOwner(OwnerManager.createOwner("Al Toque", "z","src/image/AlToque.png"));
 		 userManager.addUser(userManager.createUser(1, "Juan", "X",null,true));
-		
 	}
 
 	@Override
@@ -85,7 +83,6 @@ public class Controller implements ActionListener, KeyListener {
 		case JOIN_ACCOUNT_OWNER:
 			joinOwner();
 			break;
-		
 		}
 	}
 
@@ -112,30 +109,24 @@ public class Controller implements ActionListener, KeyListener {
 	
 	public void join(){
 		viewdos.setVisible(false);
-		
 	}
 	
 	public void login(){
 		String nameUser =  dialogLogIn.dataLogIn()[0];
-		System.out.println(nameUser);
-		
 		try {
 			userManager.searchUserByName(nameUser);
+			seis.addPanelsToDialogForProducts(ownerManager.getOwnerList());
 			seis.setVisible(true);
 			dialogLogIn.setVisible(false);
-			
 		} catch (ExceptionSearchId e) {
 			try {
 				ownerManager.searchOwnerByName(nameUser);
-				seis.addPanelsToDialogForProducts(ownerManager.getOwnerList());
-				seis.setVisible(true);
+				viewDiez.setVisible(true);
 				dialogLogIn.setVisible(false);
 			}catch (ExceptionSearchId f) {
 				JOptionPane.showMessageDialog(mainWindow, f.getMessage());
 			}
 		}
-		
-		
 	}
 
 	public void businessOwnerLogin() {

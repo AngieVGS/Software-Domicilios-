@@ -14,6 +14,8 @@ import controller.Actions;
 import controller.Controller;
 
 public class Cuatro extends  JFrame{
+
+	private static final long serialVersionUID = 1L;
 	private JPanel principalPanel;
 	private JButton userButton;
 	private JButton businessOwnerButton;
@@ -49,8 +51,5 @@ public class Cuatro extends  JFrame{
 		principalPanel.add(new JLabel(new ImageIcon("src/image/WhatAreYou.png")));
 		principalPanel.add(buttonPanel);
 		add(principalPanel);
-		
 	}	
-	
-	
 }

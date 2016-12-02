@@ -44,8 +44,8 @@ public class Diez extends JDialog{
 	//Este metodo es para agregar los paneles para ordenes que tiene el DUEÑO
 	public void addPanelsToDialogForOrders(ArrayList<Order> orders){
 		panelContainer.removeAll();
-		for (Order order : orders) {
-		}
+//		for (Order order : orders) {
+//		}
 	}
 	
 	public String getWordOnSpace(){

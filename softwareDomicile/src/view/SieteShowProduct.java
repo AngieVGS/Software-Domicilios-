@@ -4,19 +4,11 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 
-import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
-import javax.swing.JScrollPane;
 
-import model.entity.AssignProductToOrder;
 import model.entity.AssignProductToOwner;
-import model.entity.Owner;
-import model.entity.Product;
-import model.entity.State;
 
 public class SieteShowProduct extends JPanel{
 

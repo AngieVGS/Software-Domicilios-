@@ -1,10 +1,10 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
+import javax.swing.BoxLayout;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -19,17 +19,16 @@ public class Seis extends JDialog {
 	
 	public Seis() {
 		setSize(410, 720);
-		setLayout(new BorderLayout());
+		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 		seisToolbar = new SeisToolbar();
-		add(seisToolbar, BorderLayout.NORTH);
+		add(seisToolbar);
 
-		panelContainer = new JPanel( new GridLayout(0, 1));
+		panelContainer = new JPanel(new GridLayout(0, 1));
 		panelContainer.setAlignmentX(CENTER_ALIGNMENT);
 
 		JScrollPane scrollProducts = new JScrollPane(panelContainer);
 		scrollProducts.setBackground(Color.WHITE);
-		add(scrollProducts, BorderLayout.CENTER);
-		
+		add(scrollProducts);
 	}
 	
 	public void addPanelsToDialogForProducts(ArrayList<Owner> owners){

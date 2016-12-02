@@ -8,7 +8,6 @@ public class Owner {
 	private String name;
 	private String password;
 	private String img;
-	
 
 	public Owner(String name, String password, String img) {
 		this.id = ID_GENERIC++;

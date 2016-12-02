@@ -37,7 +37,6 @@ public class OwnerManager {
 		throw new ExceptionSearchId();
 	}
 	
-	
 	public Owner searchOwnerByName(String name) throws ExceptionSearchId {
 		for (Owner owner : ownerList) {
 			if (owner.getName().equals(name)) {

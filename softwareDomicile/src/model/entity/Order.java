@@ -1,16 +1,10 @@
 package model.entity;
 
-import java.util.ArrayList;
-
-import exceptions.AggregatedProduct;
-import exceptions.ProductNotFound;
-
 public class Order {
 
 	private int id;
 	private State state;
 	private String direction;
-	
 	
 	public Order(int id, State state, String direction) {
 		this.id = id;
