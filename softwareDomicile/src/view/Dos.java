@@ -102,7 +102,7 @@ public class Dos extends JDialog{
 	        gbc.gridy = 3;
 	        txPassword.addFocusListener(new FocusListener() {
 	        	public void focusGained(FocusEvent e) {
-	        		if (txPassword.getText().equals(ConstantsUI.PASSWORD)) {
+	        		if (String.valueOf(txPassword.getPassword()).equals(ConstantsUI.PASSWORD)) {
 	        			txPassword.setText("");
 	        		}
 	        	}
@@ -121,7 +121,7 @@ public class Dos extends JDialog{
 			gbc.gridy = 4;
 			txConfirmPasword.addFocusListener(new FocusListener() {
 				public void focusGained(FocusEvent e) {
-					if (txConfirmPasword.getText().equals(ConstantsUI.PASSWORD)) {
+					if (String.valueOf(txConfirmPasword.getPassword()).equals(ConstantsUI.PASSWORD)) {
 						txConfirmPasword.setText("");
 					}
 				}
