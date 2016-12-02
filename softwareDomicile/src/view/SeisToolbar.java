@@ -1,7 +1,10 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridLayout;
+
+import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -22,16 +25,17 @@ public class SeisToolbar extends JPanel {
 		setBackground(ConstantsUI.BACKGROUND_COLOR_TOOLBAR_RESTAURANT);
 		
 		JButton btnOptions = new JButton();
-		btnOptions.setIcon(new ImageIcon(new ImageIcon("src/image/Buttons/imageOptions.png").getImage().getScaledInstance(60, 60, 100)));
+		btnOptions.setIcon(new ImageIcon(new ImageIcon("src/image/Buttons/Home.png").getImage().getScaledInstance(40, 40, 100)));
 		btnOptions.setBackground(ConstantsUI.BACKGROUND_COLOR_TOOLBAR_RESTAURANT);
 		btnOptions.setBorder(null);
 
-		
+		btnOptions.setActionCommand(Actions.BACK_VIEW_THREE.toString());
+		btnOptions.addActionListener(c);
 		
 		
 		JButton btnSearch = new JButton();
 		btnSearch.setBackground(ConstantsUI.BACKGROUND_COLOR_TOOLBAR_RESTAURANT);
-		btnSearch.setIcon(new ImageIcon(new ImageIcon("src/image/Buttons/imageSearch.png").getImage().getScaledInstance(60, 60, 100)));
+		btnSearch.setIcon(new ImageIcon(new ImageIcon("src/image/Buttons/imageSearch.png").getImage().getScaledInstance(50, 50, 100)));
 		btnSearch.setBorder(null);
 		
 		tfSearchItem = new JTextField(5);
@@ -42,6 +46,7 @@ public class SeisToolbar extends JPanel {
 		panelTop.setLayout(new BorderLayout());
 		panelTop.add(btnSearch, BorderLayout.EAST);
 		panelTop.add(tfSearchItem, BorderLayout.CENTER);
+		
 		panelTop.add(btnOptions, BorderLayout.WEST);
 		add(panelTop);
 		

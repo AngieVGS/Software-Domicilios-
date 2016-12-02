@@ -126,8 +126,16 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 		case CREATE_PRODUCT_NEW:
 			createProduct();
 			break;
+		case BACK_VIEW_THREE:
+			backViewThree();
 		}
 	}
+
+	private void backViewThree() {
+		seis.setVisible(false);
+		dialogLogIn.setVisible(true);
+	}
+
 
 	public void createProduct() {
 		productManager.addProduct(doce.createProduct());
