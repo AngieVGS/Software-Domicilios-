@@ -35,7 +35,7 @@ public class Cinco extends JDialog {
 		}
 	}
 
-	private JPanel header(Controller controller, Product product) {
+	private void header(Controller controller, Product product) {
 		JPanel panel = new JPanel();
 		panel.setLayout(new BorderLayout());
 		JButton image = new JButton(new ImageIcon("" + product.getImg()));
@@ -55,7 +55,5 @@ public class Cinco extends JDialog {
 		price.setHorizontalAlignment(JLabel.CENTER);
 		end.add(price, BorderLayout.PAGE_END);
 		panelCenter.add(panel);
-		return null;
 	}
-
 }

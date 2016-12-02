@@ -5,20 +5,17 @@ import view.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
-
-import exceptions.ExceptionIncorrectPassword;
 import exceptions.ExceptionSearchId;
 import model.dao.OwnerManager;
 import model.dao.ProductManager;
 import model.dao.UserManager;
 import model.entity.Owner;
 import model.entity.Product;
+import model.entity.State;
 import model.entity.User;
 import view.DialogLogIn;
-import view.Seis;
-
 
 public class Controller implements ActionListener, KeyListener {
 
@@ -33,37 +30,30 @@ public class Controller implements ActionListener, KeyListener {
 	private Dos viewdos;
 	private Diez viewDiez;
 	private DialogLogIn dialogLogIn;
-	private Seis seis;
-	private Doce doce;
 
 	public Controller() {
-		 seis = new Seis();
-		 ownerManager = new OwnerManager();
-		 userManager = new UserManager();
+
+
 		 dialogLogIn = new DialogLogIn(this);
 		 mainWindow = new MainWindow(this );
 		 mainWindow.setVisible(true);
 		 viewdos = new Dos(this, mainWindow);
 		 viewCuatro = new Cuatro(this);
 		 viewDiez = new Diez(this);
-		 doce = new Doce(this, mainWindow);
 		 User userActual = null;
 		 Owner ownerActual = null;
 		 dialogAddOwner = new Nueve(this, mainWindow);
-		 ownerManager.addOwner(OwnerManager.createOwner("Mc Donalds", "s","src/image/mcDonalds.jpg"));
-		 ownerManager.addOwner(OwnerManager.createOwner("El Pirata", "z","src/image/ElPirata.jpg"));
-		 ownerManager.addOwner(OwnerManager.createOwner("Al Toque", "z","src/image/AlToque.png"));
-		 userManager.addUser(userManager.createUser("Juan", "X",null,true));
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent event) {
+
 		switch (Actions.valueOf(event.getActionCommand())) {
 		case LETS_DO_IT:
 			letsDoIt();
 			break;
 		case SIGN_IN:
-			signIn();
+			logIn();
 			break;
 		case USER:
 			userLogin();
@@ -74,28 +64,7 @@ public class Controller implements ActionListener, KeyListener {
 		case PRODUCT_ADD_MY_CAR:
 			addMyProductToListOrder(Integer.parseInt(((JButton) event.getSource()).getName()));
 			break;
-		case JOIN:
-			join();
-		case LOGIN:
-			login();
-			break;	
-		case SIGN_UP:
-			break;
-		case JOIN_ACCOUNT_OWNER:
-			joinOwner();
-			break;
-		case RESTAURANT:
-			testingButtons(event);
-			break;
-		case CREATE_PRODUCT:
-			createProduct();
-			break;
 		}
-	}
-	
-	//Este metodo arroja por consola los ID unicos para cada resturante
-	private void testingButtons(ActionEvent e) {
-		System.out.println((((JButton) e.getSource()).getName()));
 	}
 
 	private void addMyProductToListOrder(int idProdcut) {
@@ -106,52 +75,6 @@ public class Controller implements ActionListener, KeyListener {
 			e.printStackTrace();
 		}
 		System.out.println(user.getProductsdese());
-	}
-	
-	public void createProduct() {
-		productManager.addProduct(doce.createProduct());
-		doce.clear();
-		doce.setVisible(false);
-	}
-	
-	public void joinOwner() {
-		try {
-			ownerManager.addOwner(dialogAddOwner.createOwner());
-			dialogAddOwner.clear();
-			dialogAddOwner.setVisible(false);
-		} catch (ExceptionIncorrectPassword e) {
-//			e.printStackTrace();
-			dialogAddOwner.validatePasswordField();
-		}	
-		}
-	
-	public void join(){
-		try {
-			userManager.addUser(viewdos.createUser());
-			viewdos.clear();
-			viewdos.setVisible(false);
-		} catch (ExceptionIncorrectPassword e) {
-//			e.printStackTrace();
-			viewdos.validatePasswordField();
-		}
-	}
-	
-	public void login(){
-		String nameUser =  dialogLogIn.dataLogIn()[0];
-		try {
-			userManager.searchUserByName(nameUser);
-			seis.addPanelsToDialogForProducts(ownerManager.getOwnerList(), this);
-			seis.setVisible(true);
-			dialogLogIn.setVisible(false);
-		} catch (ExceptionSearchId e) {
-			try {
-				ownerManager.searchOwnerByName(nameUser);
-				viewDiez.setVisible(true);
-				dialogLogIn.setVisible(false);
-			}catch (ExceptionSearchId f) {
-				JOptionPane.showMessageDialog(mainWindow, f.getMessage());
-			}
-		}
 	}
 
 	public void businessOwnerLogin() {
@@ -170,7 +93,7 @@ public class Controller implements ActionListener, KeyListener {
 		dialogLogIn.setVisible(true);
 	}
 
-	public void signIn() {
+	public void logIn() {
 		mainWindow.setVisible(false);
 		viewCuatro.setVisible(true);
 
