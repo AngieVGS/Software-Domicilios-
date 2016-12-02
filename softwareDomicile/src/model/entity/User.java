@@ -42,6 +42,14 @@ public class User {
 	public int getId() {
 		return id;
 	}
+	
+	public boolean isState() {
+		return state;
+	}
+
+	public String getPassword() {
+		return password;
+	}
 
 	public Order searchOrderAddedtoListToId(int idOrder) throws NotFoundOrderToList {
 		for (Order order : orders) {

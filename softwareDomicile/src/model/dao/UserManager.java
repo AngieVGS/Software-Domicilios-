@@ -77,4 +77,8 @@ public class UserManager {
 	public void deleteAssignProduct(AssignOrderToUser assignOrder) {
 		assignOrderList.remove(assignOrder);
 	}
+	
+	public ArrayList<AssignOrderToUser> getAssingOrderToUser() {
+		return assignOrderList;
+	}
 }
