@@ -17,7 +17,11 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import controller.Actions;
 import controller.Controller;
+import exceptions.ExceptionIncorrectPassword;
+import model.dao.UserManager;
+import model.entity.User;
 
 public class Dos extends JDialog{
 
@@ -154,7 +158,7 @@ public class Dos extends JDialog{
 			btnJoin.setBorder(null);
 			btnJoin.setContentAreaFilled(false);
 			btnJoin.addActionListener(controller);
-//			btnJoin.setActionCommand(Actions.CREATE_ACCOUNT_OWNER.toString());
+			btnJoin.setActionCommand(Actions.JOIN.toString());
 			gbc.ipady = 20;
 			gbc.gridy = 6;
 			add(btnJoin, gbc);
@@ -167,6 +171,19 @@ public class Dos extends JDialog{
 				}
 			});
 			
+		}
+		
+		public User createUser() throws ExceptionIncorrectPassword {
+			if (String.valueOf(txPassword.getPassword()).equals(String.valueOf(txConfirmPasword.getPassword()))) {
+				return UserManager.createUser(txfUserName.getText(), String.valueOf(txPassword.getPassword()), null, true);
+			}else{
+				throw new ExceptionIncorrectPassword();
+			}
+		}
+		
+		public void validatePasswordField() {
+			txPassword.setBackground(ConstantsUI.BACKGROUND_COLOR_INVALID_PASSWORD);
+			txConfirmPasword.setBackground(ConstantsUI.BACKGROUND_COLOR_INVALID_PASSWORD);;
 		}
 		
 		public void clear() {

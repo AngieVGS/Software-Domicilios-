@@ -34,6 +34,7 @@ public class Controller implements ActionListener, KeyListener {
 	private Diez viewDiez;
 	private DialogLogIn dialogLogIn;
 	private Seis seis;
+	private Doce doce;
 
 	public Controller() {
 		 seis = new Seis();
@@ -45,13 +46,14 @@ public class Controller implements ActionListener, KeyListener {
 		 viewdos = new Dos(this, mainWindow);
 		 viewCuatro = new Cuatro(this);
 		 viewDiez = new Diez(this);
+		 doce = new Doce(this, mainWindow);
 		 User userActual = null;
 		 Owner ownerActual = null;
 		 dialogAddOwner = new Nueve(this, mainWindow);
 		 ownerManager.addOwner(OwnerManager.createOwner("Mc Donalds", "s","src/image/mcDonalds.jpg"));
 		 ownerManager.addOwner(OwnerManager.createOwner("El Pirata", "z","src/image/ElPirata.jpg"));
 		 ownerManager.addOwner(OwnerManager.createOwner("Al Toque", "z","src/image/AlToque.png"));
-		 userManager.addUser(userManager.createUser(1, "Juan", "X",null,true));
+		 userManager.addUser(userManager.createUser("Juan", "X",null,true));
 	}
 
 	@Override
@@ -85,6 +87,9 @@ public class Controller implements ActionListener, KeyListener {
 		case RESTAURANT:
 			testingButtons(event);
 			break;
+		case CREATE_PRODUCT:
+			createProduct();
+			break;
 		}
 	}
 	
@@ -103,6 +108,12 @@ public class Controller implements ActionListener, KeyListener {
 		System.out.println(user.getProductsdese());
 	}
 	
+	public void createProduct() {
+		productManager.addProduct(doce.createProduct());
+		doce.clear();
+		doce.setVisible(false);
+	}
+	
 	public void joinOwner() {
 		try {
 			ownerManager.addOwner(dialogAddOwner.createOwner());
@@ -115,7 +126,14 @@ public class Controller implements ActionListener, KeyListener {
 		}
 	
 	public void join(){
-		viewdos.setVisible(false);
+		try {
+			userManager.addUser(viewdos.createUser());
+			viewdos.clear();
+			viewdos.setVisible(false);
+		} catch (ExceptionIncorrectPassword e) {
+//			e.printStackTrace();
+			viewdos.validatePasswordField();
+		}
 	}
 	
 	public void login(){

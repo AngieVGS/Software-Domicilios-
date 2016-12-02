@@ -28,7 +28,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import controller.Actions;
 import controller.Controller;
+import model.dao.ProductManager;
+import model.entity.Product;
 
 public class Doce extends JDialog{
 
@@ -142,7 +145,7 @@ public class Doce extends JDialog{
 		btnCreateProduct.setForeground(Color.WHITE);
 		btnCreateProduct.setFont(new Font("Franklin Gothic Heavy", Font.BOLD, 15));
 		btnCreateProduct.addActionListener(controller);
-//		btnJoin.setActionCommand(Actions.CREATE_ACCOUNT_OWNER.toString());
+		btnCreateProduct.setActionCommand(Actions.CREATE_PRODUCT.toString());
 		gbc.insets = new Insets(15,150,15,100);
 		gbc.ipady = 15;
 		gbc.gridy = 5;
@@ -161,6 +164,10 @@ public class Doce extends JDialog{
 		imageDefault = pathImg;
 		Image img = new ImageIcon(imageDefault).getImage().getScaledInstance(128, 118, java.awt.Image.SCALE_AREA_AVERAGING);
 		lblImage.setIcon(new ImageIcon(img));
+	}
+	
+	public Product createProduct() {
+		return ProductManager.createProduct(txtNameProduct.getText(), txtDescription.getText(), Double.parseDouble(ftxtPrice.getText()), null, imageDefault);
 	}
 	
 	public void clear() {

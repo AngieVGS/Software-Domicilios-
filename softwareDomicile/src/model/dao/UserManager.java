@@ -18,8 +18,8 @@ public class UserManager {
 	}
 
 	// crud de ususario
-	public User createUser(int id, String name, String password, ArrayList<Order> orderList, boolean state) {
-		return new User(id, name, password, orderList, state);
+	public static User createUser(String name, String password, ArrayList<Order> orderList, boolean state) {
+		return new User(name, password, orderList, state);
 	}
 
 	public void addUser(User user) {

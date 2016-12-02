@@ -11,9 +11,10 @@ public class User {
 	private ArrayList<Order> orders;
 	private boolean state;
 	private ArrayList<Product> productsdese = new ArrayList<>();
+	private static int ID_GENERIC = 0;
 
-	public User(int id, String name, String password, ArrayList<Order> orders, boolean state) {
-		this.id = id;
+	public User(String name, String password, ArrayList<Order> orders, boolean state) {
+		this.id = ID_GENERIC++;
 		this.name = name;
 		this.password = password;
 		this.orders = orders;
