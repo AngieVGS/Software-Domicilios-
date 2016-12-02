@@ -77,4 +77,8 @@ public class OwnerManager {
 	public void deleteAssignProduct(AssignProductToOwner assignProduct) {
 		assignProductList.remove(assignProduct);
 	}
+	
+	public ArrayList<AssignProductToOwner> getAssignProductList() {
+		return assignProductList;
+	}
 }

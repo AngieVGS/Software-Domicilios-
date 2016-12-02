@@ -22,8 +22,12 @@ public class Owner {
 	public String getName() {
 		return name;
 	}
+	
+	public String getPassword() {
+		return password;
+	}
 
-	public String getImg() {
+	public String getUrl() {
 		return img;
 	}
 
