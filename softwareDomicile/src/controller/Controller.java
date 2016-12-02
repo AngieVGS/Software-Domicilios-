@@ -41,7 +41,7 @@ public class Controller implements ActionListener, KeyListener {
 
 	public Controller() {
 		 seis = new Seis();
-		 cinco= new Cinco();
+		 cinco= new Cinco(this);
 		 ownerManager = new OwnerManager();
 		 userManager = new UserManager();
 		 dialogLogIn = new DialogLogIn(this);

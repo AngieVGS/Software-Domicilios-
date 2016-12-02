@@ -29,12 +29,12 @@ public class PanelSiete extends JPanel {
 	JPanel total  = new JPanel();
 	JLabel lbTotal = new JLabel("Total:");
 	lbTotal.setForeground(Color.decode("#BDBDBD"));
-	lbTotal.setFont(new Font("Arial", Font.PLAIN, 20));
+	lbTotal.setFont(new Font("Arial Narrow", Font.BOLD, 40));
 	total.add(lbTotal);
 	
 	lbTotalChange = new JLabel("$0");
 	lbTotalChange.setForeground(Color.decode("#FF0000"));
-	lbTotalChange.setFont(new Font("Arial", Font.PLAIN, 20));
+	lbTotalChange.setFont(new Font("Arial Narrow", Font.BOLD, 40));
 	total.add(lbTotalChange);
 	
 	add(total,BorderLayout.LINE_END);

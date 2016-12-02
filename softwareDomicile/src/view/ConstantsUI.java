@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.text.NumberFormat;
 
 import javax.swing.text.NumberFormatter;
@@ -10,6 +11,8 @@ public class ConstantsUI {
 	public static final String EMPTY_STRING = "";
 	public static final Color BACKGROUND_COLOR = Color.decode("#ff9900");
 	public static final Color BACKGROUND_COLOR_BUTTON = Color.decode("#FF7100");
+	public static final Color BACKGROUND_COLOR_BUTTON_GENERATE_ORDER = Color.decode("#6b4128");
+
 	public static final Color BACKGROUND_COLOR_TEXTFILE = Color.decode("#F2F2F2");
 	public static final Color BACKGROUND_COLOR_TOOLBAR_RESTAURANT =  Color.decode("#fca919");
 	public static final Color FOREGROUND_LOGIN = Color.decode("#ff9900");
@@ -17,7 +20,8 @@ public class ConstantsUI {
 	public static final Color FOREGROUND_NAME_OWNER_SHOW_PRODUCT = Color.decode("#F28B15");
 	public static final Color FOREGROUND_PRICE_SHOW_PRODUCT = Color.decode("#FF0000");
 	public static final Color BACKGROUND_COLOR_INVALID_PASSWORD = Color.decode("#FA5858");
-
+	public static final Color BACKGROUND_COLOR_SHOW_PRODUCT_LIST = Color.decode("#fcece8");
+	
 	public static final String TIITLE = "Order Manager v1";
 
 	public static final String TEXT_NAME = "Names:";
@@ -39,6 +43,9 @@ public class ConstantsUI {
 	public static final String PRODUCT_NAME = "Product Name";
 	public static final String DESCRIPTION_PRODUCT = "Product description...";
 	public static final String BUTTON_CREATE_PRODUCT = "Create Product";
+	
+	public static final Dimension SIZE_WINDOW = new Dimension(410, 720);
+
 
 
 	public static final NumberFormatter getIntegerFormatter(){
