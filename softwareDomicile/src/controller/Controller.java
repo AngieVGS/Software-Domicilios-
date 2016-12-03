@@ -41,7 +41,7 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 	private DialogOptions options;
 
 	public Controller() {
-		options = new DialogOptions(this);
+		options = new DialogOptions(this, mainWindow);
 		doce = new Doce(this, mainWindow);
 		seis = new Seis(this);
 		fileWrite = new FileWrite();

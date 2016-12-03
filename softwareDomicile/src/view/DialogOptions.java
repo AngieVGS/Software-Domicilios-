@@ -13,7 +13,8 @@ public class DialogOptions extends JDialog{
 
 	private static final long serialVersionUID = 1L;
 	
-	public DialogOptions(Controller controller) {
+	public DialogOptions(Controller controller, MainWindow mainWindow) {
+		super(mainWindow, true);
 		setTitle("Fast & Luscious");
 		setIconImage(new ImageIcon("src/image/logoIcon.png").getImage());
 		setSize(205, 150);
