@@ -1,14 +1,25 @@
 package controller;
 
 import view.*;
+
+import java.awt.Toolkit;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.awt.dnd.DnDConstants;
+import java.awt.dnd.DropTargetDragEvent;
+import java.awt.dnd.DropTargetDropEvent;
+import java.awt.dnd.DropTargetEvent;
+import java.awt.dnd.DropTargetListener;
 import java.awt.event.*;
+import java.io.IOException;
+
 import javax.swing.*;
 import exceptions.*;
 import model.dao.*;
 import model.entity.*;
 import persistence.FileWrite;
 
-public class Controller implements ActionListener, KeyListener {
+public class Controller implements ActionListener, KeyListener, DropTargetListener {
 
 	private MainWindow mainWindow;
 	private OwnerManager ownerManager;
@@ -178,7 +189,7 @@ public class Controller implements ActionListener, KeyListener {
 				viewDiez.setVisible(true);
 				dialogLogIn.setVisible(false);
 			} catch (ExceptionSearchId f) {
-				JOptionPane.showMessageDialog(mainWindow, f.getMessage());
+//				JOptionPane.showMessageDialog(mainWindow, f.getMessage());
 			}
 		}
 	}
@@ -230,5 +241,49 @@ public class Controller implements ActionListener, KeyListener {
 		if (viewDiez.getWordOnSpace().length() == limit) {
 			e.consume();
 		}
+	}
+
+	@Override
+	public void dragEnter(DropTargetDragEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void dragExit(DropTargetEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void dragOver(DropTargetDragEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void drop(DropTargetDropEvent dtde) {
+		dtde.acceptDrop(DnDConstants.ACTION_COPY);
+		try {
+			if (doce.isVisible() == true) {
+				doce.addImage(dtde.getTransferable().getTransferData(DataFlavor.javaFileListFlavor).toString().replace("[", "").replace("]", "").replace("\\", "/"));
+				Toolkit.getDefaultToolkit().beep();
+			}else if (dialogAddOwner.isVisible() == true) {
+				dialogAddOwner.addImage(dtde.getTransferable().getTransferData(DataFlavor.javaFileListFlavor).toString().replace("[", "").replace("]", "").replace("\\", "/"));
+				Toolkit.getDefaultToolkit().beep();
+			}
+		} catch (UnsupportedFlavorException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dtde.dropComplete(true);
+		
+	}
+
+	@Override
+	public void dropActionChanged(DropTargetDragEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -7,17 +7,12 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Insets;
-import java.awt.Toolkit;
-import java.awt.datatransfer.DataFlavor;
-import java.awt.datatransfer.UnsupportedFlavorException;
-import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DropTarget;
-import java.awt.dnd.DropTargetDropEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.IOException;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -25,6 +20,7 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
 import controller.Actions;
 import controller.Controller;
 import exceptions.ExceptionIncorrectPassword;
@@ -37,7 +33,8 @@ public class Nueve extends JDialog {
 	private JLabel lblTitle, lblImage;
 	private JButton btnJoin;
 	private JTextField txfRestaurantName;
-	private JPasswordField txPassword, txConfirmPasword;
+	private JPasswordField txPassword;
+	private JPasswordField txConfirmPasword;
 	private JFormattedTextField ftxfContactNumber;
 	private String imageDefault;
 
@@ -54,9 +51,9 @@ public class Nueve extends JDialog {
 		
 		GridBagConstraints gbc = new GridBagConstraints();
 		
-		lblTitle = new JLabel("CREATE ACCOUNT");
+		lblTitle = new JLabel(ConstantsUI.TITLE_CREATE_ACCOUNT);
 		lblTitle.setForeground(Color.WHITE);
-		lblTitle.setFont(new Font("Arial Narrow", Font.BOLD, 40));
+		lblTitle.setFont(new Font(ConstantsUI.FONT_ARIAL_NARROW, Font.BOLD, 40));
 		gbc.insets = new Insets(15,40,15,40);
 		gbc.weightx = 1.5;
 		gbc.gridwidth = 2;
@@ -69,27 +66,14 @@ public class Nueve extends JDialog {
 		gbc.gridy = 1;
 		lblImage.setIcon(new ImageIcon(imageDefault));
 		lblImage.setPreferredSize(new Dimension(128, 128));
-		lblImage.setDropTarget(new DropTarget(){
-			private static final long serialVersionUID = 1L;
-			public synchronized void drop(DropTargetDropEvent dtde) {
-				dtde.acceptDrop(DnDConstants.ACTION_COPY);
-				try {
-					addImage(dtde.getTransferable().getTransferData(DataFlavor.javaFileListFlavor).toString().replace("[", "").replace("]", "").replace("\\", "/"));
-					Toolkit.getDefaultToolkit().beep();
-				} catch (UnsupportedFlavorException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		lblImage.setDropTarget(new DropTarget(lblImage, controller));
 		add(lblImage, gbc);
 		
-		txfRestaurantName = new JTextField("Restaurant Name");
+		txfRestaurantName = new JTextField(ConstantsUI.RESTAURANT_NAME);
 		txfRestaurantName.setBackground(ConstantsUI.BACKGROUND_COLOR_TEXTFILE);
 		txfRestaurantName.setBorder(null);
 		txfRestaurantName.setForeground(ConstantsUI.BACKGROUND_COLOR);
-		txfRestaurantName.setFont(new Font("Arial", Font.PLAIN, 15));
+		txfRestaurantName.setFont(new Font(ConstantsUI.FONT_ARIAL, Font.PLAIN, ConstantsUI.SIZE_FONT));
 		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.insets = new Insets(15,50,15,40);
 		gbc.gridwidth = 2;
@@ -114,19 +98,19 @@ public class Nueve extends JDialog {
 		gbc.gridwidth = 1;
 		gbc.gridx = 0;
         gbc.gridy = 3;
-		add(new JLabel(new ImageIcon("src/image/password.JPG")), gbc);
+		add(new JLabel(new ImageIcon(ConstantsUI.IMAGE_PASSWORD)), gbc);
 		
 		gbc.gridy = 4;
-		add(new JLabel(new ImageIcon("src/image/password.JPG")), gbc);
+		add(new JLabel(new ImageIcon(ConstantsUI.IMAGE_PASSWORD)), gbc);
 		
 		gbc.gridy = 5;
-		add(new JLabel(new ImageIcon("src/image/Phone.JPG")), gbc);
+		add(new JLabel(new ImageIcon(ConstantsUI.IMAGE_PHONE)), gbc);
 		
 		txPassword = new JPasswordField(ConstantsUI.PASSWORD);
 		txPassword.setBackground(ConstantsUI.BACKGROUND_COLOR_TEXTFILE);
 		txPassword.setBorder(null);
 		txPassword.setForeground(ConstantsUI.BACKGROUND_COLOR);
-		txPassword.setFont(new Font("Arial", Font.PLAIN, 15)); 
+		txPassword.setFont(new Font(ConstantsUI.FONT_ARIAL, Font.PLAIN, ConstantsUI.SIZE_FONT)); 
 		gbc.insets = new Insets(15,-60,15,40);
 		gbc.gridx = 1;
         gbc.gridy = 3;
@@ -136,17 +120,19 @@ public class Nueve extends JDialog {
         			txPassword.setText("");
 				}
         	}
+        	
         	public void focusLost(FocusEvent e) {
 //        		txPassword.setText("Password");
         	}
         });
 		add(txPassword, gbc);
 		
+		
 		txConfirmPasword = new JPasswordField(ConstantsUI.PASSWORD);
 		txConfirmPasword.setBackground(ConstantsUI.BACKGROUND_COLOR_TEXTFILE);
 		txConfirmPasword.setBorder(null);
 		txConfirmPasword.setForeground(ConstantsUI.BACKGROUND_COLOR);
-		txConfirmPasword.setFont(new Font("Arial", Font.PLAIN, 15)); 
+		txConfirmPasword.setFont(new Font(ConstantsUI.FONT_ARIAL, Font.PLAIN, ConstantsUI.SIZE_FONT)); 
 		gbc.gridy = 4;
 		txConfirmPasword.addFocusListener(new FocusListener() {
 			public void focusGained(FocusEvent e) {
@@ -161,26 +147,16 @@ public class Nueve extends JDialog {
 		});
 		add(txConfirmPasword, gbc);
 		
-		ftxfContactNumber = new JFormattedTextField("Phone");
+		ftxfContactNumber = new JFormattedTextField(ConstantsUI.getIntegerFormatter());
 		ftxfContactNumber.setBackground(ConstantsUI.BACKGROUND_COLOR_TEXTFILE);
 		ftxfContactNumber.setBorder(null);
 		ftxfContactNumber.setForeground(ConstantsUI.BACKGROUND_COLOR);
-		ftxfContactNumber.setFont(new Font("Arial", Font.PLAIN, 15)); 
+		ftxfContactNumber.setFont(new Font(ConstantsUI.FONT_ARIAL, Font.PLAIN, ConstantsUI.SIZE_FONT)); 
+		ftxfContactNumber.setToolTipText(ConstantsUI.PHONE_NUMBER);
 		gbc.gridy = 5;
-		ftxfContactNumber.addFocusListener(new FocusListener() {
-			public void focusGained(FocusEvent e) {
-				if (ftxfContactNumber.getText().equals(ConstantsUI.PHONE_NUMBER)) {
-					ftxfContactNumber.setText("");
-					}
-			}
-			
-			public void focusLost(FocusEvent e) {
-//				ftxfContactNumber.setText("Phone");
-			}
-		});
 		add(ftxfContactNumber, gbc);
 		
-		btnJoin = new JButton(new ImageIcon("src/image/Buttons/Joinbutton.png"));
+		btnJoin = new JButton(new ImageIcon(ConstantsUI.IMAGE_JOIN));
 		btnJoin.setBorder(null);
 		btnJoin.setContentAreaFilled(false);
 		btnJoin.addActionListener(controller);
@@ -200,6 +176,12 @@ public class Nueve extends JDialog {
 		//setVisible(true);
 	}
 	
+	public void addImage(String pathImg) {
+		imageDefault = pathImg;
+		Image img = new ImageIcon(imageDefault).getImage().getScaledInstance(128, 118, java.awt.Image.SCALE_AREA_AVERAGING);
+		lblImage.setIcon(new ImageIcon(img));
+	}
+	
 	public Owner createOwner() throws ExceptionIncorrectPassword {
 		if (String.valueOf(txPassword.getPassword()).equals(String.valueOf(txConfirmPasword.getPassword()))) {
 			return OwnerManager.createOwner(txfRestaurantName.getText(), String.valueOf(txPassword.getPassword()), imageDefault);
@@ -213,17 +195,13 @@ public class Nueve extends JDialog {
 		txConfirmPasword.setBackground(ConstantsUI.BACKGROUND_COLOR_INVALID_PASSWORD);;
 	}
 	
-	public void addImage(String pathImg) {
-		imageDefault = pathImg;
-		Image img = new ImageIcon(imageDefault).getImage().getScaledInstance(128, 118, java.awt.Image.SCALE_AREA_AVERAGING);
-		lblImage.setIcon(new ImageIcon(img));
-	}
-	
 	public void clear() {
 		lblImage.setIcon(new ImageIcon(imageDefault));
 		txfRestaurantName.setText(ConstantsUI.RESTAURANT_NAME);
 		txPassword.setText(ConstantsUI.PASSWORD);
 		txConfirmPasword.setText(ConstantsUI.PASSWORD);
 		ftxfContactNumber.setText(ConstantsUI.PHONE_NUMBER);
+		txPassword.setBorder(null);
+		txConfirmPasword.setBorder(null);
 	}
 }
