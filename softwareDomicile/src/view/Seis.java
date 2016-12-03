@@ -18,8 +18,8 @@ public class Seis extends JDialog {
 	private JPanel panelContainer;
 	private Controller controller;
 
-	public Seis(Controller controllern) {
-		controller = controllern;
+	public Seis(Controller controller) {
+		controller = controller;
 		setTitle("Fast & Luscious");
 		setIconImage(new ImageIcon("src/image/logoIcon.png").getImage());
 		setSize(ConstantsUI.SIZE_WINDOW);
