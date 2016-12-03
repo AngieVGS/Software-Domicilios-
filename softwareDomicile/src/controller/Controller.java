@@ -61,14 +61,14 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 		ownerManager.addOwner(OwnerManager.createOwner("Al Toque", "z", "src/image/AlToque.png"));
 		userManager.addUser(UserManager.createUser("Juan", "X", null, true));
 
-		productManager.addProduct(ProductManager.createProduct("hamburguesa", "deliciosa", 3000, State.RECEIVED,
+		productManager.addProduct(ProductManager.createProduct("Hamburguesa Dijon", "deliciosa", 3000, State.RECEIVED,
 				"src/image/HamburguerProduct.png"));
 		productManager.addProduct(
-				ProductManager.createProduct("2", "deliciosa", 3000, State.RECEIVED, "src/image/BebidaProducto.png"));
+				ProductManager.createProduct("Gaseosa Manzana", "deliciosa", 3000, State.RECEIVED, "src/image/BebidaProducto.png"));
 		productManager.addProduct(
-				ProductManager.createProduct("23", "deliciosa", 3000, State.RECEIVED, "src/image/logoicon.png"));
-		productManager.addProduct(ProductManager.createProduct("hamb3rguesa", "deliciosa", 3000, State.RECEIVED,
-				"src/image/logoicon.png"));
+				ProductManager.createProduct("Gaseosa Manzana", "deliciosa", 3000, State.RECEIVED, "src/image/BebidaProducto.png"));
+		productManager.addProduct(ProductManager.createProduct("Hamburguesa Dijon", "deliciosa", 3000, State.RECEIVED,
+				"src/image/HamburguerProduct.png"));
 		try {
 			ownerManager.addAssignProductoToOwner(ownerManager
 					.createAssignProductoToOwner(productManager.searchProductById(0), ownerManager.searchOwner(1)));
@@ -79,7 +79,6 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 			ownerManager.addAssignProductoToOwner(ownerManager
 					.createAssignProductoToOwner(productManager.searchProductById(3), ownerManager.searchOwner(1)));
 		} catch (ExceptionSearchId e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

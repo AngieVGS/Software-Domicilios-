@@ -28,7 +28,7 @@ public class Diez extends JDialog {
 		restaurantToolbar = new RestaurantToolbar(controller);
 		add(restaurantToolbar, BorderLayout.NORTH);
 
-		panelContainer = new JPanel(new GridLayout(0, 1));
+		panelContainer = new JPanel(new GridLayout(2, 1));
 		panelContainer.setAlignmentX(CENTER_ALIGNMENT);
 
 		JScrollPane scrollProducts = new JScrollPane(panelContainer);
