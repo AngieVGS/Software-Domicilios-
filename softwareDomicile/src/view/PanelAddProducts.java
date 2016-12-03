@@ -37,6 +37,8 @@ public class PanelAddProducts extends JPanel {
 		btnEdit.setAlignmentX(CENTER_ALIGNMENT);
 		btnEdit.setToolTipText("Reserve element");
 		btnEdit.setName(String.valueOf(product.getId()));
+		btnEdit.setForeground(Color.WHITE);
+		btnEdit.setFocusable(false);
 		add(btnEdit);
 	}
 }

@@ -38,8 +38,10 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 	private Cinco cinco;
 	private FileWrite fileWrite;
 	private Doce doce;
+	private DialogOptions options;
 
 	public Controller() {
+		options = new DialogOptions(this);
 		doce = new Doce(this, mainWindow);
 		seis = new Seis(this);
 		fileWrite = new FileWrite();
@@ -127,14 +129,27 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 			break;
 		case BACK_VIEW_THREE:
 			backViewThree();
+		case SHOW_DIALOG_OPTIONS:
+			showDialogOptionsRestaurant();
+			break;
+		case BACK_OF_OPTIONS_DIALOG:
+			dontShowOptionsDialog();
+			break;
 		}
+	}
+
+	private void dontShowOptionsDialog() {
+		options.setVisible(false);
+	}
+
+	private void showDialogOptionsRestaurant() {
+		options.setVisible(true);
 	}
 
 	private void backViewThree() {
 		seis.setVisible(false);
 		dialogLogIn.setVisible(true);
 	}
-
 
 	public void createProduct() {
 		productManager.addProduct(doce.createProduct());
@@ -148,7 +163,6 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 			Owner owner = ownerManager.searchOwner(idOwner);
 			cinco.fillCenter(ownerManager.searchAssignProductoToOwner(idOwner), this);
 			cinco.changeNameOwner(owner.getName());
-
 			cinco.setVisible(true);
 		} catch (ExceptionSearchId e1) {
 		}

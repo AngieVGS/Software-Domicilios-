@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.ArrayList;
+
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -25,6 +27,8 @@ public class Diez extends JDialog {
 		setIconImage(new ImageIcon("src/image/logoIcon.png").getImage());
 		setSize(ConstantsUI.SIZE_WINDOW);
 		setLayout(new BorderLayout());
+		setUndecorated(true);
+		
 		restaurantToolbar = new RestaurantToolbar(controller);
 		add(restaurantToolbar, BorderLayout.NORTH);
 
@@ -35,9 +39,13 @@ public class Diez extends JDialog {
 		scrollProducts.setBackground(Color.WHITE);
 		add(scrollProducts, BorderLayout.CENTER);
 
-		JButton createPro = new JButton("new Product");
+		JButton createPro = new JButton("Add a new product");
 		createPro.addActionListener(controller);
 		createPro.setActionCommand(Actions.CREATE_PRODUCT_NEW.toString());
+		createPro.setBackground(ConstantsUI.BACKGROUND_COLOR_TOOLBAR_RESTAURANT);
+		createPro.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, ConstantsUI.BACKGROUND_COLOR_TOOLBAR_RESTAURANT_BUTTONS));
+		createPro.setFocusable(false);
+		createPro.setIcon(new ImageIcon(new ImageIcon("src/image/Buttons/678092-sign-add-128.png").getImage().getScaledInstance(30, 26, 100)));
 		add(createPro, BorderLayout.PAGE_END);
 	}
 

@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import controller.Actions;
 import controller.Controller;
 
 public class RestaurantToolbar extends JPanel {
@@ -23,6 +24,8 @@ public class RestaurantToolbar extends JPanel {
 		btnOptions.setIcon(new ImageIcon(new ImageIcon("src/image/Buttons/imageOptions.png").getImage().getScaledInstance(60, 60, 100)));
 		btnOptions.setBackground(ConstantsUI.BACKGROUND_COLOR_TOOLBAR_RESTAURANT);
 		btnOptions.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1, ConstantsUI.BACKGROUND_COLOR_TOOLBAR_RESTAURANT_BUTTONS));
+		btnOptions.addActionListener(controller);
+		btnOptions.setActionCommand(Actions.SHOW_DIALOG_OPTIONS.toString());
 		
 		JButton btnSearch = new JButton();
 		btnSearch.setBackground(ConstantsUI.BACKGROUND_COLOR_TOOLBAR_RESTAURANT);
