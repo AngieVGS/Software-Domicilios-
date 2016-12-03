@@ -1,25 +1,12 @@
 package controller;
 
-import java.awt.event.ActionEvent;
 import view.*;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import javax.swing.JButton;
-import javax.swing.JOptionPane;
-
-import exceptions.ExceptionIncorrectPassword;
-import exceptions.ExceptionSearchId;
-import model.dao.OwnerManager;
-import model.dao.ProductManager;
-import model.dao.UserManager;
-import model.entity.Owner;
-import model.entity.Product;
-import model.entity.State;
-import model.entity.User;
+import java.awt.event.*;
+import javax.swing.*;
+import exceptions.*;
+import model.dao.*;
+import model.entity.*;
 import persistence.FileWrite;
-import view.DialogLogIn;
-import view.Seis;
 
 public class Controller implements ActionListener, KeyListener {
 
@@ -84,7 +71,6 @@ public class Controller implements ActionListener, KeyListener {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
 
 	@Override
@@ -134,13 +120,14 @@ public class Controller implements ActionListener, KeyListener {
 		doce.clear();
 		doce.setVisible(false);
 	}
-	
+
 	// Este metodo arroja por consola los ID unicos para cada resturante
 	private void testingButtons(int idOwner) {
 		try {
 			Owner owner = ownerManager.searchOwner(idOwner);
 			cinco.fillCenter(ownerManager.searchAssignProductoToOwner(idOwner), this);
 			cinco.changeNameOwner(owner.getName());
+
 			cinco.setVisible(true);
 		} catch (ExceptionSearchId e1) {
 		}
@@ -165,14 +152,14 @@ public class Controller implements ActionListener, KeyListener {
 		}
 	}
 
-	public void join(){
+	public void join() {
 		try {
 			userManager.addUser(viewdos.createUser());
 			viewdos.clear();
 			viewdos.setVisible(false);
 		} catch (ExceptionIncorrectPassword e) {
 			viewdos.validatePasswordField();
-		}		
+		}
 	}
 
 	public void login() {

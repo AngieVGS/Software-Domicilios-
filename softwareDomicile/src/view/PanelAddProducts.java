@@ -1,14 +1,12 @@
 package view;
 
 import java.awt.Color;
-
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 import model.entity.Product;
 
 public class PanelAddProducts extends JPanel {
@@ -33,6 +31,6 @@ public class PanelAddProducts extends JPanel {
 		JButton btnEdit = new JButton("Edit");
 		btnEdit.setToolTipText("Reserve element");
 		btnEdit.setName(String.valueOf(product.getId()));
-//		add(btnEdit);
+		add(btnEdit);
 	}
 }

@@ -4,12 +4,11 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.ArrayList;
-
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-
 import controller.Actions;
 import controller.Controller;
 import model.entity.Order;
@@ -22,7 +21,9 @@ public class Diez extends JDialog {
 	private JPanel panelContainer;
 
 	public Diez(Controller controller) {
-		setSize(410, 720);
+		setTitle("Fast & Luscious");
+		setIconImage(new ImageIcon("src/image/logoIcon.png").getImage());
+		setSize(ConstantsUI.SIZE_WINDOW);
 		setLayout(new BorderLayout());
 		restaurantToolbar = new RestaurantToolbar(controller);
 		add(restaurantToolbar, BorderLayout.NORTH);
@@ -47,7 +48,6 @@ public class Diez extends JDialog {
 			panelContainer.updateUI();
 		}
 	}
-
 	// Este metodo es para agregar los paneles para ordenes que tiene el DUEÑO
 	public void addPanelsToDialogForOrders(ArrayList<Order> orders) {
 		panelContainer.removeAll();

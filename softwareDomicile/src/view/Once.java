@@ -1,10 +1,10 @@
 package view;
 
 import java.awt.BorderLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-
 import controller.Controller;
 
 public class Once extends JDialog{
@@ -13,7 +13,9 @@ public class Once extends JDialog{
 	private JPanel panelCenter;
 
 	public Once(Controller controller){
-		setSize(410, 720);
+		setTitle("Fast & Luscious");
+		setIconImage(new ImageIcon("src/image/logoIcon.png").getImage());
+		setSize(ConstantsUI.SIZE_WINDOW);
 		setLayout(new BorderLayout());
 
 		restaurantToolbar = new RestaurantToolbar(controller);

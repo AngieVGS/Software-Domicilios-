@@ -18,7 +18,6 @@ import java.awt.event.FocusListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -26,7 +25,6 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
 import controller.Actions;
 import controller.Controller;
 import exceptions.ExceptionIncorrectPassword;
@@ -45,7 +43,9 @@ public class Nueve extends JDialog {
 
 	public Nueve(Controller controller, MainWindow mainWindow) {
 		super(mainWindow, true);
-		setSize(410, 720);
+		setTitle("Fast & Luscious");
+		setIconImage(new ImageIcon("src/image/logoIcon.png").getImage());
+		setSize(ConstantsUI.SIZE_WINDOW);
 		setLocationRelativeTo(null);
 		setLayout(new GridBagLayout());
 		imageDefault = ConstantsUI.IMAGE_DEFAULT;
@@ -136,13 +136,11 @@ public class Nueve extends JDialog {
         			txPassword.setText("");
 				}
         	}
-        	
         	public void focusLost(FocusEvent e) {
 //        		txPassword.setText("Password");
         	}
         });
 		add(txPassword, gbc);
-		
 		
 		txConfirmPasword = new JPasswordField(ConstantsUI.PASSWORD);
 		txConfirmPasword.setBackground(ConstantsUI.BACKGROUND_COLOR_TEXTFILE);

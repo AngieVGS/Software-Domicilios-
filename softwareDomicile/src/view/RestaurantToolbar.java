@@ -2,12 +2,10 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
 import controller.Controller;
 
 public class RestaurantToolbar extends JPanel {
@@ -15,7 +13,6 @@ public class RestaurantToolbar extends JPanel {
 	private JTextField tfSearchItem;
 
 	public RestaurantToolbar(Controller controller){
-		
 		setLayout(new GridLayout(2, 1));
 		setBackground(ConstantsUI.BACKGROUND_COLOR_TOOLBAR_RESTAURANT);
 		
@@ -53,7 +50,6 @@ public class RestaurantToolbar extends JPanel {
 		panelDown.add(btnOrders);
 		panelDown.add(btnMenu);
 		add(panelDown);
-		
 	}
 	
 	public String getWordOnSpace(){

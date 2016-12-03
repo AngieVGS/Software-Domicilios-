@@ -25,7 +25,8 @@ public class Cinco extends JDialog {
 	private double pricet = 0;
 
 	public Cinco(Controller controller) {
-		setTitle("");
+		setTitle("Fast & Luscious");
+		setIconImage(new ImageIcon("src/image/logoIcon.png").getImage());
 		setSize(ConstantsUI.SIZE_WINDOW);
 
 		JPanel start = new JPanel();
@@ -33,12 +34,14 @@ public class Cinco extends JDialog {
 		toolbar = new JToolBar();
 		toolbar.setFloatable(false);
 		toolbar.setBackground(ConstantsUI.BACKGROUND_COLOR_TOOLBAR_RESTAURANT);
+
 		back = new JButton();
 		back.setBackground(ConstantsUI.BACKGROUND_COLOR_TOOLBAR_RESTAURANT);
 		back.setBorder(null);
 		back.setFont(new Font("Arial Narrow", Font.BOLD, 20));
 		back.setForeground(Color.white);
 		toolbar.add(back);
+
 		start.add(toolbar, BorderLayout.PAGE_START);
 		JPanel count = new JPanel();
 		count.setLayout(new GridLayout(1, 2));

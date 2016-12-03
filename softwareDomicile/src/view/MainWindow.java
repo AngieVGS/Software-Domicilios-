@@ -7,7 +7,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 import controller.Actions;
 import controller.Controller;
 import model.entity.User;
@@ -22,7 +21,7 @@ public class MainWindow extends JFrame {
 	public MainWindow( Controller controller) {
 		setTitle("Fast & Luscious");
 		setIconImage(new ImageIcon("src/image/logoIcon.png").getImage());
-		setSize(410, 720);
+		setSize(ConstantsUI.SIZE_WINDOW);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);		
 		buttonLetsDoIt = new JButton(new ImageIcon("src/image/Buttons/LetsDoItButton.png"));
 		buttonSignIn = new JButton(new ImageIcon("src/image/Buttons/SignInButton.png"));
@@ -59,8 +58,5 @@ public class MainWindow extends JFrame {
 		principalPanel.add(panelButtons, gridSystem.insertComponent(1, 0, 12, 1));
 		
 		add(principalPanel);
-	}
-
-	public MainWindow(User user , Controller controller) {
 	}
 }
