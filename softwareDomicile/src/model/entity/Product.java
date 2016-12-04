@@ -53,7 +53,10 @@ public class Product {
 		return img;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setAttributes(String name, String description, double price, String img){
+		this.name = name;
+		this.description = description;
+		this.price = price;
+		this.img = img;
 	}
 }
