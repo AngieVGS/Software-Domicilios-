@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.ArrayList;
@@ -24,17 +25,17 @@ public class Seis extends JDialog {
 		setIconImage(new ImageIcon("src/image/logoIcon.png").getImage());
 		setSize(ConstantsUI.SIZE_WINDOW);
 		setUndecorated(true);
-		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+		setLayout(new BorderLayout());
 		
 		seisToolbar = new SeisToolbar(controller);
-		add(seisToolbar);
+		add(seisToolbar, BorderLayout.NORTH);
 
 		panelContainer = new JPanel(new GridLayout(0, 1));
 		panelContainer.setAlignmentX(CENTER_ALIGNMENT);
 
 		JScrollPane scrollProducts = new JScrollPane(panelContainer);
 		scrollProducts.setBackground(Color.WHITE);
-		add(scrollProducts);
+		add(scrollProducts, BorderLayout.CENTER);
 	}
 
 	public void addPanelsToDialogForProducts(ArrayList<Owner> owners) {
@@ -44,5 +45,9 @@ public class Seis extends JDialog {
 			panelContainer.add(new PanelAddRestaurants(owner, controller));
 			panelContainer.updateUI();
 		}
+	}
+	
+	public String getWordOnSpace() {
+		return seisToolbar.getWordOnSpace();
 	}
 }

@@ -308,6 +308,9 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 		if (viewDiez.getWordOnSpace().length() == limit) {
 			e.consume();
 		}
+		if (seis.getWordOnSpace().length() == limit) {
+			e.consume();
+		}
 	}
 
 	@Override
