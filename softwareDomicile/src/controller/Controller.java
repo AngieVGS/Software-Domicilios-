@@ -12,6 +12,7 @@ import java.awt.dnd.DropTargetEvent;
 import java.awt.dnd.DropTargetListener;
 import java.awt.event.*;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.*;
 import exceptions.*;
@@ -142,9 +143,28 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 		case SAVE_EDITED_PRODUCT:
 			saveEditedProductByOwner();
 			break;
+		case SEARCH_PRODUCT_BYWORD:
+			searchProductsByOwner();
+			break;
+		case SEARCH_OWNER_BYWORD:
+			searchOwnersByUser();
+			break;
 		}
 	}
-	
+
+	private void searchOwnersByUser(){
+		seis.addPanelsToDialogForProducts(ownerManager.searchOwnersByWord(seis.getWordOnSpace()));
+	}
+
+	private void searchProductsByOwner() {
+		try {
+			ArrayList<Product> products = ownerManager.searchProductByWord(viewDiez.getWordOnSpace(), ownerManager.searchAssignProductoToOwner(ownerActual.getId()));
+			viewDiez.addPanelsToDialogForProducts(products);
+		} catch (ExceptionSearchId e) {
+			e.printStackTrace();
+		}
+	}
+
 	private void saveEditedProductByOwner() {
 		try {
 			Product product = productManager.searchProductById(position);
@@ -185,7 +205,9 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 
 	private void backViewThree() {
 		seis.setVisible(false);
+		seis.clear();
 		dialogLogIn.setVisible(true);
+		viewDiez.clear();
 		options.setVisible(false);
 		viewDiez.setVisible(false);
 	}

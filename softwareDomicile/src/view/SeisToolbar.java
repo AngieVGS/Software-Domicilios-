@@ -36,6 +36,8 @@ public class SeisToolbar extends JPanel {
 		btnSearch.setIcon(new ImageIcon(new ImageIcon("src/image/Buttons/imageSearch.png").getImage().getScaledInstance(50, 50, 100)));
 		btnSearch.setFocusable(false);
 		btnSearch.setBorder(BorderFactory.createMatteBorder(0, 1, 0, 0, ConstantsUI.BACKGROUND_COLOR_TOOLBAR_RESTAURANT_BUTTONS));
+		btnSearch.addActionListener(c);
+		btnSearch.setActionCommand(Actions.SEARCH_OWNER_BYWORD.toString());
 		
 		tfSearchItem = new JTextField(5);
 		tfSearchItem.setBackground(ConstantsUI.BACKGROUND_COLOR_TOOLBAR_RESTAURANT);
@@ -76,5 +78,9 @@ public class SeisToolbar extends JPanel {
 	
 	public String getWordOnSpace(){
 		return tfSearchItem.getText();
+	}
+	
+	public void clear(){
+		tfSearchItem.setText("");
 	}
 }	

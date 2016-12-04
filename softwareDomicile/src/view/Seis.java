@@ -50,4 +50,8 @@ public class Seis extends JDialog {
 	public String getWordOnSpace() {
 		return seisToolbar.getWordOnSpace();
 	}
+	
+	public void clear(){
+		seisToolbar.clear();
+	}
 }

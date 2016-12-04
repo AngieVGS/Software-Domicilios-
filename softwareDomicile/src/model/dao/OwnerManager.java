@@ -45,6 +45,16 @@ public class OwnerManager {
 		}
 		throw new ExceptionSearchId();
 	}
+	
+	public ArrayList<Owner> searchOwnersByWord(String inputSearch){
+		ArrayList<Owner> owners = new ArrayList<>();
+		for (Owner owner : ownerList) {
+			if(owner.getName().toUpperCase().contains(inputSearch.toUpperCase())){
+				owners.add(owner);
+			}
+		}
+		return owners;
+	}
 
 	public void deleteOwner(Owner owner) {
 		ownerList.remove(owner);
@@ -68,6 +78,16 @@ public class OwnerManager {
 		for (AssignProductToOwner assignProduct : assignProductList) {
 			if (assignProduct.getOwner().getId() == id) {
 				products.add(assignProduct.getProduct());
+			}
+		}
+		return products;
+	}
+	
+	public ArrayList<Product> searchProductByWord(String inputSearch, ArrayList<Product> productList){
+		ArrayList<Product> products = new ArrayList<>();
+		for (Product product : productList) {
+			if(product.getName().toUpperCase().contains(inputSearch.toUpperCase())){
+				products.add(product);
 			}
 		}
 		return products;

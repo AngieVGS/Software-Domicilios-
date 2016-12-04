@@ -31,7 +31,7 @@ public class Diez extends JDialog {
 		getContentPane().setBackground(ConstantsUI.BACKGROUND_COLOR_TOOLBAR_RESTAURANT);
 		setLayout(new BorderLayout());
 		setUndecorated(true);
-		
+
 		restaurantToolbar = new RestaurantToolbar(controller);
 		add(restaurantToolbar, BorderLayout.NORTH);
 
@@ -56,9 +56,9 @@ public class Diez extends JDialog {
 
 	public void addPanelsToDialogForProducts(ArrayList<Product> products) {
 		panelContainer.removeAll();
-		for (Product product : products) {
-			panelContainer.add(new PanelAddProducts(product, controller));
-			panelContainer.updateUI();
+			for (Product product : products) {
+				panelContainer.add(new PanelAddProducts(product, controller));
+				panelContainer.updateUI();
 		}
 	}
 	// Este metodo es para agregar los paneles para ordenes que tiene el DUEÑO
@@ -70,5 +70,9 @@ public class Diez extends JDialog {
 
 	public String getWordOnSpace() {
 		return restaurantToolbar.getWordOnSpace();
+	}
+	
+	public void clear(){
+		restaurantToolbar.clear();
 	}
 }

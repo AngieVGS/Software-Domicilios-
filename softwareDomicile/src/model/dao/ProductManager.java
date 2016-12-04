@@ -42,7 +42,7 @@ public class ProductManager {
 		}
 		return productSearchList;
 	}
-
+	
 	public void editProduct(Product product) throws ExceptionSearchId {
 		for (int i = 0; i < productList.size(); i++) {
 			if (productList.get(i).getId() == product.getId()) {

@@ -31,6 +31,8 @@ public class RestaurantToolbar extends JPanel {
 		btnSearch.setBackground(ConstantsUI.BACKGROUND_COLOR_TOOLBAR_RESTAURANT);
 		btnSearch.setIcon(new ImageIcon(new ImageIcon("src/image/Buttons/imageSearch.png").getImage().getScaledInstance(60, 60, 100)));
 		btnSearch.setBorder(BorderFactory.createMatteBorder(0, 1, 0, 0, ConstantsUI.BACKGROUND_COLOR_TOOLBAR_RESTAURANT_BUTTONS));
+		btnSearch.addActionListener(controller);
+		btnSearch.setActionCommand(Actions.SEARCH_PRODUCT_BYWORD.toString());
 		
 		tfSearchItem = new JTextField(5);
 		tfSearchItem.setBackground(ConstantsUI.BACKGROUND_COLOR_TOOLBAR_RESTAURANT);
@@ -62,5 +64,9 @@ public class RestaurantToolbar extends JPanel {
 	
 	public String getWordOnSpace(){
 		return tfSearchItem.getText();
+	}
+	
+	public void clear(){
+		tfSearchItem.setText("");
 	}
 }
