@@ -33,6 +33,17 @@ public class DialogOptions extends JDialog{
 		btnBack.setFocusable(false);
 		add(btnBack);
 		
+		JButton btnLogOut= new JButton("Log Out");
+		btnLogOut.addActionListener(controller);
+		btnLogOut.setActionCommand(Actions.BACK_VIEW_THREE.toString());
+		btnLogOut.setBackground(ConstantsUI.BACKGROUND_COLOR_TOOLBAR_RESTAURANT);
+		btnLogOut.setAlignmentX(CENTER_ALIGNMENT);
+		btnLogOut.setSize(getSize());
+		btnLogOut.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, ConstantsUI.BACKGROUND_COLOR_TOOLBAR_RESTAURANT_BUTTONS));
+		btnLogOut.setIcon(new ImageIcon(new ImageIcon("src/image/Buttons/Home.png").getImage().getScaledInstance(30, 26, 100)));
+		btnLogOut.setFocusable(false);
+		add(btnLogOut);
+		
 		JButton btnAddNewProduct = new JButton("Add new product");
 		btnAddNewProduct.addActionListener(controller);
 		btnAddNewProduct.setActionCommand(Actions.CREATE_PRODUCT_NEW.toString());

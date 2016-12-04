@@ -12,7 +12,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import controller.Actions;
-import controller.ActionsBack;
 import controller.Controller;
 
 public class SeisToolbar extends JPanel {

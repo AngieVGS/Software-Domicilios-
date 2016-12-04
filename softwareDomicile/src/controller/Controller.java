@@ -186,6 +186,8 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 	private void backViewThree() {
 		seis.setVisible(false);
 		dialogLogIn.setVisible(true);
+		options.setVisible(false);
+		viewDiez.setVisible(false);
 	}
 
 	public void createProduct() {
@@ -282,6 +284,7 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 	}
 
 	public void signIn() {
+		dialogLogIn.setVisible(false);
 		mainWindow.setVisible(false);
 		viewCuatro.setVisible(true);
 	}
