@@ -40,6 +40,7 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 	private Doce doce;
 	private DialogOptions options;
 	private int position;
+	private int ownerId;
 
 	public Controller() {
 		options = new DialogOptions(this, mainWindow);
@@ -117,10 +118,11 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 			joinOwner();
 			break;
 		case RESTAURANT:
-			testingButtons(Integer.parseInt(((JButton) event.getSource()).getName()));
+			ownerId = Integer.parseInt(((JButton) event.getSource()).getName());
+			testingButtons(ownerId);
 			break;
 		case CREATE_PRODUCT:
-			createProduct();
+			createProduct(ownerId);
 			break;
 		case GENERATE_ORDER:
 			break;
@@ -188,11 +190,11 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 		dialogLogIn.setVisible(true);
 	}
 
-	public void createProduct() {
+	public void createProduct(int ownerId) {
 		try {
-			Product product = doce.createProduct();
+			Product product = doce.createProduct( );
 			productManager.addProduct(product);
-			ownerManager.addAssignProductoToOwner(ownerManager.createAssignProductoToOwner(product, ownerManager.searchOwner(1)));
+			ownerManager.addAssignProductoToOwner(ownerManager.createAssignProductoToOwner(product, ownerManager.searchOwner(ownerId)));
 			viewDiez.addPanelsToDialogForProducts(ownerManager.searchAssignProductoToOwner(ownerActual.getId()));
 			viewDiez.setVisible(true);
 			doce.setVisible(false);
