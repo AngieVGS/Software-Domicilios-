@@ -52,6 +52,10 @@ public class ProductManager {
 			}
 		}
 	}
+	
+	public void editProductTwo(int index, Product product){
+		productList.set((index), product);
+	}
 
 	public void deleteProduct(int id) {
 		for (Product product : productList) {

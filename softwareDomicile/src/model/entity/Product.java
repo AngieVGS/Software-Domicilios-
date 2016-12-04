@@ -52,5 +52,8 @@ public class Product {
 	public String getImg() {
 		return img;
 	}
-	
+
+	public void setId(int id) {
+		this.id = id;
+	}
 }

@@ -39,6 +39,7 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 	private FileWrite fileWrite;
 	private Doce doce;
 	private DialogOptions options;
+	private int position;
 
 	public Controller() {
 		options = new DialogOptions(this, mainWindow);
@@ -146,7 +147,9 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 	private void saveEditedProductByOwner() {
 		try {
 			Product product = doce.createProduct();
-			productManager.editProduct(product);
+			product.setId(position);
+			productManager.editProductTwo(position, product);
+			System.out.println(productManager.getProductList());
 			viewDiez.addPanelsToDialogForProducts(ownerManager.searchAssignProductoToOwner(ownerActual.getId()));
 			viewDiez.setVisible(true);
 			doce.setVisible(false);
@@ -158,7 +161,9 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 
 	private void showProductByOwner(int idProduct) {
 		try {
+			viewDiez.setVisible(false);
 			doce.editProduct(productManager.searchProductById(idProduct));
+			position = idProduct;
 			doce.setVisible(true);
 		} catch (ExceptionSearchId e1) {
 		}
