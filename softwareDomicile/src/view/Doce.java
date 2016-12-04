@@ -186,6 +186,22 @@ public class Doce extends JDialog{
 		return ProductManager.createProduct(txtNameProduct.getText(), txtDescription.getText(), Double.parseDouble(ftxtPrice.getText()), State.TO_SEND, imageDefault);
 	}
 	
+	public String getNameProduct() {
+		return txtNameProduct.getText();
+	}
+	
+	public String getDescriptionProduct() {
+		return txtDescription.getText();
+	}
+	
+	public double getPriceProduct() {
+		return Double.parseDouble(ftxtPrice.getText());
+	}
+	
+	public String getImage() {
+		return imageDefault;
+	}
+	
 	public void clear() {
 		imageDefault = ConstantsUI.IMAGE_DEFAULT;
 		lblImage.setIcon(new ImageIcon(imageDefault));
