@@ -85,7 +85,6 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 		}
 	}
 
-
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		switch (Actions.valueOf(event.getActionCommand())) {
@@ -135,11 +134,40 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 		case BACK_OF_OPTIONS_DIALOG:
 			dontShowOptionsDialog();
 			break;
+		case EDIT_PRODUCT_BYOWNER:
+			showProductByOwner(Integer.parseInt(((JButton) event.getSource()).getName()));
+			break;
+		case SAVE_EDITED_PRODUCT:
+			saveEditedProductByOwner();
+			break;
+		}
+	}
+	
+	private void saveEditedProductByOwner() {
+		try {
+			Product product = doce.createProduct();
+			productManager.editProduct(product);
+			viewDiez.addPanelsToDialogForProducts(ownerManager.searchAssignProductoToOwner(ownerActual.getId()));
+			viewDiez.setVisible(true);
+			doce.setVisible(false);
+			doce.clear();
+		} catch (ExceptionSearchId e) {
+			e.printStackTrace();
 		}
 	}
 
+	private void showProductByOwner(int idProduct) {
+		try {
+			doce.editProduct(productManager.searchProductById(idProduct));
+			doce.setVisible(true);
+		} catch (ExceptionSearchId e1) {
+		}
+	}
+
+
 	private void showDialogcreateProduct() {
 		viewDiez.setVisible(false);
+		options.setVisible(false);
 		doce.setVisible(true);
 	}
 

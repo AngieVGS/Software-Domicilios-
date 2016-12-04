@@ -66,7 +66,6 @@ public class OwnerManager {
 		ArrayList<Product> products = new ArrayList<>();
 		
 		for (AssignProductToOwner assignProduct : assignProductList) {
-			System.out.println("entro " + assignProduct.getOwner().getId()+ "  / " + id);
 			if (assignProduct.getOwner().getId() == id) {
 				products.add(assignProduct.getProduct());
 			}

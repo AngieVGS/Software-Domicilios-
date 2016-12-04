@@ -143,7 +143,7 @@ public class Doce extends JDialog{
 		btnEditProduct.setForeground(Color.WHITE);
 		btnEditProduct.setFont(new Font(ConstantsUI.FONT_BUTTON_CREATE_PRODUCT, Font.BOLD, ConstantsUI.SIZE_FONT));
 		btnEditProduct.addActionListener(controller);
-//		btnEditProduct.setActionCommand(Actions.EDIT_PRODUCT.toString());
+		btnEditProduct.setActionCommand(Actions.SAVE_EDITED_PRODUCT.toString());
 		gbc.insets = new Insets(15,150,15,100);
 		gbc.ipady = 15;
 		gbc.gridy = 5;
@@ -187,6 +187,7 @@ public class Doce extends JDialog{
 	}
 	
 	public void clear() {
+		imageDefault = ConstantsUI.IMAGE_DEFAULT;
 		lblImage.setIcon(new ImageIcon(imageDefault));
 		txtNameProduct.setText(ConstantsUI.PRODUCT_NAME);
 		txtDescription.setText(ConstantsUI.DESCRIPTION_PRODUCT);

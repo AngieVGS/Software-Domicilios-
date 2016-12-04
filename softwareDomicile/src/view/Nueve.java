@@ -196,6 +196,7 @@ public class Nueve extends JDialog {
 	}
 	
 	public void clear() {
+		imageDefault = ConstantsUI.IMAGE_DEFAULT;
 		lblImage.setIcon(new ImageIcon(imageDefault));
 		txfRestaurantName.setText(ConstantsUI.RESTAURANT_NAME);
 		txPassword.setText(ConstantsUI.PASSWORD);

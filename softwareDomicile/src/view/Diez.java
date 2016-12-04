@@ -21,8 +21,10 @@ public class Diez extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private RestaurantToolbar restaurantToolbar;
 	private JPanel panelContainer;
+	private Controller controller;
 
 	public Diez(Controller controller) {
+		this.controller = controller;
 		setTitle("Fast & Luscious");
 		setIconImage(new ImageIcon("src/image/logoIcon.png").getImage());
 		setSize(ConstantsUI.SIZE_WINDOW);
@@ -55,7 +57,7 @@ public class Diez extends JDialog {
 	public void addPanelsToDialogForProducts(ArrayList<Product> products) {
 		panelContainer.removeAll();
 		for (Product product : products) {
-			panelContainer.add(new PanelAddProducts(product));
+			panelContainer.add(new PanelAddProducts(product, controller));
 			panelContainer.updateUI();
 		}
 	}

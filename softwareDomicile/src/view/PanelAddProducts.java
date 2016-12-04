@@ -8,13 +8,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import controller.Actions;
+import controller.Controller;
 import model.entity.Product;
 
 public class PanelAddProducts extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	
-	public PanelAddProducts(Product product) {
+	public PanelAddProducts(Product product, Controller controller) {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		setBackground(Color.WHITE);
 		setBorder(BorderFactory.createLineBorder(Color.ORANGE));
@@ -33,6 +36,8 @@ public class PanelAddProducts extends JPanel {
 		add(lblPrice);
 		
 		JButton btnEdit = new JButton("Edit");
+		btnEdit.addActionListener(controller);
+		btnEdit.setActionCommand(Actions.EDIT_PRODUCT_BYOWNER.toString());
 		btnEdit.setBackground(Color.decode("#575757"));
 		btnEdit.setAlignmentX(CENTER_ALIGNMENT);
 		btnEdit.setToolTipText("Reserve element");
