@@ -129,6 +129,7 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 			break;
 		case BACK_VIEW_THREE:
 			backViewThree();
+			break;
 		case SHOW_DIALOG_OPTIONS:
 			showDialogOptionsRestaurant();
 			break;
