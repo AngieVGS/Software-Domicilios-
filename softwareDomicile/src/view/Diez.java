@@ -26,13 +26,16 @@ public class Diez extends JDialog {
 		setTitle("Fast & Luscious");
 		setIconImage(new ImageIcon("src/image/logoIcon.png").getImage());
 		setSize(ConstantsUI.SIZE_WINDOW);
+		getContentPane().setBackground(ConstantsUI.BACKGROUND_COLOR_TOOLBAR_RESTAURANT);
 		setLayout(new BorderLayout());
 		setUndecorated(true);
 		
 		restaurantToolbar = new RestaurantToolbar(controller);
 		add(restaurantToolbar, BorderLayout.NORTH);
 
-		panelContainer = new JPanel(new GridLayout(2, 1));
+		panelContainer = new JPanel();
+		panelContainer.setLayout(new GridLayout(0, 2));
+		panelContainer.setBackground(Color.WHITE);
 		panelContainer.setAlignmentX(CENTER_ALIGNMENT);
 
 		JScrollPane scrollProducts = new JScrollPane(panelContainer);

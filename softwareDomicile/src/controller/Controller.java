@@ -84,7 +84,7 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 			e.printStackTrace();
 		}
 	}
-	
+
 
 	@Override
 	public void actionPerformed(ActionEvent event) {
@@ -125,7 +125,7 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 		case GENERATE_ORDER:
 			break;
 		case CREATE_PRODUCT_NEW:
-			createProduct();
+			showDialogcreateProduct();
 			break;
 		case BACK_VIEW_THREE:
 			backViewThree();
@@ -136,6 +136,11 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 			dontShowOptionsDialog();
 			break;
 		}
+	}
+
+	private void showDialogcreateProduct() {
+		viewDiez.setVisible(false);
+		doce.setVisible(true);
 	}
 
 	private void dontShowOptionsDialog() {
@@ -152,9 +157,17 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 	}
 
 	public void createProduct() {
-		productManager.addProduct(doce.createProduct());
-		doce.clear();
-		doce.setVisible(false);
+		try {
+			Product product = doce.createProduct();
+			productManager.addProduct(product);
+			ownerManager.addAssignProductoToOwner(ownerManager.createAssignProductoToOwner(product, ownerManager.searchOwner(1)));
+			viewDiez.addPanelsToDialogForProducts(ownerManager.searchAssignProductoToOwner(ownerActual.getId()));
+			viewDiez.setVisible(true);
+			doce.setVisible(false);
+			doce.clear();
+		} catch (ExceptionSearchId e) {
+			e.printStackTrace();
+		}
 	}
 
 	// Este metodo arroja por consola los ID unicos para cada resturante
@@ -215,7 +228,7 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 				viewDiez.setVisible(true);
 				dialogLogIn.setVisible(false);
 			} catch (ExceptionSearchId f) {
-//				JOptionPane.showMessageDialog(mainWindow, f.getMessage());
+				//				JOptionPane.showMessageDialog(mainWindow, f.getMessage());
 			}
 		}
 	}
@@ -239,7 +252,6 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 	public void signIn() {
 		mainWindow.setVisible(false);
 		viewCuatro.setVisible(true);
-
 	}
 
 	public void closeAllWindows() {
@@ -297,7 +309,7 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 			e.printStackTrace();
 		}
 		dtde.dropComplete(true);
-		
+
 	}
 
 	@Override
