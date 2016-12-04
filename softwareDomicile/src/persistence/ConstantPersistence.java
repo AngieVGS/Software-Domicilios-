@@ -1,11 +1,11 @@
 package persistence;
 
 public class ConstantPersistence {
-	public static final String RESTAURANT_LISIT = "Restaurant";
-	public static final String RESTAURANT_NAME = "Name Restaurant"; 
-	public static final String PASSWORD = "Password";
-	public static final String RESTAURANT_IMAGE = "Image";
-	public static final String PRODUCT_LIST = "Products";
+	public static final String OWNER = "Owner";
+	public static final String OWNER_NAME = "Name Restaurant"; 
+	public static final String OWNER_PASSWORD = "Password";
+	public static final String OWNER_IMAGE = "Image";
+	public static final String PRODUCT = "Product";
 	
 	//para los producttos
 	public static final String PRODUCT_NAME = "Name Product";
@@ -21,6 +21,7 @@ public class ConstantPersistence {
 //	public static final String ORDER_PRODUCT_LIST = "Order product list"; 
 	public static final String USER = "User";
 	public static final String USER_NAME = "Name User";
+	public static final String USER_PASSWORD = "Password";
 	public static final String USER_STATE = "State User";
 
 }

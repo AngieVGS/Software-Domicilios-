@@ -18,36 +18,47 @@ import model.entity.State;
 import model.entity.User;
 
 public class FileRead {
-	
-	private ArrayList<User> readUsers(){
+
+	private ArrayList<User> readUsers() {
 		return null;
 	}
 
-	private ArrayList<AssignProductToOwner> readAssignProductToOwner(String fileUser) throws IOException{
-		ArrayList<AssignProductToOwner>assignProductToOwnerList = new ArrayList<>();
-		InputStream in = getClass().getResourceAsStream(fileUser); 
+	public ArrayList<AssignProductToOwner> readAssignProductToOwner() throws IOException {
+		ArrayList<AssignProductToOwner> assignProductToOwnerList = new ArrayList<>();
+		InputStream in = getClass().getResourceAsStream("/data/owner.json"); 
 		 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(in));
-		 Gson gson = new Gson();
-		 JsonArray owners =gson.fromJson(bufferedReader, JsonArray.class);
-			for (JsonElement jsonElement : owners) {
-				assignProductToOwnerList.add(new AssignProductToOwner(readProduct(owners.getAsJsonObject().get(ConstantPersistence.RESTAURANT_LISIT).getAsJsonObject()),
-						readOwner(owners.getAsJsonObject().get(ConstantPersistence.RESTAURANT_LISIT).getAsJsonObject())));
-			}
-		 bufferedReader.close();
+		Gson gson = new Gson();
+		JsonArray owners = gson.fromJson(bufferedReader, JsonArray.class);
+		for (JsonElement jsonElement : owners) {
+			assignProductToOwnerList.add(new AssignProductToOwner(
+					readProduct(jsonElement.getAsJsonObject().get(ConstantPersistence.PRODUCT).getAsJsonObject()),
+					readOwner(jsonElement.getAsJsonObject().get(ConstantPersistence.OWNER).getAsJsonObject())));
+		}
+		bufferedReader.close();
 		return assignProductToOwnerList;
 	}
-	
-	private Product readProduct(JsonObject product){
+
+	private Product readProduct(JsonObject product) {
 		return new Product(product.getAsJsonObject().get(ConstantPersistence.PRODUCT_NAME).getAsString(),
-				product.getAsJsonObject().get(ConstantPersistence.PRODUCT_DESCRIPTION).getAsString(), 
-				product.getAsJsonObject().get(ConstantPersistence.PRODUCT_PRICE).getAsDouble(), 
-				State.valueOf(product.getAsJsonObject().get(ConstantPersistence.PRODUCT_STATE).getAsString()), 
+				product.getAsJsonObject().get(ConstantPersistence.PRODUCT_DESCRIPTION).getAsString(),
+				product.getAsJsonObject().get(ConstantPersistence.PRODUCT_PRICE).getAsDouble(),
+				State.valueOf(product.getAsJsonObject().get(ConstantPersistence.PRODUCT_STATE).getAsString()),
 				product.getAsJsonObject().get(ConstantPersistence.PRODUCT_IMAGE).getAsString());
 	}
-	
-	private Owner readOwner(JsonObject owner){
-		return new Owner(owner.getAsJsonObject().get(ConstantPersistence.RESTAURANT_NAME).getAsString(), 
-				owner.getAsJsonObject().get(ConstantPersistence.PASSWORD).getAsString(),
-				owner.getAsJsonObject().get(ConstantPersistence.RESTAURANT_IMAGE).getAsString());
+
+	private Owner readOwner(JsonObject owner) {
+		return new Owner(owner.getAsJsonObject().get(ConstantPersistence.OWNER_NAME).getAsString(),
+				owner.getAsJsonObject().get(ConstantPersistence.OWNER_PASSWORD).getAsString(),
+				owner.getAsJsonObject().get(ConstantPersistence.OWNER_IMAGE).getAsString());
 	}
+
+//	public static void main(String[] args) {
+//		FileRead fileRead = new FileRead();
+//		try {
+//			System.out.println(fileRead.readAssignProductToOwner().toString());
+//		} catch (IOException e) {
+//			System.out.println(e.getMessage());
+//			e.printStackTrace();
+//		}
+//	}
 }
