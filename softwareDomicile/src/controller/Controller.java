@@ -192,7 +192,7 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 		try {
 			Product product = doce.createProduct();
 			productManager.addProduct(product);
-			ownerManager.addAssignProductoToOwner(ownerManager.createAssignProductoToOwner(product, ownerManager.searchOwner(1)));
+			ownerManager.addAssignProductoToOwner(ownerManager.createAssignProductoToOwner(product, ownerActual));
 			viewDiez.addPanelsToDialogForProducts(ownerManager.searchAssignProductoToOwner(ownerActual.getId()));
 			viewDiez.setVisible(true);
 			doce.setVisible(false);
