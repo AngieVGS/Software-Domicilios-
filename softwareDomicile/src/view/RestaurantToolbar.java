@@ -50,10 +50,15 @@ public class RestaurantToolbar extends JPanel {
 		btnOrders.setFocusable(false);
 		btnOrders.setBackground(ConstantsUI.BACKGROUND_COLOR_TOOLBAR_RESTAURANT);
 		btnOrders.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 1, ConstantsUI.BACKGROUND_COLOR_TOOLBAR_RESTAURANT_BUTTONS));
+		btnOrders.addActionListener(controller);
+		btnOrders.setActionCommand(Actions.SHOW_ORDERS_FOR_OWNER.toString());
+		
 		JButton btnMenu = new JButton("Menu");
 		btnMenu.setFocusable(false);
 		btnMenu.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, ConstantsUI.BACKGROUND_COLOR_TOOLBAR_RESTAURANT_BUTTONS));
 		btnMenu.setBackground(ConstantsUI.BACKGROUND_COLOR_TOOLBAR_RESTAURANT);
+		btnMenu.addActionListener(controller);
+		btnMenu.setActionCommand(Actions.SHOW_MENU_FOR_OWNER.toString());
 		
 		JPanel panelDown = new JPanel();
 		panelDown.setLayout(new GridLayout(1,2));

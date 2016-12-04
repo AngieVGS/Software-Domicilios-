@@ -149,6 +149,24 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 		case SEARCH_OWNER_BYWORD:
 			searchOwnersByUser();
 			break;
+		case SHOW_MENU_FOR_OWNER:
+			showMenuOwner();
+			break;
+		case SHOW_ORDERS_FOR_OWNER:
+			showOrdersOwner();
+			break;
+		}
+	}
+	
+	//Este metodo es para mostrar las ordenes que tiene un restaurante. Utilizar el metodo de la clase Diez, agregarpaneles
+	private void showOrdersOwner() {
+	}
+
+	private void showMenuOwner() {
+		try {
+			viewDiez.addPanelsToDialogForProducts(ownerManager.searchAssignProductoToOwner(ownerActual.getId()));
+		} catch (ExceptionSearchId e) {
+			e.printStackTrace();
 		}
 	}
 
