@@ -148,7 +148,7 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 	private void saveEditedProductByOwner() {
 		try {
 			Product product = productManager.searchProductById(position);
-			product.setAttributes(doce.getNameProduct(), doce.getDescriptionProduct(), doce.getPriceProduct(), doce.getImage());
+			product.setAttributes(doce.getNameProduct(), doce.getDescriptionProduct(), doce.getPriceProduct(), doce.getImageProduct());
 			viewDiez.addPanelsToDialogForProducts(ownerManager.searchAssignProductoToOwner(ownerActual.getId()));
 			viewDiez.setVisible(true);
 			doce.setVisible(false);
@@ -171,6 +171,7 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 	private void showDialogcreateProduct() {
 		viewDiez.setVisible(false);
 		options.setVisible(false);
+		doce.addProduct();
 		doce.setVisible(true);
 	}
 

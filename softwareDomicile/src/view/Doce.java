@@ -13,6 +13,7 @@ import java.awt.event.FocusListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -198,7 +199,7 @@ public class Doce extends JDialog{
 		return Double.parseDouble(ftxtPrice.getText());
 	}
 	
-	public String getImage() {
+	public String getImageProduct() {
 		return imageDefault;
 	}
 	
