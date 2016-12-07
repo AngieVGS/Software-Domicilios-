@@ -63,10 +63,10 @@ public class Diez extends JDialog {
 		}
 	}
 	// Este metodo es para agregar los paneles para ordenes que tiene el DUEÑO
-	public void addPanelsToDialogForOrders(ArrayList<Order> orders) {
+	public void addPanelsToDialogForOrders(ArrayList<Product> productList) {
 		panelContainer.removeAll();
-		for (Order order : orders) {
-			once = new Once(controller, order);
+		for (Product product : productList) {
+			once = new Once(controller, product);
 			panelContainer.add(once);
 		}
 	}
