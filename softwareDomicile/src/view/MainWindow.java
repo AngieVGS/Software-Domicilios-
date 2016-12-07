@@ -30,6 +30,7 @@ public class MainWindow extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);		
 		buttonLetsDoIt = new JButton(new ImageIcon("src/image/Buttons/LetsDoItButton.png"));
 		buttonSignIn = new JButton(new ImageIcon("src/image/Buttons/SignInButton.png"));
+		
 		exit = new JButton(new ImageIcon("src/image/Buttons/exit.png"));
 		exit.setBackground(null);
 		exit.setBorder(null);
@@ -56,7 +57,8 @@ public class MainWindow extends JFrame {
 		buttonLetsDoIt.setActionCommand(Actions.LETS_DO_IT.toString());
 		buttonLetsDoIt.addActionListener(controller);
 		
-		
+		exit.setActionCommand(Actions.EXIT.toString());
+		exit.addActionListener(controller);
 		
 		
 		buttonSignIn.setActionCommand(Actions.SIGN_IN.toString());
