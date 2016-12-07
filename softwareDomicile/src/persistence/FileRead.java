@@ -52,8 +52,6 @@ public class FileRead {
 		return assignOrderToUser;
 	}
 
-	
-	
 	public ArrayList<AssignProductToOwner> readAssignProductToOwner() throws IOException {
 		ArrayList<AssignProductToOwner> assignProductToOwnerList = new ArrayList<>();
 		InputStream in = getClass().getResourceAsStream("C:/data/owner.json"); 
@@ -93,14 +91,17 @@ public class FileRead {
 				owner.getAsJsonObject().get(ConstantPersistence.OWNER_PASSWORD).getAsString(),
 				owner.getAsJsonObject().get(ConstantPersistence.OWNER_IMAGE).getAsString());
 	}
-
-	public static void main(String[] args) {
-		FileRead fileRead = new FileRead();
-		try {
-			System.out.println(fileRead.readAssignProductToOwner().toString());
-		} catch (IOException e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace();
+	
+	private ArrayList<User> readUsers() throws IOException{
+		ArrayList<User> usersList = new ArrayList<>();
+		InputStream in = getClass().getResourceAsStream("C:/data/users.json"); 
+		 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(in));
+		Gson gson = new Gson();
+		JsonArray users = gson.fromJson(bufferedReader, JsonArray.class);
+		for (JsonElement jsonElement : users) {
+			usersList.add(readUser(jsonElement.getAsJsonObject().get(ConstantPersistence.USER).getAsJsonObject()));
 		}
+		bufferedReader.close();
+		return usersList;
 	}
 }

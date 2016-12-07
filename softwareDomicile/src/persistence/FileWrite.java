@@ -129,44 +129,4 @@ public class FileWrite {
 		}
 		bufferedWriter.close();
 	}
-	
-	public static void main(String[] args) {
-		OwnerManager ownerManager = new OwnerManager();
-		UserManager userManager = new UserManager();
-		ProductManager  productManager = new ProductManager();
-		ownerManager.addOwner(OwnerManager.createOwner("Mc Donalds", "s", "src/image/mcDonalds.jpg"));
-		ownerManager.addOwner(OwnerManager.createOwner("El Pirata", "z", "src/image/ElPirata.jpg"));
-		ownerManager.addOwner(OwnerManager.createOwner("Al Toque", "z", "src/image/AlToque.png"));
-		userManager.addUser(UserManager.createUser("Juan", "X", null, true));
-
-		productManager.addProduct(ProductManager.createProduct("Hamburguesa Dijon", "deliciosa", 3000, State.RECEIVED,
-				"src/image/HamburguerProduct.png"));
-		productManager.addProduct(
-				ProductManager.createProduct("Gaseosa Manzana", "deliciosa", 3000, State.RECEIVED, "src/image/BebidaProducto.png"));
-		productManager.addProduct(
-				ProductManager.createProduct("Gaseosa Manzana", "deliciosa", 3000, State.RECEIVED, "src/image/BebidaProducto.png"));
-		productManager.addProduct(ProductManager.createProduct("Hamburguesa Dijon", "deliciosa", 3000, State.RECEIVED,
-				"src/image/HamburguerProduct.png"));
-		try {
-			ownerManager.addAssignProductoToOwner(ownerManager
-					.createAssignProductoToOwner(productManager.searchProductById(0), ownerManager.searchOwner(1)));
-			ownerManager.addAssignProductoToOwner(ownerManager
-					.createAssignProductoToOwner(productManager.searchProductById(1), ownerManager.searchOwner(1)));
-			ownerManager.addAssignProductoToOwner(ownerManager
-					.createAssignProductoToOwner(productManager.searchProductById(2), ownerManager.searchOwner(1)));
-			ownerManager.addAssignProductoToOwner(ownerManager
-					.createAssignProductoToOwner(productManager.searchProductById(3), ownerManager.searchOwner(1)));
-		} catch (ExceptionSearchId e) {
-			e.printStackTrace();
-		}
-		
-		FileWrite  fileWrite  = new FileWrite();
-		try {
-			fileWrite.fileWriteReportOwner(ownerManager.getAssignProductList());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
 }
