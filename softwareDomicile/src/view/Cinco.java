@@ -19,7 +19,7 @@ public class Cinco extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private JPanel panelCenter;
 	private JToolBar toolbar;
-	private JButton generateOrder;
+	private JButton buttonBack;
 	private JButton back;
 	private JLabel priceTotal;
 	private double pricet = 0;
@@ -47,14 +47,15 @@ public class Cinco extends JDialog {
 		count.setLayout(new GridLayout(1, 2));
 		count.setBackground(ConstantsUI.BACKGROUND_COLOR_BUTTON_GENERATE_ORDER);
 
-		generateOrder = new JButton("generate");
-		generateOrder.setBorder(null);
-		generateOrder.setBackground(ConstantsUI.BACKGROUND_COLOR_BUTTON_GENERATE_ORDER);
-		generateOrder.setForeground(Color.WHITE);
-		generateOrder.setFont(new Font("Arial", Font.PLAIN, 20));
-		generateOrder.addActionListener(controller);
-		generateOrder.setActionCommand(Actions.GENERATE_ORDER.toString());
-		count.add(generateOrder);
+		buttonBack = new JButton(new ImageIcon("src/image/Buttons/back-alt-129.png"));
+		
+		buttonBack.setBorder(null);
+		buttonBack.setBackground(ConstantsUI.BACKGROUND_COLOR_BUTTON_GENERATE_ORDER);
+		buttonBack.setForeground(Color.WHITE);
+		buttonBack.setFont(new Font("Arial", Font.PLAIN, 20));
+		buttonBack.addActionListener(controller);
+		buttonBack.setActionCommand(Actions.BACK_SIX.toString());
+		count.add(buttonBack);
 
 		priceTotal = new JLabel("total: $ 0.0", JLabel.RIGHT);
 		priceTotal.setBackground(ConstantsUI.BACKGROUND_COLOR_BUTTON_GENERATE_ORDER);
@@ -64,7 +65,7 @@ public class Cinco extends JDialog {
 		start.add(count, BorderLayout.CENTER);
 		add(start, BorderLayout.PAGE_START);
 		panelCenter = new JPanel();
-		panelCenter.setBackground(Color.decode("#4b4b4b"));
+		panelCenter.setBackground(Color.WHITE);
 		add(new JScrollPane(panelCenter), BorderLayout.CENTER);
 	}
 
@@ -80,13 +81,13 @@ public class Cinco extends JDialog {
 	private JPanel header(Controller controller, Product product) {
 
 		JPanel panel = new JPanel();
-		panel.setBackground(ConstantsUI.BACKGROUND_COLOR_SHOW_PRODUCT_LIST);
+		panel.setBackground(Color.WHITE);
 		panel.setLayout(new BorderLayout());
 
 		JButton image = new JButton();
 		image.setIcon(new ImageIcon(new ImageIcon("" + product.getImg()).getImage().getScaledInstance(180, 230, 100)));
 
-		image.setBackground(ConstantsUI.BACKGROUND_COLOR_SHOW_PRODUCT_LIST);
+		image.setBackground(Color.white);
 		image.setHorizontalAlignment(JButton.CENTER);
 		image.setActionCommand(Actions.PRODUCT_ADD_MY_CAR.toString());
 		image.addActionListener(controller);
@@ -95,7 +96,7 @@ public class Cinco extends JDialog {
 		image.setBorder(null);
 		panel.add(image, BorderLayout.CENTER);
 		JPanel end = new JPanel();
-		end.setBackground(ConstantsUI.BACKGROUND_COLOR_SHOW_PRODUCT_LIST);
+		end.setBackground(Color.WHITE);
 		JLabel nameProduct = new JLabel(product.getName(), JLabel.CENTER);
 		panel.add(nameProduct, BorderLayout.PAGE_START);
 

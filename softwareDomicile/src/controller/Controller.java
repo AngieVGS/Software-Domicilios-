@@ -155,9 +155,16 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 		case SHOW_ORDERS_FOR_OWNER:
 			showOrdersOwner();
 			break;
+		case BACK_SIX:
+			backsix();
 		}
 	}
 	
+	private void backsix() {
+		cinco.setVisible(false);
+		seis.setVisible(true);
+	}
+
 	//Este metodo es para mostrar las ordenes que tiene un restaurante. Utilizar el metodo de la clase Diez, agregarpaneles
 	private void showOrdersOwner() {
 	}
