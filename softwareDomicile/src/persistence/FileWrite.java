@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
@@ -17,7 +18,9 @@ import model.dao.UserManager;
 import model.entity.AssignOrderToUser;
 import model.entity.AssignProductToOrder;
 import model.entity.AssignProductToOwner;
+import model.entity.Owner;
 import model.entity.State;
+import model.entity.User;
 
 public class FileWrite {
 	
@@ -91,6 +94,39 @@ public class FileWrite {
 		}
 		BufferedWriter bufferedWriter = new BufferedWriter(printWriter);
 		bufferedWriter.write(restaurantObject.toString());
+		bufferedWriter.close();
+	}
+	
+	public void saveOwner(ArrayList<Owner> ownerList) throws IOException {
+		
+		File  fileFolder = new File(System.getProperty("user.dir")+"\\"+"Report");
+		File   file=new File(fileFolder.getAbsolutePath()+"\\"+"ownerList.json");
+		fileFolder.mkdirs();
+		PrintWriter printWriter = new PrintWriter(new FileOutputStream(file, false));
+		BufferedWriter bufferedWriter = new BufferedWriter(printWriter);
+		for (Owner owner : ownerList) {
+			
+		Gson gson = new Gson();
+		JsonObject ownerObject = new JsonObject();
+		ownerObject.add(ConstantPersistence.OWNER, gson.toJsonTree(owner));
+		bufferedWriter.write(ownerObject.toString());
+		}
+		bufferedWriter.close();
+	}
+	
+	public void saveUser(ArrayList<User> userList) throws IOException {
+		
+		File  fileFolder = new File(System.getProperty("user.dir")+"\\"+"Report");
+		File   file=new File(fileFolder.getAbsolutePath()+"\\"+"userList.json");
+		fileFolder.mkdirs();
+		PrintWriter printWriter = new PrintWriter(new FileOutputStream(file, false));
+		BufferedWriter bufferedWriter = new BufferedWriter(printWriter);
+		for (User user : userList) {
+		Gson gson = new Gson();
+		JsonObject userObject = new JsonObject();
+		userObject.add(ConstantPersistence.USER, gson.toJsonTree(user));
+		bufferedWriter.write(userObject.toString());
+		}
 		bufferedWriter.close();
 	}
 	
