@@ -1,12 +1,12 @@
 package view;
 
+import java.awt.Font;
 import java.awt.GridLayout;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 
 import controller.Actions;
 import controller.Controller;
@@ -24,19 +24,16 @@ public class Once extends JPanel{
 		setLayout(new GridLayout(1, 4));
 
 		lbInformation = new JLabel();
-		lbInformation.setText("information");
-//		order.getDirection()
+		lbInformation.setText(order.getDirection());
 		add(lbInformation);
 		
 		lbStatus = new JLabel();
-		lbStatus.setIcon(new ImageIcon(""));
-		lbStatus.setText("to send");
-//		order.getState().toString()
+		lbStatus.setText(order.getState().toString());
+		lbStatus.setFont(new Font("Arial", 15, Font.BOLD));
 		add(lbStatus);
 		
 		btnStatusChange = new JButton();
 		btnStatusChange.setIcon(new ImageIcon("src/image.Buttons/lbStatus.png"));
-		btnStatusChange.setBorder(null);
 		btnStatusChange.setActionCommand(Actions.CHANGE_STATUS.toString());
 		btnStatusChange.addActionListener(controller);
 		add(btnStatusChange);
@@ -46,9 +43,9 @@ public class Once extends JPanel{
 		btnCancelOrder.addActionListener(controller);
 		btnCancelOrder.setActionCommand(Actions.CANCEL_ORDER.toString());
 		add(btnCancelOrder);
-
-		JScrollPane scPrincipal = new JScrollPane();
-		add(scPrincipal);
+//
+//		JScrollPane scPrincipal = new JScrollPane();
+//		add(scPrincipal);
 
 	}
 	
