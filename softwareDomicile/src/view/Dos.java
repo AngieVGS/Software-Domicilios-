@@ -170,7 +170,7 @@ public class Dos extends JDialog{
 
 	public User createUser() throws ExceptionIncorrectPassword {
 		if (String.valueOf(txPassword.getPassword()).equals(String.valueOf(txConfirmPasword.getPassword()))) {
-			return UserManager.createUser(txfUserName.getText(), String.valueOf(txPassword.getPassword()), null, true);
+			return UserManager.createUser(txfUserName.getText(), String.valueOf(txPassword.getPassword()), true);
 		}else{
 			throw new ExceptionIncorrectPassword();
 		}

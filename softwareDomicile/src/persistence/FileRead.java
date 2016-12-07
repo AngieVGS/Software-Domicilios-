@@ -82,7 +82,7 @@ public class FileRead {
 	
 	private User readUser(JsonObject user) {
 		return new User(user.getAsJsonObject().get(ConstantPersistence.USER_NAME).getAsString(),
-				user.getAsJsonObject().get(ConstantPersistence.USER_PASSWORD).getAsString(),null,
+				user.getAsJsonObject().get(ConstantPersistence.USER_PASSWORD).getAsString(),
 				user.getAsJsonObject().get(ConstantPersistence.USER_STATE).getAsBoolean());
 	}
 

@@ -3,6 +3,7 @@ package controller;
 import view.*;
 
 import java.awt.Toolkit;
+import java.awt.Window;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.dnd.DnDConstants;
@@ -42,6 +43,8 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 	private DialogOptions options;
 	private int position;
 	private KeyListenerForLogin keyListener;
+	private SieteShowProduct sieteShowProduct;
+	private OrderManager orderManager;
 
 	public Controller() {
 		keyListener = new KeyListenerForLogin(this);
@@ -62,10 +65,12 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 		userActual = null;
 		ownerActual = null;
 		dialogAddOwner = new Nueve(this, mainWindow);
+		orderManager = new OrderManager();
+//		sieteShowProduct = new SieteShowProduct(product);
 		ownerManager.addOwner(OwnerManager.createOwner("Mc Donalds", "s", "src/image/mcDonalds.jpg"));
 		ownerManager.addOwner(OwnerManager.createOwner("El Pirata", "z", "src/image/ElPirata.jpg"));
 		ownerManager.addOwner(OwnerManager.createOwner("Al Toque", "z", "src/image/AlToque.png"));
-		userManager.addUser(UserManager.createUser("Juan", "X", null, true));
+		userManager.addUser(UserManager.createUser("Juan", "X", true));
 
 		productManager.addProduct(ProductManager.createProduct("Hamburguesa Dijon", "deliciosa", 3000, State.RECEIVED,
 				"src/image/HamburguerProduct.png"));
@@ -165,7 +170,16 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
              break;
 		case CHANGE_STATUS:
 			break;
+		case GENERATE_SHOPPING_CAR:
+			generateShoppingCar();
+			break;
 		}
+	}
+	
+	private void generateShoppingCar() {
+		cinco.setVisible(false);
+		seis.setVisible(false);
+		sieteShowProduct.setVisible(true);
 	}
 	
 	private void backsix() {
@@ -274,7 +288,7 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 		try {
 			Product product = productManager.searchProductById(idProdcut);
 			cinco.counttotal(product.getPrice());
-			userActual.addProductToMy(product);
+			orderManager.addShoppingCarList(product);
 		} catch (ExceptionSearchId e) {
 		}
 	}

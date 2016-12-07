@@ -12,10 +12,28 @@ public class OrderManager {
 
 	private ArrayList<Order> orderList;
 	private ArrayList<AssignProductToOrder> productsOfTheOrder;
+	private ArrayList<Product> shoppingCarList;
 
 	public OrderManager() {
 		this.orderList = new ArrayList<>();
 		this.productsOfTheOrder = new ArrayList<>();
+		shoppingCarList = new ArrayList<>();
+	}
+
+	public void addShoppingCarList(Product product) {
+		shoppingCarList.add(product);
+	}
+
+	public void removeProducOfShoppingCarList(Product product) {
+		shoppingCarList.remove(product);
+	}
+	
+	public ArrayList<Product> getShoppingCarList() {
+		return shoppingCarList;
+	}
+
+	public void removeAllProductOfShoppingCarList() {
+		shoppingCarList.clear();
 	}
 
 	public static Order createOrder(int id, String direction) {
