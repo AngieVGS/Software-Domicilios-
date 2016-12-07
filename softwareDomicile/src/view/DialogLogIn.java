@@ -4,26 +4,20 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FocusTraversalPolicy;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Vector;
+import java.util.ArrayList;
 
 import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
-import javax.swing.SortingFocusTraversalPolicy;
 
 import controller.Actions;
 import controller.Controller;
@@ -150,6 +144,13 @@ public class DialogLogIn extends JDialog {
 		add(exitPanel, BorderLayout.PAGE_START);
 
 		add(principalPanel, BorderLayout.CENTER);
+		
+		ArrayList<Component> order = new ArrayList<>();
+		order.add(lbImage);
+		order.add(txUser);
+		order.add(txPassword);
+		SystemFocusTraversalPolicy policy = new SystemFocusTraversalPolicy(order);
+		panelInformation.setFocusTraversalPolicy(policy);	
 	}
 
 	public String[] dataLogIn() {

@@ -31,7 +31,7 @@ public class KeyListenerForLogin implements KeyListener {
 	public void loginWithEnter(KeyEvent e){
 		if (KeyEvent.VK_ENTER==e.getKeyCode())
 		{
-			e.consume();
+			e.consume();	
 			if (dialogLogIn.getStatus() != null) {
 				controller.login();
 			}
