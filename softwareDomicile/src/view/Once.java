@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 
 import controller.Actions;
 import controller.Controller;
-import model.entity.Order;
+import model.entity.Product;
 
 public class Once extends JPanel{
 	private static final long serialVersionUID = 1L;
@@ -19,44 +19,45 @@ public class Once extends JPanel{
 	private JButton btnStatusChange;
 	private JButton btnCancelOrder;
 
-	public Once(Controller controller, Order order){
+	public Once(Controller controller, Product product){
 		setSize(500,500);
 		setLayout(new GridLayout(1, 4));
 
+		lbInformation.setText(product.getName() + "<html><body><br>" + product.getDescription() + "</body></html>");
 		lbInformation = new JLabel();
-		lbInformation.setText(order.getDirection());
 		add(lbInformation);
-		
+
 		lbStatus = new JLabel();
-		lbStatus.setText(order.getState().toString());
+		lbStatus.setText(product.getState().toString());
 		lbStatus.setFont(new Font("Arial", 15, Font.BOLD));
 		add(lbStatus);
-		
+
 		btnStatusChange = new JButton();
 		btnStatusChange.setIcon(new ImageIcon("src/image.Buttons/lbStatus.png"));
 		btnStatusChange.setActionCommand(Actions.CHANGE_STATUS.toString());
 		btnStatusChange.addActionListener(controller);
 		add(btnStatusChange);
-		
+
 		btnCancelOrder = new JButton();
 		btnCancelOrder.setIcon(new ImageIcon("src/image.Buttons/exit.png"));
 		btnCancelOrder.addActionListener(controller);
 		btnCancelOrder.setActionCommand(Actions.CANCEL_ORDER.toString());
 		add(btnCancelOrder);
-//
-//		JScrollPane scPrincipal = new JScrollPane();
-//		add(scPrincipal);
-
 	}
-	
+
+	//
+	//		JScrollPane scPrincipal = new JScrollPane();
+	//		add(scPrincipal);
+
+
 	@SuppressWarnings("static-access")
-	public void changeStatus(Order order){
+	public void changeStatus(Product product){
 		if(lbStatus.getText().equals("TO_SEND")){
-			lbStatus.setText(order.getState().SEND.toString());
+			lbStatus.setText(product.getState().SEND.toString());
 		}else if(lbStatus.getText().equals("SEND")){
-			lbStatus.setText(order.getState().RECEIVED.toString());
+			lbStatus.setText(product.getState().RECEIVED.toString());
 		}else{
-			lbStatus.setText(order.getState().TO_SEND.toString());
+			lbStatus.setText(product.getState().TO_SEND.toString());
 		}
 	}
 }
