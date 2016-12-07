@@ -41,8 +41,10 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 	private Doce doce;
 	private DialogOptions options;
 	private int position;
+	private KeyListenerForLogin keyListener;
 
 	public Controller() {
+		keyListener = new KeyListenerForLogin(this);
 		options = new DialogOptions(this, mainWindow);
 		doce = new Doce(this, mainWindow);
 		seis = new Seis(this);
@@ -50,7 +52,7 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 		cinco = new Cinco(this);
 		ownerManager = new OwnerManager();
 		userManager = new UserManager();
-		dialogLogIn = new DialogLogIn(this);
+		dialogLogIn = new DialogLogIn(this, keyListener);
 		productManager = new ProductManager();
 		mainWindow = new MainWindow(this);
 		mainWindow.setVisible(true);
@@ -161,6 +163,8 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 		case EXIT:
              System.exit(0);
              break;
+		case CHANGE_STATUS:
+			break;
 		}
 	}
 	

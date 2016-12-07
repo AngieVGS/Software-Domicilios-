@@ -2,21 +2,32 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FocusTraversalPolicy;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Vector;
+
 import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
+import javax.swing.SortingFocusTraversalPolicy;
+
 import controller.Actions;
 import controller.Controller;
+import controller.KeyListenerForLogin;
 
 public class DialogLogIn extends JDialog {
 
@@ -30,13 +41,15 @@ public class DialogLogIn extends JDialog {
 	private JTextArea txUser;
 	private JButton exit;
 	private JPasswordField txPassword;
+	private JPanel panelInformation;
 
-	public DialogLogIn(Controller controller) {
-		
+	public DialogLogIn(Controller controller, KeyListenerForLogin keyListener) {
+
 		setLayout(new BorderLayout());
 		setTitle("Fast & Luscious");
 		setIconImage(new ImageIcon("src/image/logoIcon.png").getImage());
 		setSize(ConstantsUI.SIZE_WINDOW);
+		setUndecorated(true);
 		buttonLogIn = new JButton(new ImageIcon("src/image/Buttons/LoginButton.png"));
 		buttonSignUp = new JButton(new ImageIcon("src/image/Buttons/SignUpButton.png"));
 		buttonSignUp.setBackground(null);
@@ -50,9 +63,8 @@ public class DialogLogIn extends JDialog {
 
 		JLabel lbImage = new JLabel(new ImageIcon("src/image/logoMedium.png"));
 		principalPanel.add(lbImage, gridSystem.insertComponent(1, 0, 70, 50));
-		setUndecorated(true);
 
-		JPanel panelInformation = new JPanel(new GridLayout(2, 1, 0, 5));
+		panelInformation = new JPanel(new GridLayout(2, 1, 0, 5));
 		panelInformation.setBackground(Color.decode("#D8D8D8"));
 		txUser = new JTextArea(TEXT_USER_INIT);
 		txUser.setForeground(ConstantsUI.FOREGROUND_LOGIN);
@@ -74,12 +86,14 @@ public class DialogLogIn extends JDialog {
 				}
 			}
 		});
+		txUser.addKeyListener(keyListener);
 		panelInformation.add(txUser);
 		txPassword = new JPasswordField(TEXT_PASSWORD_INIT);
 		txPassword.setForeground(ConstantsUI.FOREGROUND_LOGIN);
 		txPassword.setBorder(null);
 		txPassword.setBackground(ConstantsUI.BACKGROUND_COLOR_TEXTFILE);
 		txPassword.setFont(new Font("Arial", Font.PLAIN, 30));
+		txPassword.addKeyListener(keyListener);
 		txPassword.addFocusListener(new FocusListener() {
 
 			@SuppressWarnings("deprecation")
@@ -122,8 +136,7 @@ public class DialogLogIn extends JDialog {
 
 		principalPanel.add(Box.createRigidArea(new Dimension(5, 290)));
 		principalPanel.add(panelButtons, gridSystem.insertComponent(3, 0, 12, 50));
-		
-		
+
 		exit = new JButton(new ImageIcon("src/image/Buttons/exit.png"));
 		exit.setBackground(null);
 		exit.setBorder(null);
@@ -135,17 +148,17 @@ public class DialogLogIn extends JDialog {
 		exitPanel.add((Box.createRigidArea(new Dimension(391, 2))));
 		exitPanel.add(exit);
 		add(exitPanel, BorderLayout.PAGE_START);
-		
-		
-		
 
 		add(principalPanel, BorderLayout.CENTER);
-		
 	}
 
 	public String[] dataLogIn() {
 		@SuppressWarnings("deprecation")
 		String data[] = { txUser.getText(), txPassword.getText() };
 		return data;
+	}
+	
+	public String getStatus(){
+		return txUser.getText();
 	}
 }
