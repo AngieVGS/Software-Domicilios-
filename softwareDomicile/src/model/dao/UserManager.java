@@ -77,4 +77,12 @@ public class UserManager {
 	public ArrayList<AssignOrderToUser> getAssingOrderToUser() {
 		return assignOrderList;
 	}
+
+	public ArrayList<User> getUserList() {
+		return userList;
+	}
+
+	public ArrayList<AssignOrderToUser> getAssignOrderList() {
+		return assignOrderList;
+	}
 }
