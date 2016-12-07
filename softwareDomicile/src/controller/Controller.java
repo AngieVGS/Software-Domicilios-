@@ -157,6 +157,10 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 			break;
 		case BACK_SIX:
 			backsix();
+			break;
+		case EXIT:
+             System.exit(0);
+             break;
 		}
 	}
 	

@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -27,9 +28,12 @@ public class DialogLogIn extends JDialog {
 	private JButton buttonLogIn;
 	private JButton buttonSignUp;
 	private JTextArea txUser;
+	private JButton exit;
 	private JPasswordField txPassword;
 
 	public DialogLogIn(Controller controller) {
+		
+		setLayout(new BorderLayout());
 		setTitle("Fast & Luscious");
 		setIconImage(new ImageIcon("src/image/logoIcon.png").getImage());
 		setSize(ConstantsUI.SIZE_WINDOW);
@@ -118,8 +122,24 @@ public class DialogLogIn extends JDialog {
 
 		principalPanel.add(Box.createRigidArea(new Dimension(5, 290)));
 		principalPanel.add(panelButtons, gridSystem.insertComponent(3, 0, 12, 50));
+		
+		
+		exit = new JButton(new ImageIcon("src/image/Buttons/exit.png"));
+		exit.setBackground(null);
+		exit.setBorder(null);
+		exit.setActionCommand(Actions.EXIT.toString());
+		exit.addActionListener(controller);
+		JPanel exitPanel = new JPanel();
+		exitPanel.setBackground(ConstantsUI.BACKGROUND_COLOR);
+		exitPanel.setLayout(new GridLayout(1,2));
+		exitPanel.add((Box.createRigidArea(new Dimension(391, 2))));
+		exitPanel.add(exit);
+		add(exitPanel, BorderLayout.PAGE_START);
+		
+		
+		
 
-		add(principalPanel);
+		add(principalPanel, BorderLayout.CENTER);
 		
 	}
 
