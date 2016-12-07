@@ -17,18 +17,21 @@ public class Once extends JPanel{
 	private JLabel lbInformation;
 	private JLabel lbStatus;
 	private JButton btnStatusChange;
+	private JButton btnCancelOrder;
 
 	public Once(Controller controller, Order order){
 		setSize(500,500);
-		setLayout(new GridLayout(1, 3));
+		setLayout(new GridLayout(1, 4));
 
 		lbInformation = new JLabel();
-		lbInformation.setText(order.getDirection());
+		lbInformation.setText("information");
+//		order.getDirection()
 		add(lbInformation);
 		
 		lbStatus = new JLabel();
 		lbStatus.setIcon(new ImageIcon(""));
-		lbStatus.setText(order.getState().toString());
+		lbStatus.setText("to send");
+//		order.getState().toString()
 		add(lbStatus);
 		
 		btnStatusChange = new JButton();
@@ -37,6 +40,12 @@ public class Once extends JPanel{
 		btnStatusChange.setActionCommand(Actions.CHANGE_STATUS.toString());
 		btnStatusChange.addActionListener(controller);
 		add(btnStatusChange);
+		
+		btnCancelOrder = new JButton();
+		btnCancelOrder.setIcon(new ImageIcon("src/image.Buttons/exit.png"));
+		btnCancelOrder.addActionListener(controller);
+		btnCancelOrder.setActionCommand(Actions.CANCEL_ORDER.toString());
+		add(btnCancelOrder);
 
 		JScrollPane scPrincipal = new JScrollPane();
 		add(scPrincipal);
