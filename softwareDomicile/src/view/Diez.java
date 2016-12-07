@@ -21,6 +21,7 @@ public class Diez extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private RestaurantToolbar restaurantToolbar;
 	private JPanel panelContainer;
+	private Once once;
 	private Controller controller;
 
 	public Diez(Controller controller) {
@@ -64,8 +65,10 @@ public class Diez extends JDialog {
 	// Este metodo es para agregar los paneles para ordenes que tiene el DUEÑO
 	public void addPanelsToDialogForOrders(ArrayList<Order> orders) {
 		panelContainer.removeAll();
-		// for (Order order : orders) {
-		// }
+		for (Order order : orders) {
+			once = new Once(controller, order);
+			panelContainer.add(once);
+		}
 	}
 
 	public String getWordOnSpace() {

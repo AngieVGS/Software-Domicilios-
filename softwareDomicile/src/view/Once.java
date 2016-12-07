@@ -1,37 +1,56 @@
 package view;
 
-import java.awt.BorderLayout;
+import java.awt.GridLayout;
+
 import javax.swing.ImageIcon;
-import javax.swing.JDialog;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+
+import controller.Actions;
 import controller.Controller;
+import model.entity.Order;
 
-public class Once extends JDialog{
+public class Once extends JPanel{
 	private static final long serialVersionUID = 1L;
-	private RestaurantToolbar restaurantToolbar;
-	private JPanel panelCenter;
+	private JLabel lbInformation;
+	private JLabel lbStatus;
+	private JButton btnStatusChange;
 
-	public Once(Controller controller){
-		setTitle("Fast & Luscious");
-		setIconImage(new ImageIcon("src/image/logoIcon.png").getImage());
-		setSize(ConstantsUI.SIZE_WINDOW);
-		setLayout(new BorderLayout());
+	public Once(Controller controller, Order order){
+		setSize(500,500);
+		setLayout(new GridLayout(1, 3));
 
-		restaurantToolbar = new RestaurantToolbar(controller);
-		add(restaurantToolbar, BorderLayout.NORTH);
+		lbInformation = new JLabel();
+		lbInformation.setText(order.getDirection());
+		add(lbInformation);
+		
+		lbStatus = new JLabel();
+		lbStatus.setIcon(new ImageIcon(""));
+		lbStatus.setText(order.getState().toString());
+		add(lbStatus);
+		
+		btnStatusChange = new JButton();
+		btnStatusChange.setIcon(new ImageIcon("src/image.Buttons/lbStatus.png"));
+		btnStatusChange.setBorder(null);
+		btnStatusChange.setActionCommand(Actions.CHANGE_STATUS.toString());
+		btnStatusChange.addActionListener(controller);
+		add(btnStatusChange);
 
-		panelCenter = new JPanel();
-
-		JScrollPane scPrincipal = new JScrollPane(panelCenter);
-		add(scPrincipal, BorderLayout.CENTER);
+		JScrollPane scPrincipal = new JScrollPane();
+		add(scPrincipal);
 
 	}
 	
-	//en este metodo agrego los productos al panel
-//	public void addProductsToPanel(ArrayList<Product> productList){
-//		for (Product product : productList) {
-//			panelProducts = new JPanel();
-//		}
-//	}
+	@SuppressWarnings("static-access")
+	public void changeStatus(Order order){
+		if(lbStatus.getText().equals("TO_SEND")){
+			lbStatus.setText(order.getState().SEND.toString());
+		}else if(lbStatus.getText().equals("SEND")){
+			lbStatus.setText(order.getState().RECEIVED.toString());
+		}else{
+			lbStatus.setText(order.getState().TO_SEND.toString());
+		}
+	}
 }
