@@ -167,6 +167,7 @@ public class Doce extends JDialog{
 	}
 	
 	public void editProduct(Product product) {
+		
 		lblTitle.setText(ConstantsUI.TITLE_EDIT_PRODUCT);
 		lblImage.setIcon(new ImageIcon(product.getImg()));
 		txtNameProduct.setText(product.getName());
@@ -174,6 +175,7 @@ public class Doce extends JDialog{
 		ftxtPrice.setValue(product.getPrice());
 		btnCreateProduct.setVisible(false);
 		btnEditProduct.setVisible(true);
+		imageDefault = product.getImg();
 	}
 	
 	public void addImage(String pathImg) {
@@ -199,7 +201,13 @@ public class Doce extends JDialog{
 	}
 	
 	public String getImageProduct() {
-		return lblImage.getIcon().toString();
+
+
+		
+
+
+
+		return imageDefault ;
 	}
 	
 	public void clear() {
