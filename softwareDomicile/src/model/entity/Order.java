@@ -6,9 +6,8 @@ public class Order {
 	private State state;
 	private String direction;
 	
-	public Order(int id, State state, String direction) {
+	public Order(int id, String direction) {
 		this.id = id;
-		this.state = state;
 		this.direction = direction;
 	}
 	

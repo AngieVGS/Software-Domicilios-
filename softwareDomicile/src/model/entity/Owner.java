@@ -33,7 +33,7 @@ public class Owner {
 
 	@Override
 	public String toString() {
-		return "Owner [id=" + id + ", name=" + name + ", password=" + password + ", img=" + img + "]";
+		return "Owner {id=" + id + ", name=" + name + ", password=" + password + ", img=" + img + "}";
 	}
 	
 }

@@ -18,8 +18,8 @@ public class OrderManager {
 		this.productsOfTheOrder = new ArrayList<>();
 	}
 
-	public static Order createOrder(int id, State state, String direction) {
-		return new Order(id, state, direction);
+	public static Order createOrder(int id, String direction) {
+		return new Order(id, direction);
 	}
 
 	public void addOrder(Order order) {

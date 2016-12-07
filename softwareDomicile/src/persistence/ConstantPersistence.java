@@ -23,5 +23,6 @@ public class ConstantPersistence {
 	public static final String USER_NAME = "Name User";
 	public static final String USER_PASSWORD = "Password";
 	public static final String USER_STATE = "State User";
+	public static final String ID_ORDER = "Id";
 
 }

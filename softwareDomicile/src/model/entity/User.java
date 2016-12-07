@@ -71,4 +71,10 @@ public class User {
 	public ArrayList<Product> getProductsdese() {
 		return productsdese;
 	}
+
+	@Override
+	public String toString() {
+		return "User {id=" + id + ", name=" + name + ", password=" + password + ", orders=" + orders + ", state="
+				+ state + ", productsdese=" + productsdese + "}";
+	}
 }
