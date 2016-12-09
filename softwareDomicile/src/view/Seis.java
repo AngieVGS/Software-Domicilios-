@@ -2,15 +2,20 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
 import controller.Controller;
 import model.entity.Owner;
+import model.entity.Product;
 
 public class Seis extends JDialog {
 
@@ -44,6 +49,25 @@ public class Seis extends JDialog {
 		for (Owner owner : owners) {
 			panelContainer.add(new PanelAddRestaurants(owner, controller));
 			panelContainer.updateUI();
+		}
+	}
+	public void fillPanelCenter(ArrayList<Product> listProductSelected) {
+		panelContainer.setLayout(new GridLayout(listProductSelected.size(), 1, 10, 10));
+		for (Product product : listProductSelected) {
+			JPanel productDetail = new JPanel();
+			productDetail.setLayout(new GridLayout(1, 2));
+			JLabel imageP = new JLabel(new ImageIcon(product.getImg()), JLabel.CENTER);
+			productDetail.add(imageP);
+			JTextArea detailProduct = new JTextArea(
+					product.getName() + "\n" + product.getPrice() + "\n" + product.getDescription());
+			detailProduct.setEditable(false);
+			detailProduct.setAlignmentX(JTextArea.CENTER_ALIGNMENT);
+
+			detailProduct.setFont(new Font("Arial", Font.PLAIN, 20));
+			detailProduct.setForeground(ConstantsUI.FOREGROUND_NAME_OWNER_SHOW_PRODUCT);
+			productDetail.add(detailProduct);
+			panelContainer.add(productDetail);
+			revalidate();
 		}
 	}
 	
