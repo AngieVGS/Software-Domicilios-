@@ -51,10 +51,12 @@ public class SeisToolbar extends JPanel {
 		panelTop.add(btnOptions, BorderLayout.WEST);
 		add(panelTop);
 		
-		JLabel lblHand = new JLabel();
+		JButton lblHand = new JButton();
 		lblHand.setIcon(new ImageIcon(new ImageIcon("src/image/buttons/hand button.png").getImage().getScaledInstance(60, 60, 100)));
 		lblHand.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, ConstantsUI.BACKGROUND_COLOR_TOOLBAR_RESTAURANT_BUTTONS));
 		lblHand.setBackground(ConstantsUI.BACKGROUND_COLOR_TOOLBAR_RESTAURANT);
+		lblHand.addActionListener(c);
+		lblHand.setActionCommand(Actions.GENERATE_SHOPPING_CAR.toString());
 		lblHand.setForeground(ConstantsUI.BACKGROUND_COLOR_TOOLBAR_RESTAURANT);
 		lblHand.setOpaque(true);
 		
