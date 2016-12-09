@@ -171,13 +171,29 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 		case GENERATE_SHOPPING_CAR:
 			generateShoppingCar();
 			break;
+		case CANCEL_ORDER:
+			break;
+		case ORDERS:
+			fillOrdersPanelSeis();
+			break;
+		case RESTAURANTS_REGISTRATE:
+			fillRestaurantsRegistrated();
+			break;
 		}
 	}
-	
-	private void generateShoppingCar() {
-		seis.fillPanelCenter(orderManager.getShoppingCarList());
+
+	private void fillRestaurantsRegistrated() {
+		seis.addPanelsToDialogForProducts(ownerManager.getOwnerList());
 	}
-	
+
+	private void fillOrdersPanelSeis() {
+		seis.fillPnelCenterToOrders(userManager.getAssignOrderList());
+	}
+
+	private void generateShoppingCar() {
+		seis.fillPanelCenter(orderManager.getShoppingCarList(), cinco.pricet);
+	}
+
 	private void backsix() {
 		cinco.setVisible(false);
 		seis.setVisible(true);
