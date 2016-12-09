@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+
+import controller.Actions;
 import controller.Controller;
 import model.entity.AssignOrderToUser;
 import model.entity.Owner;
@@ -45,7 +47,7 @@ public class Seis extends JDialog {
 		panelContainer.setLayout(new GridLayout(arrayList.size(), 1));
 		for (Owner owner : arrayList) {
 			panelContainer.add(new PanelAddRestaurants(owner, controller));
-			panelContainer.updateUI();
+			revalidate();
 		}
 	}
 
@@ -57,20 +59,27 @@ public class Seis extends JDialog {
 		for (Product product : listProductSelected) {
 			JPanel productDetail = new JPanel();
 			productDetail.setLayout(new GridLayout(1, 3));
+
 			JLabel imageP = new JLabel(new ImageIcon(product.getImg()), JLabel.CENTER);
 			productDetail.add(imageP);
-			JTextArea detailProduct = new JTextArea(
-					product.getName() + "\n" + product.getPrice() + "\n" + product.getDescription());
-			detailProduct.setEditable(false);
-			detailProduct.setAlignmentX(JTextArea.CENTER_ALIGNMENT);
 
-			detailProduct.setFont(new Font("Arial", Font.PLAIN, 20));
-			detailProduct.setForeground(ConstantsUI.FOREGROUND_NAME_OWNER_SHOW_PRODUCT);
-			productDetail.add(detailProduct);
-			JButton cancel = new JButton("cancel",new ImageIcon(
-					new ImageIcon("").getImage().getScaledInstance(128, 118, java.awt.Image.SCALE_AREA_AVERAGING)));
-			productDetail.add(cancel);
+			JPanel detail = new JPanel();
+			detail.setLayout(new BorderLayout());
+			JTextArea txtDeatail = new JTextArea(product.getName() + "\n" + product.getPrice() + "\n" + product.getDescription());
+			txtDeatail.setEditable(false);
+			txtDeatail.setFont(new Font("Arial", Font.PLAIN, 15));
+			txtDeatail.setForeground(ConstantsUI.FOREGROUND_NAME_OWNER_SHOW_PRODUCT);
+			productDetail.add(txtDeatail);
+			JButton cancel = new JButton("cancel", new ImageIcon(new ImageIcon("").getImage().getScaledInstance(128, 118, java.awt.Image.SCALE_AREA_AVERAGING)));
+			cancel.setBackground(ConstantsUI.BACKGROUND_COLOR_INVALID_PASSWORD);
+			cancel.setActionCommand(Actions.CANCEL_PRODUCT_MY_SHOPPING.toString());
+			cancel.addActionListener(controller);
+			cancel.setName("" + product.getId());
+
+			detail.add(txtDeatail, BorderLayout.CENTER);
+			detail.add(cancel, BorderLayout.PAGE_END);
 			panelDiv.add(productDetail);
+			panelDiv.add(detail);
 			revalidate();
 		}
 		JPanel end = new JPanel();
@@ -101,10 +110,10 @@ public class Seis extends JDialog {
 		if (arrayList != null) {
 			panelContainer.setLayout(new BorderLayout());
 			panelContainer.add(new JLabel(new ImageIcon("src/image/UserIcon.JPG"), JLabel.CENTER));
-		}else {
-//			for (AssignOrderToUser assignOrderToUser : arrayList) {
-//				
-//			}
+		} else {
+			// for (AssignOrderToUser assignOrderToUser : arrayList) {
+			//
+			// }
 		}
 		revalidate();
 	}
