@@ -177,7 +177,7 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 	}
 	
 	private void generateShoppingCar() {
-		System.out.println(orderManager.getShoppingCarList());
+		
 		sieteShowProduct.fillPanelCenter(orderManager.getShoppingCarList());
 		sieteShowProduct.setVisible(true);
 		cinco.setVisible(false);
@@ -298,22 +298,31 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 	public void joinOwner() {
 		try {
 			ownerManager.addOwner(dialogAddOwner.createOwner());
+			fileWrite.saveOwner(ownerManager.getOwnerList());
 			dialogAddOwner.clear();
 			dialogAddOwner.setVisible(false);
 			dialogLogIn.setVisible(true);
 		} catch (ExceptionIncorrectPassword e) {
 			dialogAddOwner.validatePasswordField();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
 	public void join() {
 		try {
+			
 			userManager.addUser(viewdos.createUser());
+			fileWrite.saveUser(userManager.getUserList());
 			viewdos.clear();
 			viewdos.setVisible(false);
 			dialogLogIn.setVisible(true);
 		} catch (ExceptionIncorrectPassword e) {
 			viewdos.validatePasswordField();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
