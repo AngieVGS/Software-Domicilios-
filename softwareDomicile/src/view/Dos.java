@@ -10,12 +10,16 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.text.ParseException;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
+
 import controller.Actions;
 import controller.Controller;
 import exceptions.ExceptionIncorrectPassword;
@@ -140,7 +144,13 @@ public class Dos extends JDialog {
 		});
 		add(txConfirmPasword, gbc);
 
-		ftxfContactNumber = new JFormattedTextField(ConstantsUI.getIntegerFormatter());
+		try {
+			MaskFormatter maskFormatter = new MaskFormatter("###-###-####");
+			ftxfContactNumber = new JFormattedTextField(maskFormatter);
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		ftxfContactNumber.setBackground(ConstantsUI.BACKGROUND_COLOR_TEXTFILE);
 		ftxfContactNumber.setBorder(null);
 		ftxfContactNumber.setForeground(ConstantsUI.BACKGROUND_COLOR);

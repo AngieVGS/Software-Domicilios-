@@ -12,6 +12,8 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.text.ParseException;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -19,6 +21,8 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
+
 import controller.Actions;
 import controller.Controller;
 import exceptions.ExceptionIncorrectPassword;
@@ -126,7 +130,13 @@ public class Nueve extends JDialog {
 		add(txPassword, gbc);
 		
 		
-		txConfirmPasword = new JPasswordField(ConstantsUI.PASSWORD);
+		try {
+			MaskFormatter maskFormatter = new MaskFormatter("###-###-####");
+			ftxfContactNumber = new JFormattedTextField(maskFormatter);
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		txConfirmPasword.setBackground(ConstantsUI.BACKGROUND_COLOR_TEXTFILE);
 		txConfirmPasword.setBorder(null);
 		txConfirmPasword.setForeground(ConstantsUI.BACKGROUND_COLOR);
