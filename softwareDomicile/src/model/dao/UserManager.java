@@ -24,6 +24,10 @@ public class UserManager {
 	public void addUser(User user) {
 		userList.add(user);
 	}
+	
+	public void updateUserList(ArrayList<User> users){
+		userList = users;
+	}
 
 	public User searchUser(int id) throws ExceptionSearchId {
 		for (User user : userList) {

@@ -27,6 +27,10 @@ public class OwnerManager {
 	public void addOwner(Owner owner) {
 		ownerList.add(owner);
 	}
+	
+	public void updateOwnerList(ArrayList<Owner> owners){
+		ownerList = owners;
+	}
 
 	public Owner searchOwner(int id) throws ExceptionSearchId {
 		for (Owner owner : ownerList) {

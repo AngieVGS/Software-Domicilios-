@@ -16,6 +16,7 @@ import javax.swing.*;
 import exceptions.*;
 import model.dao.*;
 import model.entity.*;
+import persistence.FileRead;
 import persistence.FileWrite;
 
 public class Controller implements ActionListener, KeyListener, DropTargetListener {
@@ -41,8 +42,10 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 	private int position;
 	private KeyListenerForLogin keyListener;
 	private OrderManager orderManager;
+	private FileRead fileRead;
 
 	public Controller() {
+		fileRead = new FileRead();
 		keyListener = new KeyListenerForLogin(this);
 		options = new DialogOptions(this, mainWindow);
 		doce = new Doce(this, mainWindow);
@@ -62,10 +65,8 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 		ownerActual = null;
 		dialogAddOwner = new Nueve(this, mainWindow);
 		orderManager = new OrderManager();
-		ownerManager.addOwner(OwnerManager.createOwner("Mc Donalds", "s", "src/image/mcDonalds.jpg"));
-		ownerManager.addOwner(OwnerManager.createOwner("El Pirata", "z", "src/image/ElPirata.jpg"));
-		ownerManager.addOwner(OwnerManager.createOwner("Al Toque", "z", "src/image/AlToque.png"));
-		userManager.addUser(UserManager.createUser("Juan", "X", true));
+		chargeUsersOnPersistence();
+		chargeOwnersOnPersistence();
 
 		productManager.addProduct(ProductManager.createProduct("Hamburguesa Dijon", "deliciosa", 3000, State.RECEIVED,
 				"src/image/HamburguerProduct.png"));
@@ -75,18 +76,18 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 				ProductManager.createProduct("Gaseosa Manzana", "deliciosa", 3000, State.RECEIVED, "src/image/BebidaProducto.png"));
 		productManager.addProduct(ProductManager.createProduct("Hamburguesa Dijon", "deliciosa", 3000, State.RECEIVED,
 				"src/image/HamburguerProduct.png"));
-		try {
-			ownerManager.addAssignProductoToOwner(ownerManager
-					.createAssignProductoToOwner(productManager.searchProductById(0), ownerManager.searchOwner(1)));
-			ownerManager.addAssignProductoToOwner(ownerManager
-					.createAssignProductoToOwner(productManager.searchProductById(1), ownerManager.searchOwner(1)));
-			ownerManager.addAssignProductoToOwner(ownerManager
-					.createAssignProductoToOwner(productManager.searchProductById(2), ownerManager.searchOwner(1)));
-			ownerManager.addAssignProductoToOwner(ownerManager
-					.createAssignProductoToOwner(productManager.searchProductById(3), ownerManager.searchOwner(1)));
-		} catch (ExceptionSearchId e) {
-			e.printStackTrace();
-		}
+				try {
+					ownerManager.addAssignProductoToOwner(ownerManager
+							.createAssignProductoToOwner(productManager.searchProductById(0), ownerManager.searchOwner(1)));
+					ownerManager.addAssignProductoToOwner(ownerManager
+							.createAssignProductoToOwner(productManager.searchProductById(1), ownerManager.searchOwner(1)));
+					ownerManager.addAssignProductoToOwner(ownerManager
+							.createAssignProductoToOwner(productManager.searchProductById(2), ownerManager.searchOwner(1)));
+					ownerManager.addAssignProductoToOwner(ownerManager
+							.createAssignProductoToOwner(productManager.searchProductById(3), ownerManager.searchOwner(1)));
+				} catch (ExceptionSearchId e) {
+					e.printStackTrace();
+				}
 	}
 
 	@Override
@@ -161,8 +162,8 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 			backsix();
 			break;
 		case EXIT:
-             System.exit(0);
-             break;
+			System.exit(0);
+			break;
 		case CHANGE_STATUS:
 			break;
 		case GENERATE_SHOPPING_CAR:
@@ -179,6 +180,22 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 		case CANCEL_PRODUCT_MY_SHOPPING:
 			removeProductToListMYShopping(Integer.parseInt(((JButton)event.getSource()).getName()));
 			break;
+		}
+	}
+
+	private void chargeOwnersOnPersistence(){
+		try {
+			ownerManager.updateOwnerList(fileRead.readFileOwner());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void chargeUsersOnPersistence(){
+		try {
+			userManager.updateUserList(fileRead.readFileUser());
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -350,11 +367,11 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 		try {
 			User user = userManager.searchUserByName(nameUser);
 			if (password.equals(user.getPassword())) {
-			userActual = user;
-			seis.addPanelsToDialogForProducts(ownerManager.getOwnerList());
-			seis.setVisible(true);
-			dialogLogIn.setVisible(false);
-			dialogLogIn.clear();
+				userActual = user;
+				seis.addPanelsToDialogForProducts(ownerManager.getOwnerList());
+				seis.setVisible(true);
+				dialogLogIn.setVisible(false);
+				dialogLogIn.clear();
 			}else{
 				dialogLogIn.invalidPassword();
 			}
@@ -362,12 +379,12 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 			try {
 				Owner owner = ownerManager.searchOwnerByName(nameUser);
 				if (password.equals(owner.getPassword())) {
-					
-				ownerActual = owner;
-				viewDiez.addPanelsToDialogForProducts(ownerManager.searchAssignProductoToOwner(ownerActual.getId()));
-				viewDiez.setVisible(true);
-				dialogLogIn.setVisible(false);
-				dialogLogIn.clear();
+
+					ownerActual = owner;
+					viewDiez.addPanelsToDialogForProducts(ownerManager.searchAssignProductoToOwner(ownerActual.getId()));
+					viewDiez.setVisible(true);
+					dialogLogIn.setVisible(false);
+					dialogLogIn.clear();
 				}else{
 					dialogLogIn.invalidPassword();
 				}

@@ -67,7 +67,7 @@ public class FileRead {
 		return assignProductToOwnerList;
 	}
 	
-	private ArrayList<User> readFileUser() throws IOException{
+	public ArrayList<User> readFileUser() throws IOException{
 		ArrayList<User> userList = new ArrayList<>();
 		InputStream in = getClass().getResourceAsStream("/data/users.json"); 
 		 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(in));
@@ -80,7 +80,7 @@ public class FileRead {
 		return userList;
 	}
 	
-	private ArrayList<Owner> readFileOwner() throws IOException{
+	public ArrayList<Owner> readFileOwner() throws IOException{
 		ArrayList<Owner> ownerList = new ArrayList<>();
 		InputStream in = getClass().getResourceAsStream("/data/owners.json"); 
 		 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(in));
