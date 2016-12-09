@@ -116,4 +116,9 @@ public class Cinco extends JDialog {
 	public void changeNameOwner(String name) {
 		back.setText(name);
 	}
+
+	public void decrement(double price) {
+		pricet -= price;
+		priceTotal.setText("$" + pricet);
+	}
 }
