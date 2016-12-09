@@ -66,7 +66,7 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 		ownerActual = null;
 		dialogAddOwner = new Nueve(this, mainWindow);
 		orderManager = new OrderManager();
-//		sieteShowProduct = new SieteShowProduct(product);
+		sieteShowProduct = new SieteShowProduct(this);
 		ownerManager.addOwner(OwnerManager.createOwner("Mc Donalds", "s", "src/image/mcDonalds.jpg"));
 		ownerManager.addOwner(OwnerManager.createOwner("El Pirata", "z", "src/image/ElPirata.jpg"));
 		ownerManager.addOwner(OwnerManager.createOwner("Al Toque", "z", "src/image/AlToque.png"));
@@ -177,9 +177,11 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 	}
 	
 	private void generateShoppingCar() {
+		System.out.println(orderManager.getShoppingCarList());
+		sieteShowProduct.fillPanelCenter(orderManager.getShoppingCarList());
+		sieteShowProduct.setVisible(true);
 		cinco.setVisible(false);
 		seis.setVisible(false);
-		sieteShowProduct.setVisible(true);
 	}
 	
 	private void backsix() {
