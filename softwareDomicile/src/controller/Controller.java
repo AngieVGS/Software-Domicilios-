@@ -176,6 +176,20 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 		case RESTAURANTS_REGISTRATE:
 			fillRestaurantsRegistrated();
 			break;
+		case CANCEL_PRODUCT_MY_SHOPPING:
+			removeProductToListMYShopping(Integer.parseInt(((JButton)event.getSource()).getName()));
+			break;
+		}
+	}
+
+	private void removeProductToListMYShopping(int idProduct) {
+		try {
+			Product product = orderManager.searchProductMyCar(idProduct);
+			orderManager.removeProducOfShoppingCarList(product);
+			cinco.decrement(product.getPrice());
+			seis.fillPanelCenter(orderManager.getShoppingCarList(), cinco.pricet);
+		} catch (ExceptionSearchId e) {
+			e.printStackTrace();
 		}
 	}
 
