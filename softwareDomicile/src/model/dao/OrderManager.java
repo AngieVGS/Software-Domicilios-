@@ -27,7 +27,7 @@ public class OrderManager {
 	public void removeProducOfShoppingCarList(Product product) {
 		shoppingCarList.remove(product);
 	}
-	
+
 	public ArrayList<Product> getShoppingCarList() {
 		return shoppingCarList;
 	}
@@ -42,6 +42,15 @@ public class OrderManager {
 
 	public void addOrder(Order order) {
 		orderList.add(order);
+	}
+
+	public Product searchProductMyCar(int id) throws ExceptionSearchId {
+		for (Product product : shoppingCarList) {
+			if (product.getId() == id) {
+				return product;
+			}
+		}
+		throw new ExceptionSearchId();
 	}
 
 	public Order searchOrder(int id) throws ExceptionSearchId {
