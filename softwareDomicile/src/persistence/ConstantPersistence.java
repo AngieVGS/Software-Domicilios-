@@ -2,9 +2,9 @@ package persistence;
 
 public class ConstantPersistence {
 	public static final String OWNER = "Owner";
-	public static final String OWNER_NAME = "Name Restaurant"; 
-	public static final String OWNER_PASSWORD = "Password";
-	public static final String OWNER_IMAGE = "Image";
+	public static final String OWNER_NAME = "name"; 
+	public static final String OWNER_PASSWORD = "password";
+	public static final String OWNER_IMAGE = "img";
 	public static final String PRODUCT = "Product";
 	
 	//para los producttos

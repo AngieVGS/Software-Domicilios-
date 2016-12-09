@@ -27,9 +27,7 @@ import model.entity.User;
 public class FileWrite {
 	
 	public void fileWriteAssignProductToOwnerOwner(ArrayList<AssignProductToOwner> ownerList) throws IOException{
-		File  fileFolder = new File(System.getProperty("user.dir")+"\\"+"Report");
-		File   file=new File(fileFolder.getAbsolutePath()+"\\"+"owner.json");
-		fileFolder.mkdirs();
+		File   file=new File("src/data/AssignProductToOwner.json");
 		System.out.println(file);
 		PrintWriter printWriter = new PrintWriter(new FileOutputStream(file, false));
 		JsonArray assignationsOwnerProduct = new JsonArray();
@@ -113,25 +111,25 @@ public class FileWrite {
 	
 	public void saveOwner(ArrayList<Owner> ownerList) throws IOException {
 		
-		File  fileFolder = new File(System.getProperty("user.dir")+"\\"+"Report");
-		File   file=new File(fileFolder.getAbsolutePath()+"\\"+"ownerList.json");
-		fileFolder.mkdirs();
-		System.out.println(file);
+		File   file=new File("src/data/owners.json");
 		PrintWriter printWriter = new PrintWriter(new FileOutputStream(file, false));
 		BufferedWriter bufferedWriter = new BufferedWriter(printWriter);
+		JsonArray ownerWriter = new JsonArray();
 		for (Owner owner : ownerList) {
 			
 		Gson gson = new Gson();
 		JsonObject ownerObject = new JsonObject();
 		ownerObject.add(ConstantPersistence.OWNER, gson.toJsonTree(owner));
-		bufferedWriter.write(ownerObject.toString());
+		ownerWriter.add(ownerObject);
+		
 		}
+		bufferedWriter.write(ownerWriter.toString());
 		bufferedWriter.close();
 	}
 	
 	public void saveUser(ArrayList<User> userList) throws IOException {
 		
-		File   file=new File("src/data/user.json");
+		File   file=new File("src/data/users.json");
 		PrintWriter printWriter = new PrintWriter(new FileOutputStream(file, false));
 		JsonArray users = new JsonArray();
 		for (User user : userList) {
@@ -146,5 +144,53 @@ public class FileWrite {
 		BufferedWriter bufferedWriter = new BufferedWriter(printWriter);
 		bufferedWriter.write(users.toString());
 		bufferedWriter.close();
+	}
+	
+	public static void main(String[] args) {
+		OwnerManager ownerManager = new OwnerManager();
+		OrderManager orderManager = new OrderManager();
+		UserManager userManager = new UserManager();
+		ProductManager productManager = new ProductManager();
+		ownerManager .addOwner(OwnerManager.createOwner("Mc Donalds", "s", "src/image/mcDonalds.jpg"));
+		ownerManager.addOwner(OwnerManager.createOwner("El Pirata", "z", "src/image/ElPirata.jpg"));
+		ownerManager.addOwner(OwnerManager.createOwner("Al Toque", "z", "src/image/AlToque.png"));
+		userManager.addUser(UserManager.createUser("Juan", "X", true));
+		userManager.addAssignOrderToUser(userManager.createAssignOrder(new Order(01, " ghh"), new User("love", "13", true)));
+		productManager.addProduct(ProductManager.createProduct("Hamburguesa Dijon", "deliciosa", 3000, State.RECEIVED,
+				"src/image/HamburguerProduct.png"));
+		productManager.addProduct(
+				ProductManager.createProduct("Gaseosa Manzana", "deliciosa", 3000, State.RECEIVED, "src/image/BebidaProducto.png"));
+		productManager.addProduct(
+				ProductManager.createProduct("Gaseosa Manzana", "deliciosa", 3000, State.RECEIVED, "src/image/BebidaProducto.png"));
+		productManager.addProduct(ProductManager.createProduct("Hamburguesa Dijon", "deliciosa", 3000, State.RECEIVED,
+				"src/image/HamburguerProduct.png"));
+		try {
+			ownerManager.addAssignProductoToOwner(ownerManager
+					.createAssignProductoToOwner(productManager.searchProductById(0), ownerManager.searchOwner(1)));
+			ownerManager.addAssignProductoToOwner(ownerManager
+					.createAssignProductoToOwner(productManager.searchProductById(1), ownerManager.searchOwner(1)));
+			ownerManager.addAssignProductoToOwner(ownerManager
+					.createAssignProductoToOwner(productManager.searchProductById(2), ownerManager.searchOwner(1)));
+			ownerManager.addAssignProductoToOwner(ownerManager
+					.createAssignProductoToOwner(productManager.searchProductById(3), ownerManager.searchOwner(1)));
+		
+		} catch (ExceptionSearchId e) {
+			e.printStackTrace();
+		}
+		orderManager.addAssignProductoToOrder(new AssignProductToOrder(new Order(01, "fvhgh"), ProductManager.createProduct("Gaseosa Manzana", "deliciosa", 3000, State.RECEIVED, "src/image/BebidaProducto.png")));
+		orderManager.addAssignProductoToOrder(new AssignProductToOrder(new Order(01, "fvhgh"), ProductManager.createProduct("Gaseosa Manzana", "deliciosa", 3000, State.RECEIVED, "src/image/BebidaProducto.png")));
+		orderManager.addAssignProductoToOrder(new AssignProductToOrder(new Order(01, "fvhgh"), ProductManager.createProduct("Gaseosa Manzana", "deliciosa", 3000, State.RECEIVED, "src/image/BebidaProducto.png")));
+		FileWrite fileWrite = new FileWrite();
+		try {
+			fileWrite.fileWritetAssignOrderToUser(userManager.getAssingOrderToUser());
+//			fileWrite.fileWriteAssignProductToOrder(orderManager.getProductsOfTheOrder());
+			fileWrite.fileWriteAssignProductToOwnerOwner(ownerManager.getAssignProductList());
+//			fileWrite.saveUser(userManager.getUsers());
+			fileWrite.saveOwner(ownerManager.getOwnerList());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 }

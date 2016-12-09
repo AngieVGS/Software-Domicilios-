@@ -54,7 +54,7 @@ public class FileRead {
 
 	public ArrayList<AssignProductToOwner> readFileAssignProductToOwner() throws IOException {
 		ArrayList<AssignProductToOwner> assignProductToOwnerList = new ArrayList<>();
-		InputStream in = getClass().getResourceAsStream("/data/recipies.json"); 
+		InputStream in = getClass().getResourceAsStream("/data/AssignProductToOwner.json"); 
 		 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(in));
 		Gson gson = new Gson();
 		JsonArray owners = gson.fromJson(bufferedReader, JsonArray.class);
@@ -80,6 +80,19 @@ public class FileRead {
 		}
 		bufferedReader.close();
 		return userList;
+	}
+	
+	private ArrayList<Owner> readFileOwner() throws IOException{
+		ArrayList<Owner> ownerList = new ArrayList<>();
+		InputStream in = getClass().getResourceAsStream("/data/owners.json"); 
+		 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(in));
+		Gson gson = new Gson();
+		JsonArray owners = gson.fromJson(bufferedReader, JsonArray.class);
+		for (JsonElement  owner: owners) {
+			ownerList.add(readOwner(owner.getAsJsonObject().get(ConstantPersistence.OWNER).getAsJsonObject()));
+		}
+		bufferedReader.close();
+		return ownerList;
 	}
 
 	private Product readProduct(JsonObject product) {
@@ -107,27 +120,13 @@ public class FileRead {
 				owner.getAsJsonObject().get(ConstantPersistence.OWNER_IMAGE).getAsString());
 	}
 	
-	private ArrayList<User> readUsers() throws IOException{
-		ArrayList<User> usersList = new ArrayList<>();
-		InputStream in = getClass().getResourceAsStream("C:/data/users.json"); 
-		 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(in));
-		Gson gson = new Gson();
-		JsonArray users = gson.fromJson(bufferedReader, JsonArray.class);
-		for (JsonElement jsonElement : users) {
-			usersList.add(readUser(jsonElement.getAsJsonObject().get(ConstantPersistence.USER).getAsJsonObject()));
-		}
-		bufferedReader.close();
-		return usersList;
-	}
-	
 	public static void main(String[] args) {
 		FileRead fileRead = new FileRead();
 		try {
-			System.out.println(fileRead.readFileUser().toString());
+			System.out.println(fileRead.readFileOwner().toString());
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
 	}
-	
 }
