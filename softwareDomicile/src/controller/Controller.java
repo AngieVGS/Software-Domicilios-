@@ -340,8 +340,9 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 			seis.addPanelsToDialogForProducts(ownerManager.getOwnerList());
 			seis.setVisible(true);
 			dialogLogIn.setVisible(false);
+			dialogLogIn.clear();
 			}else{
-				//lo que pasa si esta mal
+				dialogLogIn.invalidPassword();
 			}
 		} catch (ExceptionSearchId e) {
 			try {
@@ -352,8 +353,9 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 				viewDiez.addPanelsToDialogForProducts(ownerManager.searchAssignProductoToOwner(ownerActual.getId()));
 				viewDiez.setVisible(true);
 				dialogLogIn.setVisible(false);
+				dialogLogIn.clear();
 				}else{
-					//que pasa si esta mal
+					dialogLogIn.invalidPassword();
 				}
 			} catch (ExceptionSearchId f) {
 				//				JOptionPane.showMessageDialog(mainWindow, f.getMessage());

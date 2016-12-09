@@ -63,7 +63,7 @@ public class DialogLogIn extends JDialog {
 		txUser = new JTextArea(TEXT_USER_INIT);
 		txUser.setForeground(ConstantsUI.FOREGROUND_LOGIN);
 		txUser.setBackground(ConstantsUI.BACKGROUND_COLOR_TEXTFILE);
-		txUser.setFont(new Font("Arial", Font.PLAIN, 15));
+		txUser.setFont(new Font(ConstantsUI.FONT_ARIAL, Font.PLAIN, 15));
 		txUser.addFocusListener(new FocusListener() {
 
 			@Override
@@ -86,7 +86,7 @@ public class DialogLogIn extends JDialog {
 		txPassword.setForeground(ConstantsUI.FOREGROUND_LOGIN);
 		txPassword.setBorder(null);
 		txPassword.setBackground(ConstantsUI.BACKGROUND_COLOR_TEXTFILE);
-		txPassword.setFont(new Font("Arial", Font.PLAIN, 30));
+		txPassword.setFont(new Font(ConstantsUI.FONT_ARIAL, Font.PLAIN, 30));
 		txPassword.addKeyListener(keyListener);
 		txPassword.addFocusListener(new FocusListener() {
 
@@ -157,6 +157,16 @@ public class DialogLogIn extends JDialog {
 		@SuppressWarnings("deprecation")
 		String data[] = { txUser.getText(), txPassword.getText() };
 		return data;
+	}
+	
+	public void invalidPassword() {
+		txPassword.setBackground(ConstantsUI.BACKGROUND_COLOR_INVALID_PASSWORD);
+	}
+	
+	public void clear() {
+		txUser.setText(TEXT_USER_INIT);
+		txPassword.setText(TEXT_PASSWORD_INIT);
+		txPassword.setBackground(ConstantsUI.BACKGROUND_COLOR_TEXTFILE);
 	}
 	
 	public String getStatus(){
