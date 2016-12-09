@@ -43,7 +43,6 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 	private DialogOptions options;
 	private int position;
 	private KeyListenerForLogin keyListener;
-	private SieteShowProduct sieteShowProduct;
 	private OrderManager orderManager;
 
 	public Controller() {
@@ -66,7 +65,6 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 		ownerActual = null;
 		dialogAddOwner = new Nueve(this, mainWindow);
 		orderManager = new OrderManager();
-		sieteShowProduct = new SieteShowProduct(this);
 		ownerManager.addOwner(OwnerManager.createOwner("Mc Donalds", "s", "src/image/mcDonalds.jpg"));
 		ownerManager.addOwner(OwnerManager.createOwner("El Pirata", "z", "src/image/ElPirata.jpg"));
 		ownerManager.addOwner(OwnerManager.createOwner("Al Toque", "z", "src/image/AlToque.png"));
@@ -177,11 +175,7 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 	}
 	
 	private void generateShoppingCar() {
-		
-		sieteShowProduct.fillPanelCenter(orderManager.getShoppingCarList());
-		sieteShowProduct.setVisible(true);
-		cinco.setVisible(false);
-		seis.setVisible(false);
+		seis.fillPanelCenter(orderManager.getShoppingCarList());
 	}
 	
 	private void backsix() {
