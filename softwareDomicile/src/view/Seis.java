@@ -1,9 +1,12 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.ArrayList;
+
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -55,22 +58,29 @@ public class Seis extends JDialog {
 		panelContainer.removeAll();
 		panelContainer.setLayout(new BorderLayout());
 		JPanel panelDiv = new JPanel();
-		panelDiv.setLayout(new GridLayout(listProductSelected.size(), 1, 10, 10));
+		panelDiv.setBackground(Color.white);
+		panelDiv.setLayout(new GridLayout(listProductSelected.size(), 1, 15, 25));
 		for (Product product : listProductSelected) {
 			JPanel productDetail = new JPanel();
+			productDetail.setBackground(Color.white);
 			productDetail.setLayout(new GridLayout(1, 3));
 
 			JLabel imageP = new JLabel(new ImageIcon(product.getImg()), JLabel.CENTER);
 			productDetail.add(imageP);
 
 			JPanel detail = new JPanel();
+			detail.setBorder(BorderFactory.createEtchedBorder());
+
+			detail.setBackground(Color.white);
 			detail.setLayout(new BorderLayout());
-			JTextArea txtDeatail = new JTextArea(product.getName() + "\n" + product.getPrice() + "\n" + product.getDescription());
+			JTextArea txtDeatail = new JTextArea(
+					product.getName() + "\n" + product.getPrice() + "\n" + product.getDescription());
 			txtDeatail.setEditable(false);
 			txtDeatail.setFont(new Font("Arial", Font.PLAIN, 15));
 			txtDeatail.setForeground(ConstantsUI.FOREGROUND_NAME_OWNER_SHOW_PRODUCT);
 			productDetail.add(txtDeatail);
-			JButton cancel = new JButton("cancel", new ImageIcon(new ImageIcon("").getImage().getScaledInstance(128, 118, java.awt.Image.SCALE_AREA_AVERAGING)));
+			JButton cancel = new JButton("cancel", new ImageIcon(
+					new ImageIcon("").getImage().getScaledInstance(128, 118, java.awt.Image.SCALE_AREA_AVERAGING)));
 			cancel.setBackground(ConstantsUI.BACKGROUND_COLOR_INVALID_PASSWORD);
 			cancel.setActionCommand(Actions.CANCEL_PRODUCT_MY_SHOPPING.toString());
 			cancel.addActionListener(controller);
@@ -83,9 +93,11 @@ public class Seis extends JDialog {
 			revalidate();
 		}
 		JPanel end = new JPanel();
+		end.setBorder(null);
 		end.setLayout(new GridLayout(1, 2));
 		JButton buy = new JButton("Buy");
 		buy.setFont(new Font("Arial", Font.PLAIN, 20));
+		buy.setBackground(ConstantsUI.BACKGROUND_COLOR_BUTTON_GENERATE_ORDER);
 		buy.setForeground(ConstantsUI.FOREGROUND_NAME_OWNER_SHOW_PRODUCT);
 		JLabel jlTotal = new JLabel("$ " + total);
 		jlTotal.setFont(new Font("Arial", Font.PLAIN, 20));
