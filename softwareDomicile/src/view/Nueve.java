@@ -130,13 +130,7 @@ public class Nueve extends JDialog {
 		add(txPassword, gbc);
 		
 		
-		try {
-			MaskFormatter maskFormatter = new MaskFormatter("###-###-####");
-			ftxfContactNumber = new JFormattedTextField(maskFormatter);
-		} catch (ParseException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		txConfirmPasword = new JPasswordField(ConstantsUI.PASSWORD);
 		txConfirmPasword.setBackground(ConstantsUI.BACKGROUND_COLOR_TEXTFILE);
 		txConfirmPasword.setBorder(null);
 		txConfirmPasword.setForeground(ConstantsUI.BACKGROUND_COLOR);
@@ -155,7 +149,13 @@ public class Nueve extends JDialog {
 		});
 		add(txConfirmPasword, gbc);
 		
-		ftxfContactNumber = new JFormattedTextField(ConstantsUI.getIntegerFormatter());
+		try {
+			MaskFormatter maskFormatter = new MaskFormatter("###-###-####");
+			ftxfContactNumber = new JFormattedTextField(maskFormatter);
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		ftxfContactNumber.setBackground(ConstantsUI.BACKGROUND_COLOR_TEXTFILE);
 		ftxfContactNumber.setBorder(null);
 		ftxfContactNumber.setForeground(ConstantsUI.BACKGROUND_COLOR);
