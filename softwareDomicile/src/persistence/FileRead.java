@@ -69,14 +69,12 @@ public class FileRead {
 	
 	private ArrayList<User> readFileUser() throws IOException{
 		ArrayList<User> userList = new ArrayList<>();
-		InputStream in = getClass().getResourceAsStream("/data/user.json"); 
+		InputStream in = getClass().getResourceAsStream("/data/users.json"); 
 		 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(in));
 		Gson gson = new Gson();
 		JsonArray users = gson.fromJson(bufferedReader, JsonArray.class);
 		for (JsonElement user : users) {
-			userList.add(new User(user.getAsJsonObject().get(ConstantPersistence.USER_NAME).getAsString(),
-					user.getAsJsonObject().get(ConstantPersistence.USER_PASSWORD).getAsString(),
-					user.getAsJsonObject().get(ConstantPersistence.USER_STATE).getAsBoolean()));
+			userList.add(readUser(user.getAsJsonObject().get(ConstantPersistence.USER).getAsJsonObject()));
 		}
 		bufferedReader.close();
 		return userList;
@@ -123,7 +121,7 @@ public class FileRead {
 	public static void main(String[] args) {
 		FileRead fileRead = new FileRead();
 		try {
-			System.out.println(fileRead.readFileOwner().toString());
+			System.out.println(fileRead.readFileUser().toString());
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();

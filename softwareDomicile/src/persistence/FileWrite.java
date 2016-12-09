@@ -133,13 +133,12 @@ public class FileWrite {
 		PrintWriter printWriter = new PrintWriter(new FileOutputStream(file, false));
 		JsonArray users = new JsonArray();
 		for (User user : userList) {
-		Gson gson = new Gson();
 		JsonObject userObject = new JsonObject();
-//		userObject.add(ConstantPersistence.USER);
-		userObject.addProperty(ConstantPersistence.USER_NAME, user.getName());
-		userObject.addProperty(ConstantPersistence.USER_PASSWORD, user.getPassword());
-		userObject.addProperty(ConstantPersistence.USER_STATE, user.isState());
-		users.add(userObject);
+		Gson gson = new Gson();
+		JsonObject userWriter = new JsonObject();
+		userWriter.add(ConstantPersistence.USER, gson.toJsonTree(user));
+		users.add(userWriter);
+		
 		}
 		BufferedWriter bufferedWriter = new BufferedWriter(printWriter);
 		bufferedWriter.write(users.toString());
@@ -154,8 +153,8 @@ public class FileWrite {
 		ownerManager .addOwner(OwnerManager.createOwner("Mc Donalds", "s", "src/image/mcDonalds.jpg"));
 		ownerManager.addOwner(OwnerManager.createOwner("El Pirata", "z", "src/image/ElPirata.jpg"));
 		ownerManager.addOwner(OwnerManager.createOwner("Al Toque", "z", "src/image/AlToque.png"));
-		userManager.addUser(UserManager.createUser("Juan", "X", true));
-		userManager.addAssignOrderToUser(userManager.createAssignOrder(new Order(01, " ghh"), new User("love", "13", true)));
+//		userManager.addUser(UserManager.createUser("Juan", "X", null, true));
+//		userManager.addAssignOrderToUser(userManager.createAssignOrder(new Order(01, " ghh"), new User("love", "13", null, true)));
 		productManager.addProduct(ProductManager.createProduct("Hamburguesa Dijon", "deliciosa", 3000, State.RECEIVED,
 				"src/image/HamburguerProduct.png"));
 		productManager.addProduct(

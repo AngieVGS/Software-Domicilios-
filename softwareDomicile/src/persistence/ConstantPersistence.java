@@ -20,9 +20,10 @@ public class ConstantPersistence {
 	public static final String ORDER_DIRECTION = "Order direction";
 //	public static final String ORDER_PRODUCT_LIST = "Order product list"; 
 	public static final String USER = "User";
-	public static final String USER_NAME = "Name User";
-	public static final String USER_PASSWORD = "Password";
-	public static final String USER_STATE = "State User";
+	public static final String USER_NAME = "name";
+	public static final String USER_ID= "id";
+	public static final String USER_PASSWORD = "password";
+	public static final String USER_STATE = "state";
 	public static final String ID_ORDER = "Id_Order";
 	public static final String ORDER = "Order";
 
