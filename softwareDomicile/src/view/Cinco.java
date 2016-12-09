@@ -22,7 +22,7 @@ public class Cinco extends JDialog {
 	private JButton buttonBack;
 	private JButton back;
 	private JLabel priceTotal;
-	private double pricet = 0;
+	public int pricet = 0;
 
 	public Cinco(Controller controller) {
 		setTitle("Fast & Luscious");
