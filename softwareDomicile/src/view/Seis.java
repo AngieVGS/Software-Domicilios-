@@ -67,8 +67,9 @@ public class Seis extends JDialog {
 			detailProduct.setFont(new Font("Arial", Font.PLAIN, 20));
 			detailProduct.setForeground(ConstantsUI.FOREGROUND_NAME_OWNER_SHOW_PRODUCT);
 			productDetail.add(detailProduct);
-			JButton cancel = new JButton(new ImageIcon(
+			JButton cancel = new JButton("cancel",new ImageIcon(
 					new ImageIcon("").getImage().getScaledInstance(128, 118, java.awt.Image.SCALE_AREA_AVERAGING)));
+			productDetail.add(cancel);
 			panelDiv.add(productDetail);
 			revalidate();
 		}
@@ -100,6 +101,10 @@ public class Seis extends JDialog {
 		if (arrayList != null) {
 			panelContainer.setLayout(new BorderLayout());
 			panelContainer.add(new JLabel(new ImageIcon("src/image/UserIcon.JPG"), JLabel.CENTER));
+		}else {
+//			for (AssignOrderToUser assignOrderToUser : arrayList) {
+//				
+//			}
 		}
 		revalidate();
 	}

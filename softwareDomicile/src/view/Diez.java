@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.ArrayList;
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -13,7 +12,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import controller.Actions;
 import controller.Controller;
-import model.entity.Order;
 import model.entity.Product;
 
 public class Diez extends JDialog {
@@ -57,11 +55,12 @@ public class Diez extends JDialog {
 
 	public void addPanelsToDialogForProducts(ArrayList<Product> products) {
 		panelContainer.removeAll();
-			for (Product product : products) {
-				panelContainer.add(new PanelAddProducts(product, controller));
-				panelContainer.updateUI();
+		for (Product product : products) {
+			panelContainer.add(new PanelAddProducts(product, controller));
+			revalidate();
 		}
 	}
+
 	// Este metodo es para agregar los paneles para ordenes que tiene el DUEÑO
 	public void addPanelsToDialogForOrders(ArrayList<Product> productList) {
 		panelContainer.removeAll();
@@ -74,8 +73,8 @@ public class Diez extends JDialog {
 	public String getWordOnSpace() {
 		return restaurantToolbar.getWordOnSpace();
 	}
-	
-	public void clear(){
+
+	public void clear() {
 		restaurantToolbar.clear();
 	}
 }

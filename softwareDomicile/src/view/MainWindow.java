@@ -3,7 +3,6 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-
 import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -12,7 +11,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import controller.Actions;
 import controller.Controller;
-import model.entity.User;
 
 public class MainWindow extends JFrame {
 	private JPanel principalPanel;
@@ -53,13 +51,11 @@ public class MainWindow extends JFrame {
 		gridSystem.addExternalBorder(0,0,0,0);
 		principalPanel.add(title, gridSystem.insertComponent(0, 1, 8, 1));
 		
-		
 		buttonLetsDoIt.setActionCommand(Actions.LETS_DO_IT.toString());
 		buttonLetsDoIt.addActionListener(controller);
 		
 		exit.setActionCommand(Actions.EXIT.toString());
 		exit.addActionListener(controller);
-		
 		
 		buttonSignIn.setActionCommand(Actions.SIGN_IN.toString());
 		buttonSignIn.addActionListener(controller);

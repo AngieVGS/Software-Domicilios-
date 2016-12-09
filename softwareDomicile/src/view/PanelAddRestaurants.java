@@ -1,12 +1,10 @@
 package view;
 
 import java.awt.Color;
-
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-
 import controller.Actions;
 import controller.Controller;
 import model.entity.Owner;

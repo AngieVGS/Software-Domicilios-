@@ -48,7 +48,7 @@ public class Cinco extends JDialog {
 		count.setBackground(ConstantsUI.BACKGROUND_COLOR_BUTTON_GENERATE_ORDER);
 
 		buttonBack = new JButton(new ImageIcon("src/image/Buttons/back-alt-129.png"));
-		
+
 		buttonBack.setBorder(null);
 		buttonBack.setBackground(ConstantsUI.BACKGROUND_COLOR_BUTTON_GENERATE_ORDER);
 		buttonBack.setForeground(Color.WHITE);
@@ -79,7 +79,6 @@ public class Cinco extends JDialog {
 	}
 
 	private JPanel header(Controller controller, Product product) {
-
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.WHITE);
 		panel.setLayout(new BorderLayout());

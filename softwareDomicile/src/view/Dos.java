@@ -10,21 +10,19 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
 import controller.Actions;
 import controller.Controller;
 import exceptions.ExceptionIncorrectPassword;
 import model.dao.UserManager;
 import model.entity.User;
 
-public class Dos extends JDialog{
+public class Dos extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 
@@ -35,7 +33,7 @@ public class Dos extends JDialog{
 	private JPasswordField txConfirmPasword;
 	private JFormattedTextField ftxfContactNumber;
 
-	public Dos(Controller controller, MainWindow mainWindow){
+	public Dos(Controller controller, MainWindow mainWindow) {
 		super(mainWindow, true);
 		setTitle("Fast & Luscious");
 		setIconImage(new ImageIcon("src/image/logoIcon.png").getImage());
@@ -50,7 +48,7 @@ public class Dos extends JDialog{
 		lblTitle = new JLabel(ConstantsUI.TITLE_CREATE_ACCOUNT);
 		lblTitle.setForeground(Color.WHITE);
 		lblTitle.setFont(new Font(ConstantsUI.FONT_ARIAL_NARROW, Font.BOLD, 40));
-		gbc.insets = new Insets(15,40,15,40);
+		gbc.insets = new Insets(15, 40, 15, 40);
 		gbc.weightx = 1.5;
 		gbc.gridwidth = 2;
 		gbc.gridx = 0;
@@ -61,7 +59,7 @@ public class Dos extends JDialog{
 		gbc.gridy = 1;
 		add(new JLabel(), gbc);
 
-		gbc.insets = new Insets(15,-15,15,0);
+		gbc.insets = new Insets(15, -15, 15, 0);
 		gbc.anchor = GridBagConstraints.CENTER;
 		gbc.gridwidth = 1;
 		gbc.gridx = 0;
@@ -83,7 +81,7 @@ public class Dos extends JDialog{
 		txfUserName.setForeground(ConstantsUI.BACKGROUND_COLOR);
 		txfUserName.setFont(new Font(ConstantsUI.FONT_ARIAL, Font.PLAIN, ConstantsUI.SIZE_FONT));
 		gbc.fill = GridBagConstraints.HORIZONTAL;
-		gbc.insets = new Insets(15,-60,15,40);
+		gbc.insets = new Insets(15, -60, 15, 40);
 		gbc.ipady = 20;
 		gbc.gridx = 1;
 		gbc.gridy = 2;
@@ -94,6 +92,7 @@ public class Dos extends JDialog{
 					txfUserName.setText("");
 				}
 			}
+
 			@Override
 			public void focusLost(FocusEvent e) {
 			}
@@ -104,13 +103,14 @@ public class Dos extends JDialog{
 		txPassword.setBackground(ConstantsUI.BACKGROUND_COLOR_TEXTFILE);
 		txPassword.setBorder(null);
 		txPassword.setForeground(ConstantsUI.BACKGROUND_COLOR);
-		txPassword.setFont(new Font(ConstantsUI.FONT_ARIAL, Font.PLAIN, ConstantsUI.SIZE_FONT)); 
+		txPassword.setFont(new Font(ConstantsUI.FONT_ARIAL, Font.PLAIN, ConstantsUI.SIZE_FONT));
 		gbc.gridx = 1;
 		gbc.gridy = 3;
 		txPassword.addFocusListener(new FocusListener() {
 			@Override
 			public void focusLost(FocusEvent e) {
 			}
+
 			@Override
 			public void focusGained(FocusEvent e) {
 				if (String.valueOf(txPassword.getPassword()).equals(ConstantsUI.PASSWORD)) {
@@ -120,17 +120,17 @@ public class Dos extends JDialog{
 		});
 		add(txPassword, gbc);
 
-
 		txConfirmPasword = new JPasswordField(ConstantsUI.PASSWORD);
 		txConfirmPasword.setBackground(ConstantsUI.BACKGROUND_COLOR_TEXTFILE);
 		txConfirmPasword.setBorder(null);
 		txConfirmPasword.setForeground(ConstantsUI.BACKGROUND_COLOR);
-		txConfirmPasword.setFont(new Font(ConstantsUI.FONT_ARIAL, Font.PLAIN, ConstantsUI.SIZE_FONT)); 
+		txConfirmPasword.setFont(new Font(ConstantsUI.FONT_ARIAL, Font.PLAIN, ConstantsUI.SIZE_FONT));
 		gbc.gridy = 4;
 		txConfirmPasword.addFocusListener(new FocusListener() {
 			@Override
 			public void focusLost(FocusEvent e) {
 			}
+
 			@Override
 			public void focusGained(FocusEvent e) {
 				if (String.valueOf(txConfirmPasword.getPassword()).equals(ConstantsUI.PASSWORD)) {
@@ -144,7 +144,7 @@ public class Dos extends JDialog{
 		ftxfContactNumber.setBackground(ConstantsUI.BACKGROUND_COLOR_TEXTFILE);
 		ftxfContactNumber.setBorder(null);
 		ftxfContactNumber.setForeground(ConstantsUI.BACKGROUND_COLOR);
-		ftxfContactNumber.setFont(new Font(ConstantsUI.FONT_ARIAL, Font.PLAIN, ConstantsUI.SIZE_FONT)); 
+		ftxfContactNumber.setFont(new Font(ConstantsUI.FONT_ARIAL, Font.PLAIN, ConstantsUI.SIZE_FONT));
 		ftxfContactNumber.setToolTipText(ConstantsUI.PHONE_NUMBER);
 		gbc.gridy = 5;
 		add(ftxfContactNumber, gbc);
@@ -171,20 +171,22 @@ public class Dos extends JDialog{
 	public User createUser() throws ExceptionIncorrectPassword {
 		if (String.valueOf(txPassword.getPassword()).equals(String.valueOf(txConfirmPasword.getPassword()))) {
 			return UserManager.createUser(txfUserName.getText(), String.valueOf(txPassword.getPassword()), true);
-		}else{
+		} else {
 			throw new ExceptionIncorrectPassword();
 		}
 	}
 
 	public void validatePasswordField() {
 		txPassword.setBackground(ConstantsUI.BACKGROUND_COLOR_INVALID_PASSWORD);
-		txConfirmPasword.setBackground(ConstantsUI.BACKGROUND_COLOR_INVALID_PASSWORD);;
+		txConfirmPasword.setBackground(ConstantsUI.BACKGROUND_COLOR_INVALID_PASSWORD);
+		;
 	}
 
 	public void clear() {
 		txfUserName.setText(ConstantsUI.RESTAURANT_NAME);
 		txPassword.setText(ConstantsUI.PASSWORD);
 		txConfirmPasword.setText(ConstantsUI.PASSWORD);
-		ftxfContactNumber.setText(ConstantsUI.PHONE_NUMBER);;
+		ftxfContactNumber.setText(ConstantsUI.PHONE_NUMBER);
+		;
 	}
 }

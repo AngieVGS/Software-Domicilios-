@@ -5,7 +5,6 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-
 import controller.Actions;
 import controller.Controller;
 

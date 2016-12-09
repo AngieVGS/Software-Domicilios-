@@ -19,21 +19,17 @@ public class Once extends JPanel{
 	private JLabel lbStatus;
 	private JButton btnStatusChange;
 	private JButton btnCancelOrder;
-//	private int count = 0;
 
 	public Once(Controller controller, Product product){
 		setSize(500,500);
 		setBorder(new LineBorder(ConstantsUI.FOREGROUND_NAME_PRODUCT_SHOW_PRODUCT));
 		setLayout(new GridLayout(1, 4));
-//		setName("" + count++);
 		
 		lbInformation = new JLabel();
-//		lbInformation.setName("" + count);
 		lbInformation.setText(product.getName() + "<html><body><br>" + product.getDescription() + "</body></html>");
 		add(lbInformation);
 
 		lbStatus = new JLabel();
-//		lbStatus.setName("" + count);
 		lbStatus.setText(product.getState().toString());
 		lbStatus.setFont(new Font("Arial", 15, Font.BOLD));
 		add(lbStatus);
@@ -52,11 +48,6 @@ public class Once extends JPanel{
 		btnCancelOrder.setToolTipText("Cancel product");
 		add(btnCancelOrder);
 	}
-
-	//
-	//		JScrollPane scPrincipal = new JScrollPane();
-	//		add(scPrincipal);
-
 
 	@SuppressWarnings("static-access")
 	public void changeStatus(Product product, String id){

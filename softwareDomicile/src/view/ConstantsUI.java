@@ -3,7 +3,6 @@ package view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.text.NumberFormat;
-
 import javax.swing.text.NumberFormatter;
 
 public class ConstantsUI {
@@ -31,24 +30,24 @@ public class ConstantsUI {
 	public static final String TEXT_TITLE_ADD_PRUDUCT_PRODUCT = "Add product";
 	public static final String TEXT_ADD_PRODUCT = "Add product";
 
-	//imagen
+	// imagen
 	public static final String IMAGE_DEFAULT = "src/image/ImageDefault.png";
 	public static final String IMAGE_USER = "src/image/UserIcon.JPG";
 	public static final String IMAGE_PASSWORD = "src/image/password.JPG";
 	public static final String IMAGE_PHONE = "src/image/Phone.JPG";
 	public static final String IMAGE_JOIN = "src/image/Buttons/Joinbutton.png";
-	
-	//Font
+
+	// Font
 	public static final String FONT_ARIAL = "Arial";
 	public static final String FONT_ARIAL_NARROW = "Arial Narrow";
 	public static final String FONT_BUTTON_CREATE_PRODUCT = "Franklin Gothic Heavy";
 	public static final int SIZE_FONT = 15;
 
-	//dates
+	// dates
 	public static final String TITLE_CREATE_ACCOUNT = "CREATE ACCOUNT";
 	public static final String TITLE_CREATE_PRODUCT = "CREATE PRODUCT";
 	public static final String TITLE_EDIT_PRODUCT = "EDIT PRODUCT";
-	
+
 	public static final String RESTAURANT_NAME = "Restaurant Name";
 	public static final String PASSWORD = "Password";
 	public static final String PHONE_NUMBER = "Phone";

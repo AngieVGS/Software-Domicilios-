@@ -1,9 +1,7 @@
 package controller;
 
 import view.*;
-
 import java.awt.Toolkit;
-import java.awt.Window;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.dnd.DnDConstants;
@@ -14,7 +12,6 @@ import java.awt.dnd.DropTargetListener;
 import java.awt.event.*;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javax.swing.*;
 import exceptions.*;
 import model.dao.*;
@@ -315,14 +312,12 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 		} catch (ExceptionIncorrectPassword e) {
 			dialogAddOwner.validatePasswordField();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	public void join() {
 		try {
-			
 			userManager.addUser(viewdos.createUser());
 			fileWrite.saveUser(userManager.getUserList());
 			viewdos.clear();
@@ -331,7 +326,6 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 		} catch (ExceptionIncorrectPassword e) {
 			viewdos.validatePasswordField();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -375,7 +369,6 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 	public void userLogin() {
 		viewCuatro.setVisible(false);
 		viewdos.setVisible(true);
-
 	}
 
 	public void letsDoIt() {
