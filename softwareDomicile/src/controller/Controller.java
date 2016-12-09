@@ -338,19 +338,29 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 
 	public void login() {
 		String nameUser = dialogLogIn.dataLogIn()[0];
+		String password = dialogLogIn.dataLogIn()[1];
 		try {
 			User user = userManager.searchUserByName(nameUser);
+			if (password.equals(user.getPassword())) {
 			userActual = user;
 			seis.addPanelsToDialogForProducts(ownerManager.getOwnerList());
 			seis.setVisible(true);
 			dialogLogIn.setVisible(false);
+			}else{
+				//lo que pasa si esta mal
+			}
 		} catch (ExceptionSearchId e) {
 			try {
 				Owner owner = ownerManager.searchOwnerByName(nameUser);
+				if (password.equals(owner.getPassword())) {
+					
 				ownerActual = owner;
 				viewDiez.addPanelsToDialogForProducts(ownerManager.searchAssignProductoToOwner(ownerActual.getId()));
 				viewDiez.setVisible(true);
 				dialogLogIn.setVisible(false);
+				}else{
+					//que pasa si esta mal
+				}
 			} catch (ExceptionSearchId f) {
 				//				JOptionPane.showMessageDialog(mainWindow, f.getMessage());
 			}
