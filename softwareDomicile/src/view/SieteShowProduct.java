@@ -1,46 +1,54 @@
 package view;
 
-import java.awt.Color;
+import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
-import javax.swing.JCheckBox;
+import java.util.ArrayList;
+import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import model.entity.AssignProductToOwner;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import controller.Controller;
+import model.entity.Product;
 
-public class SieteShowProduct extends JPanel {
+public class SieteShowProduct extends JDialog {
 
 	private static final long serialVersionUID = 1L;
-	private JCheckBox checkBox;
-	private JLabel lbImage;
+	private JPanel center;
 
-	public SieteShowProduct(AssignProductToOwner product) {
-		setLayout(new GridLayout(1, 3, 10, 10));
-		setBackground(Color.WHITE);
-		checkBox = new JCheckBox();
-		checkBox.setOpaque(false);
-		add(checkBox);
+	public SieteShowProduct(Controller controller) {
+		setTitle("Fast & Luscious");
+		setIconImage(new ImageIcon("src/image/logoIcon.png").getImage());
+		setSize(ConstantsUI.SIZE_WINDOW);
+		setUndecorated(true);
+		getContentPane().setBackground(ConstantsUI.BACKGROUND_COLOR);
 
-		lbImage = new JLabel(product.getProduct().getImg());
-		add(lbImage);
+		center = new JPanel();
+		add(new JScrollPane(center), BorderLayout.CENTER);
+	}
 
-		JPanel panelInfo = new JPanel(new GridLayout(3, 1));
-		panelInfo.setOpaque(false);
-		JLabel lbNameProduct = new JLabel(product.getProduct().getName());
-		lbNameProduct.setFont(new Font("Arial", Font.PLAIN, 20));
-		lbNameProduct.setForeground(ConstantsUI.FOREGROUND_NAME_PRODUCT_SHOW_PRODUCT);
-		panelInfo.add(lbNameProduct);
+	/*
+	 * este metodo me muestra los productos seleccionados que deseo comprar
+	 */
+	public void fillPanelCenter(ArrayList<Product> listProductSelected) {
+		center.setLayout(new GridLayout(listProductSelected.size(), 1, 10, 10));
+		for (Product product : listProductSelected) {
+			JPanel productDetail = new JPanel();
+			productDetail.setLayout(new GridLayout(1, 2));
+			JLabel imageP = new JLabel(new ImageIcon(product.getImg()), JLabel.CENTER);
+			productDetail.add(imageP);
+			JTextArea detailProduct = new JTextArea(
+					product.getName() + "\n" + product.getPrice() + "\n" + product.getDescription());
+			detailProduct.setEditable(false);
+			detailProduct.setAlignmentX(JTextArea.CENTER_ALIGNMENT);
 
-		JLabel lbNameOwner = new JLabel(product.getOwner().getName());
-		lbNameOwner.setFont(new Font("Arial", Font.PLAIN, 20));
-		lbNameOwner.setForeground(ConstantsUI.FOREGROUND_NAME_OWNER_SHOW_PRODUCT);
-		panelInfo.add(lbNameOwner);
-
-		JLabel lbPriceProduct = new JLabel("$" + product.getProduct().getPrice());
-		lbPriceProduct.setFont(new Font("Arial", Font.PLAIN, 20));
-		lbPriceProduct.setForeground(ConstantsUI.FOREGROUND_PRICE_SHOW_PRODUCT);
-		panelInfo.add(lbPriceProduct);
-
-		add(panelInfo);
+			detailProduct.setFont(new Font("Arial", Font.PLAIN, 20));
+			detailProduct.setForeground(ConstantsUI.FOREGROUND_NAME_OWNER_SHOW_PRODUCT);
+			productDetail.add(detailProduct);
+			center.add(productDetail);
+			revalidate();
+		}
 	}
 }
