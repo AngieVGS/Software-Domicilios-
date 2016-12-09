@@ -63,11 +63,15 @@ public class SeisToolbar extends JPanel {
 		JButton btnOrders = new JButton("Orders");
 		btnOrders.setBackground(ConstantsUI.BACKGROUND_COLOR_TOOLBAR_RESTAURANT);
 		btnOrders.setBorder(BorderFactory.createMatteBorder(1, 1, 0, 1, ConstantsUI.BACKGROUND_COLOR_TOOLBAR_RESTAURANT_BUTTONS));
+		btnOrders.addActionListener(c);
+		btnOrders.setActionCommand(Actions.ORDERS.toString());
 		btnOrders.setFocusable(false);
 		
 		JButton btnMenu = new JButton("Restaurants");
 		btnMenu.setBackground(ConstantsUI.BACKGROUND_COLOR_TOOLBAR_RESTAURANT);
 		btnMenu.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, ConstantsUI.BACKGROUND_COLOR_TOOLBAR_RESTAURANT_BUTTONS));
+		btnMenu.addActionListener(c);
+		btnMenu.setActionCommand(Actions.RESTAURANTS_REGISTRATE.toString());
 		btnMenu.setFocusable(false);
 		
 		JPanel panelDown = new JPanel();
