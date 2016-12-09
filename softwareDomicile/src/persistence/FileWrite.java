@@ -12,22 +12,25 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import exceptions.ExceptionSearchId;
+import model.dao.OrderManager;
 import model.dao.OwnerManager;
 import model.dao.ProductManager;
 import model.dao.UserManager;
 import model.entity.AssignOrderToUser;
 import model.entity.AssignProductToOrder;
 import model.entity.AssignProductToOwner;
+import model.entity.Order;
 import model.entity.Owner;
 import model.entity.State;
 import model.entity.User;
 
 public class FileWrite {
 	
-	public void fileWriteReportOwner(ArrayList<AssignProductToOwner> ownerList) throws IOException{
-		File  fileFolder = new File("/data");
+	public void fileWriteAssignProductToOwnerOwner(ArrayList<AssignProductToOwner> ownerList) throws IOException{
+		File  fileFolder = new File(System.getProperty("user.dir")+"\\"+"Report");
 		File   file=new File(fileFolder.getAbsolutePath()+"\\"+"owner.json");
 		fileFolder.mkdirs();
+		System.out.println(file);
 		PrintWriter printWriter = new PrintWriter(new FileOutputStream(file, false));
 		JsonArray assignationsOwnerProduct = new JsonArray();
 			for (AssignProductToOwner owner : ownerList) {
@@ -51,15 +54,17 @@ public class FileWrite {
 		bufferedWriter.close();
 	}
 	
-	public void fileWriteReportOrder(ArrayList<AssignProductToOrder> assignProductToOrderList) throws IOException{
-		File  fileFolder = new File(System.getProperty("user.dir")+"\\"+"Report");
-		File   file=new File(fileFolder.getAbsolutePath()+"\\"+"order.json");
-		fileFolder.mkdirs();
-		PrintWriter printWriter = new PrintWriter(new FileOutputStream(file, false));
-		JsonObject restaurantObject = new JsonObject();
-		JsonObject orderObject = new JsonObject();
-		restaurantObject.add(ConstantPersistence.ORDER_LIST, orderObject);
+	public void fileWriteAssignProductToOrder(ArrayList<AssignProductToOrder> assignProductToOrderList) throws IOException{
+//		File  fileFolder = new File(System.getProperty("user.dir")+"\\"+"Report");
+		File   file=new File("src/data/assignProductToOrder.json");
+//		fileFolder.mkdirs();
+		System.out.println(file);
+		PrintWriter printWriter = new PrintWriter(new FileOutputStream(file, true));
+		JsonArray restaurantObject = new JsonArray();
 		for (AssignProductToOrder assignProductToOrder : assignProductToOrderList) {
+			JsonObject assignProductToOrderWriter= new JsonObject();
+			JsonObject orderObject = new JsonObject();
+			orderObject.addProperty(ConstantPersistence.ID_ORDER, String.valueOf(assignProductToOrder.getOrder().getId()));
 			orderObject.addProperty(ConstantPersistence.ORDER_STATE, String.valueOf(assignProductToOrder.getOrder().getState()));
 			orderObject.addProperty(ConstantPersistence.ORDER_DIRECTION, assignProductToOrder.getOrder().getDirection());
 			JsonObject productsObjetc = new JsonObject();
@@ -69,31 +74,40 @@ public class FileWrite {
 			productsObjetc.addProperty(ConstantPersistence.PRODUCT_PRICE, assignProductToOrder.getProduct().getPrice());
 			productsObjetc.addProperty(ConstantPersistence.PRODUCT_IMAGE, assignProductToOrder.getProduct().getImg());
 			productsObjetc.addProperty(ConstantPersistence.PRODUCT_STATE, String.valueOf(assignProductToOrder.getProduct().getState()));
+			
+			assignProductToOrderWriter.add(ConstantPersistence.PRODUCT, productsObjetc);
+			assignProductToOrderWriter.add(ConstantPersistence.ORDER, orderObject);
+			restaurantObject.add(assignProductToOrderWriter);
 		}
 		BufferedWriter bufferedWriter = new BufferedWriter(printWriter);
 		bufferedWriter.write(restaurantObject.toString());
 		bufferedWriter.close();
 	}
 	
-	public void fileWriteReportUser(ArrayList<AssignOrderToUser> assignOrderToUserList) throws IOException{
-		File  fileFolder = new File(System.getProperty("user.dir")+"\\"+"Report");
-		File   file=new File(fileFolder.getAbsolutePath()+"\\"+"user.json");
-		fileFolder.mkdirs();
+	public void fileWritetAssignOrderToUser(ArrayList<AssignOrderToUser> assignOrderToUserList) throws IOException{
+//		File  fileFolder = new File(System.getProperty("user.dir")+"\\"+"Report");
+		File   file=new File("src/data/AssignOrderToUser.json");
+//		fileFolder.mkdirs();
+		System.out.println(file);
 		PrintWriter printWriter = new PrintWriter(new FileOutputStream(file, false));
-		JsonObject restaurantObject = new JsonObject();
-		JsonObject userObject = new JsonObject();
-		restaurantObject.add(ConstantPersistence.USER, userObject);
+		JsonArray assignOrderToUserListWriter = new JsonArray();
+		
 		for (AssignOrderToUser assignOrderToUser : assignOrderToUserList) {
+			JsonObject assignOrderToUserWriter = new JsonObject();
+			JsonObject userObject = new JsonObject();
 			userObject.addProperty(ConstantPersistence.USER_NAME, assignOrderToUser.getUser().getName());
 			userObject.addProperty(ConstantPersistence.USER_PASSWORD, assignOrderToUser.getUser().getPassword());
 			userObject.addProperty(ConstantPersistence.USER_STATE, assignOrderToUser.getUser().isState());
 			JsonObject orderObjetc = new JsonObject();
-			userObject.add(ConstantPersistence.ORDER_LIST, orderObjetc);
+			orderObjetc.addProperty(ConstantPersistence.ID_ORDER, String.valueOf(assignOrderToUser.getOrder().getId()));
 			orderObjetc.addProperty(ConstantPersistence.ORDER_STATE, String.valueOf(assignOrderToUser.getOrder().getState()));
 			orderObjetc.addProperty(ConstantPersistence.ORDER_DIRECTION, assignOrderToUser.getOrder().getDirection());
+			assignOrderToUserWriter.add(ConstantPersistence.USER, userObject);
+			assignOrderToUserWriter.add(ConstantPersistence.ORDER,orderObjetc);
+			assignOrderToUserListWriter.add(assignOrderToUserWriter);
 		}
 		BufferedWriter bufferedWriter = new BufferedWriter(printWriter);
-		bufferedWriter.write(restaurantObject.toString());
+		bufferedWriter.write(assignOrderToUserListWriter.toString());
 		bufferedWriter.close();
 	}
 	
@@ -102,6 +116,7 @@ public class FileWrite {
 		File  fileFolder = new File(System.getProperty("user.dir")+"\\"+"Report");
 		File   file=new File(fileFolder.getAbsolutePath()+"\\"+"ownerList.json");
 		fileFolder.mkdirs();
+		System.out.println(file);
 		PrintWriter printWriter = new PrintWriter(new FileOutputStream(file, false));
 		BufferedWriter bufferedWriter = new BufferedWriter(printWriter);
 		for (Owner owner : ownerList) {
@@ -116,17 +131,20 @@ public class FileWrite {
 	
 	public void saveUser(ArrayList<User> userList) throws IOException {
 		
-		File  fileFolder = new File(System.getProperty("user.dir")+"\\"+"Report");
-		File   file=new File(fileFolder.getAbsolutePath()+"\\"+"userList.json");
-		fileFolder.mkdirs();
+		File   file=new File("src/data/user.json");
 		PrintWriter printWriter = new PrintWriter(new FileOutputStream(file, false));
-		BufferedWriter bufferedWriter = new BufferedWriter(printWriter);
+		JsonArray users = new JsonArray();
 		for (User user : userList) {
 		Gson gson = new Gson();
 		JsonObject userObject = new JsonObject();
-		userObject.add(ConstantPersistence.USER, gson.toJsonTree(user));
-		bufferedWriter.write(userObject.toString());
+//		userObject.add(ConstantPersistence.USER);
+		userObject.addProperty(ConstantPersistence.USER_NAME, user.getName());
+		userObject.addProperty(ConstantPersistence.USER_PASSWORD, user.getPassword());
+		userObject.addProperty(ConstantPersistence.USER_STATE, user.isState());
+		users.add(userObject);
 		}
+		BufferedWriter bufferedWriter = new BufferedWriter(printWriter);
+		bufferedWriter.write(users.toString());
 		bufferedWriter.close();
 	}
 }
