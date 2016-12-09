@@ -32,23 +32,5 @@ public class SieteShowProduct extends JDialog {
 	/*
 	 * este metodo me muestra los productos seleccionados que deseo comprar
 	 */
-	public void fillPanelCenter(ArrayList<Product> listProductSelected) {
-		center.setLayout(new GridLayout(listProductSelected.size(), 1, 10, 10));
-		for (Product product : listProductSelected) {
-			JPanel productDetail = new JPanel();
-			productDetail.setLayout(new GridLayout(1, 2));
-			JLabel imageP = new JLabel(new ImageIcon(product.getImg()), JLabel.CENTER);
-			productDetail.add(imageP);
-			JTextArea detailProduct = new JTextArea(
-					product.getName() + "\n" + product.getPrice() + "\n" + product.getDescription());
-			detailProduct.setEditable(false);
-			detailProduct.setAlignmentX(JTextArea.CENTER_ALIGNMENT);
-
-			detailProduct.setFont(new Font("Arial", Font.PLAIN, 20));
-			detailProduct.setForeground(ConstantsUI.FOREGROUND_NAME_OWNER_SHOW_PRODUCT);
-			productDetail.add(detailProduct);
-			center.add(productDetail);
-			revalidate();
-		}
-	}
+	
 }
