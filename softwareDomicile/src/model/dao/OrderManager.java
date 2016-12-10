@@ -145,6 +145,18 @@ public class OrderManager {
 		}
 		return products;
 	}
+	
+	public ArrayList<Product> productToOrder(ArrayList<Order> orders) throws ExceptionSearchId {
+		ArrayList<Product> products = new ArrayList<>();
+		for (Order order : orders) {
+			for (Product product : searchAssignProductToOrder(order.getId())) {
+				products.add(product);
+			}
+			}
+		
+		return products;
+	
+}
 
 	public void deleteAssignProductToOrder(AssignProductToOrder assignProductToOrder) {
 		productsOfTheOrder.remove(assignProductToOrder);

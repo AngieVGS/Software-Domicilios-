@@ -240,7 +240,11 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 	}
 
 	private void fillOrdersPanelSeis() {
-		seis.fillPanelStateToOrders(orderManager.getShoppingCarList());
+		try {
+			seis.fillPanelStateToOrders(orderManager.productToOrder(userManager.searchAssignOrderToUser(userActual.getId())));
+		} catch (ExceptionSearchId e) {
+//			e.printStackTrace();
+		}
 	}
 
 	private void generateShoppingCar() {
