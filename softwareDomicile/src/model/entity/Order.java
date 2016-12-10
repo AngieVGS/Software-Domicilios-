@@ -9,6 +9,7 @@ public class Order {
 	public Order(int id, String direction) {
 		this.id = id;
 		this.direction = direction;
+		this.state = State.RECEIVED;
 	}
 	
 	public int getId() {
@@ -29,5 +30,10 @@ public class Order {
 
 	public void editOrder(){
 		
+	}
+
+	@Override
+	public String toString() {
+		return "Order [id=" + id + ", state=" + state + ", direction=" + direction + "]";
 	}
 }

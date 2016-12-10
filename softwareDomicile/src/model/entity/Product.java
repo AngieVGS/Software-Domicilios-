@@ -1,5 +1,9 @@
 package model.entity;
 
+/**
+ * @author JOSE-PC
+ *
+ */
 public class Product {
 
 	private static int AUXILIAR;
@@ -17,12 +21,6 @@ public class Product {
 		this.state = state;
 		this.img = img;
 		this.id = AUXILIAR++;
-	}
-
-	@Override
-	public String toString() {
-		return "Product [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price + ", img="
-				+ img + "]";
 	}
 
 	public void changeStatus(State state) {
@@ -53,10 +51,16 @@ public class Product {
 		return img;
 	}
 
-	public void setAttributes(String name, String description, double price, String img){
+	public void setAttributes(String name, String description, double price, String img) {
 		this.name = name;
 		this.description = description;
 		this.price = price;
 		this.img = img;
+	}
+
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price + ", state="
+				+ state + ", img=" + img + "]";
 	}
 }

@@ -28,7 +28,6 @@ public class FileWrite {
 	
 	public void fileWriteAssignProductToOwnerOwner(ArrayList<AssignProductToOwner> ownerList) throws IOException{
 		File   file=new File("src/data/AssignProductToOwner.json");
-		System.out.println(file);
 		PrintWriter printWriter = new PrintWriter(new FileOutputStream(file, false));
 		JsonArray assignationsOwnerProduct = new JsonArray();
 			for (AssignProductToOwner owner : ownerList) {
@@ -56,7 +55,6 @@ public class FileWrite {
 //		File  fileFolder = new File(System.getProperty("user.dir")+"\\"+"Report");
 		File   file=new File("src/data/assignProductToOrder.json");
 //		fileFolder.mkdirs();
-		System.out.println(file);
 		PrintWriter printWriter = new PrintWriter(new FileOutputStream(file, true));
 		JsonArray restaurantObject = new JsonArray();
 		for (AssignProductToOrder assignProductToOrder : assignProductToOrderList) {

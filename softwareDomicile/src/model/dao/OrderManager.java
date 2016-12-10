@@ -150,4 +150,7 @@ public class OrderManager {
 		productsOfTheOrder.remove(assignProductToOrder);
 	}
 
+	public ArrayList<AssignProductToOrder> getProductsOfTheOrder() {
+		return productsOfTheOrder;
+	}
 }
