@@ -28,7 +28,7 @@ public class Cinco extends JDialog {
 		setTitle("Fast & Luscious");
 		setIconImage(new ImageIcon("src/image/logoIcon.png").getImage());
 		setSize(ConstantsUI.SIZE_WINDOW);
-
+		setUndecorated(true);
 		JPanel start = new JPanel();
 		start.setLayout(new BorderLayout());
 		toolbar = new JToolBar();
