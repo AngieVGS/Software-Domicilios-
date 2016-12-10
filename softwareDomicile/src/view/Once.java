@@ -2,7 +2,9 @@ package view;
 
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Image;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -31,18 +33,18 @@ public class Once extends JPanel{
 
 		lbStatus = new JLabel();
 		lbStatus.setText(product.getState().toString());
-		lbStatus.setFont(new Font("Arial", 15, Font.BOLD));
+		lbStatus.setFont(new Font("Arial", Font.BOLD, 15));
 		add(lbStatus);
 
 		btnStatusChange = new JButton();
-		btnStatusChange.setIcon(new ImageIcon("src/image.Buttons/lbStatus.png"));
+		btnStatusChange.setIcon(reSize(new ImageIcon("src/image.Buttons/lbStatus.png")));
 		btnStatusChange.setActionCommand(Actions.CHANGE_STATUS.toString());
 		btnStatusChange.addActionListener(controller);
 		btnStatusChange.setToolTipText("Change status of product");
 		add(btnStatusChange);
 
 		btnCancelOrder = new JButton();
-		btnCancelOrder.setIcon(new ImageIcon("src/image.Buttons/exit.png"));
+		btnCancelOrder.setIcon(reSize(new ImageIcon("src/image.Buttons/exit.png")));
 		btnCancelOrder.addActionListener(controller);
 		btnCancelOrder.setActionCommand(Actions.CANCEL_ORDER.toString());
 		btnCancelOrder.setToolTipText("Cancel product");
@@ -60,5 +62,11 @@ public class Once extends JPanel{
 				lbStatus.setText(product.getState().TO_SEND.toString());
 			}
 		}
+	}
+	public Icon reSize(ImageIcon imagen){
+		Image conversion = imagen.getImage();
+		Image tamanio = conversion.getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+		ImageIcon result = new ImageIcon(tamanio);
+		return result;
 	}
 }

@@ -67,6 +67,7 @@ public class Diez extends JDialog {
 		for (Product product : productList) {
 			once = new Once(controller, product);
 			panelContainer.add(once);
+			panelContainer.setLayout(new GridLayout(productList.size(), 4));
 		}
 	}
 
