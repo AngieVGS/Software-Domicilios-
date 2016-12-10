@@ -64,9 +64,7 @@ public class Seis extends JDialog {
 			JPanel productDetail = new JPanel();
 			productDetail.setBackground(Color.white);
 			productDetail.setLayout(new GridLayout(1, 3));
-
-			JLabel imageP = new JLabel(new ImageIcon(product.getImg()), JLabel.CENTER);
-			productDetail.add(imageP);
+			productDetail.add(new JLabel(new ImageIcon(product.getImg()), JLabel.CENTER));
 
 			JPanel detail = new JPanel();
 			detail.setBorder(BorderFactory.createEtchedBorder());
@@ -99,6 +97,8 @@ public class Seis extends JDialog {
 		buy.setFont(new Font("Arial", Font.PLAIN, 20));
 		buy.setBackground(ConstantsUI.BACKGROUND_COLOR_BUTTON_GENERATE_ORDER);
 		buy.setForeground(ConstantsUI.FOREGROUND_NAME_OWNER_SHOW_PRODUCT);
+		buy.addActionListener(controller);
+		buy.setActionCommand(Actions.GENERATE_ORDER.toString());
 		JLabel jlTotal = new JLabel("$ " + total);
 		jlTotal.setFont(new Font("Arial", Font.PLAIN, 20));
 		jlTotal.setForeground(ConstantsUI.FOREGROUND_NAME_OWNER_SHOW_PRODUCT);
@@ -117,16 +117,22 @@ public class Seis extends JDialog {
 		seisToolbar.clear();
 	}
 
-	public void fillPnelCenterToOrders(ArrayList<AssignOrderToUser> arrayList) {
+	public void fillPanelStateToOrders(ArrayList<Product> productShopping) {
 		panelContainer.removeAll();
-		if (arrayList != null) {
+		if (productShopping.size() == 0) {
 			panelContainer.setLayout(new BorderLayout());
 			panelContainer.add(new JLabel(new ImageIcon("src/image/UserIcon.JPG"), JLabel.CENTER));
 		} else {
-			// for (AssignOrderToUser assignOrderToUser : arrayList) {
-			//
-			// }
+			panelContainer.setLayout(new GridLayout(productShopping.size(), 1, 15, 25));
+			for (Product product : productShopping) {
+				JPanel pnlProduct = new JPanel();
+				pnlProduct.setBackground(Color.white);
+				pnlProduct.setLayout(new GridLayout(1, 2));
+				pnlProduct.add(new JLabel(new ImageIcon(product.getImg()), JLabel.CENTER));
+				pnlProduct.add(new JLabel("" + product.getState(), JLabel.CENTER));
+				panelContainer.add(pnlProduct);
+				revalidate();
+			}
 		}
-		revalidate();
 	}
 }
