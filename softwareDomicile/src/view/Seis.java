@@ -17,7 +17,6 @@ import javax.swing.JTextArea;
 
 import controller.Actions;
 import controller.Controller;
-import model.entity.AssignOrderToUser;
 import model.entity.Owner;
 import model.entity.Product;
 

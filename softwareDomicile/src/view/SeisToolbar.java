@@ -54,6 +54,7 @@ public class SeisToolbar extends JPanel {
 		lblHand.addActionListener(c);
 		lblHand.setActionCommand(Actions.GENERATE_SHOPPING_CAR.toString());
 		lblHand.setForeground(ConstantsUI.BACKGROUND_COLOR_TOOLBAR_RESTAURANT);
+		lblHand.setFocusable(false);
 		lblHand.setOpaque(true);
 		
 		JButton btnOrders = new JButton("Orders");

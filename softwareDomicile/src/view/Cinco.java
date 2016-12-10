@@ -55,6 +55,7 @@ public class Cinco extends JDialog {
 		buttonBack.setFont(new Font("Arial", Font.PLAIN, 20));
 		buttonBack.addActionListener(controller);
 		buttonBack.setActionCommand(Actions.BACK_SIX.toString());
+		buttonBack.setFocusable(false);
 		count.add(buttonBack);
 
 		priceTotal = new JLabel("total: $ 0.0", JLabel.RIGHT);

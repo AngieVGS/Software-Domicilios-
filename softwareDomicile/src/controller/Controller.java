@@ -25,8 +25,6 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 	private OwnerManager ownerManager;
 	private ProductManager productManager;
 	private UserManager userManager;
-	private User user;
-	private Owner owner;
 	private Nueve dialogAddOwner;
 	private Cuatro viewCuatro;
 	private Dos viewdos;
@@ -43,7 +41,7 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 	private KeyListenerForLogin keyListener;
 	private OrderManager orderManager;
 	private FileRead fileRead;
-	private gif gif;
+	private Gif gif;
 
 	public Controller() {
 		fileRead = new FileRead();
@@ -66,7 +64,7 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 		ownerActual = null;
 		dialogAddOwner = new Nueve(this, mainWindow);
 		orderManager = new OrderManager();
-		gif = new gif(this);
+		gif = new Gif(this);
 		chargeUsersOnPersistence();
 		chargeOwnersOnPersistence();
 		
