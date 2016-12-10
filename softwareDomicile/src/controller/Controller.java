@@ -43,7 +43,6 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 	private KeyListenerForLogin keyListener;
 	private OrderManager orderManager;
 	private FileRead fileRead;
-	private gif gif;
 
 	public Controller() {
 		fileRead = new FileRead();
@@ -58,7 +57,7 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 		dialogLogIn = new DialogLogIn(this, keyListener);
 		productManager = new ProductManager();
 		mainWindow = new MainWindow(this);
-	
+		mainWindow.setVisible(true);
 		viewdos = new Dos(this, mainWindow);
 		viewCuatro = new Cuatro(this);
 		viewDiez = new Diez(this);
@@ -66,13 +65,9 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 		ownerActual = null;
 		dialogAddOwner = new Nueve(this, mainWindow);
 		orderManager = new OrderManager();
-		gif = new gif(this);
 		chargeUsersOnPersistence();
 		chargeOwnersOnPersistence();
-		
-		gif.showGif();
-		mainWindow.setVisible(true);
-		
+
 		productManager.addProduct(ProductManager.createProduct("Hamburguesa Dijon", "deliciosa", 3000, State.RECEIVED,
 				"src/image/HamburguerProduct.png"));
 		productManager.addProduct(ProductManager.createProduct("Gaseosa Manzana", "deliciosa", 3000, State.RECEIVED,
@@ -118,7 +113,6 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 			break;
 		case LOGIN:
 			login();
-			
 			break;
 		case SIGN_UP:
 			signIn();
@@ -379,34 +373,28 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 	public void login() {
 		String nameUser = dialogLogIn.dataLogIn()[0];
 		String password = dialogLogIn.dataLogIn()[1];
-	
 		try {
 			User user = userManager.searchUserByName(nameUser);
 			if (password.equals(user.getPassword())) {
-				dialogLogIn.setVisible(false);
-			
 				userActual = user;
 				seis.addPanelsToDialogForProducts(ownerManager.getOwnerList());
-				dialogLogIn.clear();
-				
 				seis.setVisible(true);
-				
+				dialogLogIn.setVisible(false);
+				dialogLogIn.clear();
 			} else {
 				dialogLogIn.invalidPassword();
 			}
-		
 		} catch (ExceptionSearchId e) {
 			try {
 				Owner owner = ownerManager.searchOwnerByName(nameUser);
 				if (password.equals(owner.getPassword())) {
-					dialogLogIn.setVisible(false);
-					
+
 					ownerActual = owner;
 					viewDiez.addPanelsToDialogForProducts(
-					ownerManager.searchAssignProductoToOwner(ownerActual.getId()));
-					dialogLogIn.clear();
+							ownerManager.searchAssignProductoToOwner(ownerActual.getId()));
 					viewDiez.setVisible(true);
-					
+					dialogLogIn.setVisible(false);
+					dialogLogIn.clear();
 				} else {
 					dialogLogIn.invalidPassword();
 				}

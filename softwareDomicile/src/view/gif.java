@@ -31,7 +31,7 @@ public class gif extends JFrame {
 	public gif(Controller controller) {
 	    loading = new ImageIcon("src/image/gif.gif");
 	    add(new JLabel(loading, JLabel.NORTH_EAST));
-	    setBackground(ColorUIResource.WHITE);
+	    setBackground(Color.decode("#fbfbf6"));
 	    getContentPane().setBackground(Color.WHITE);
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    setSize(ConstantsUI.SIZE_WINDOW);
