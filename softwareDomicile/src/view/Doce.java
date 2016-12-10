@@ -12,6 +12,10 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Locale;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -115,7 +119,11 @@ public class Doce extends JDialog {
 		gbc.gridy = 3;
 		add(jScrollPane, gbc);
 
-		ftxtPrice = new JFormattedTextField(ConstantsUI.getIntegerFormatter());
+		NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.getDefault());
+		DecimalFormat decimalFormat = (DecimalFormat) numberFormat;
+		decimalFormat.setGroupingUsed(false);
+		
+		ftxtPrice = new JFormattedTextField(decimalFormat);
 		ftxtPrice.setValue(0);
 		ftxtPrice.setBackground(ConstantsUI.BACKGROUND_COLOR_TEXTFILE);
 		ftxtPrice.setBorder(null);
