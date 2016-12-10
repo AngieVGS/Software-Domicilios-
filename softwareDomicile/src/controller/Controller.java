@@ -70,24 +70,24 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 
 		productManager.addProduct(ProductManager.createProduct("Hamburguesa Dijon", "deliciosa", 3000, State.RECEIVED,
 				"src/image/HamburguerProduct.png"));
-		productManager.addProduct(
-				ProductManager.createProduct("Gaseosa Manzana", "deliciosa", 3000, State.RECEIVED, "src/image/BebidaProducto.png"));
-		productManager.addProduct(
-				ProductManager.createProduct("Gaseosa Manzana", "deliciosa", 3000, State.RECEIVED, "src/image/BebidaProducto.png"));
+		productManager.addProduct(ProductManager.createProduct("Gaseosa Manzana", "deliciosa", 3000, State.RECEIVED,
+				"src/image/BebidaProducto.png"));
+		productManager.addProduct(ProductManager.createProduct("Gaseosa Manzana", "deliciosa", 3000, State.RECEIVED,
+				"src/image/BebidaProducto.png"));
 		productManager.addProduct(ProductManager.createProduct("Hamburguesa Dijon", "deliciosa", 3000, State.RECEIVED,
 				"src/image/HamburguerProduct.png"));
-				try {
-					ownerManager.addAssignProductoToOwner(ownerManager
-							.createAssignProductoToOwner(productManager.searchProductById(0), ownerManager.searchOwner(1)));
-					ownerManager.addAssignProductoToOwner(ownerManager
-							.createAssignProductoToOwner(productManager.searchProductById(1), ownerManager.searchOwner(1)));
-					ownerManager.addAssignProductoToOwner(ownerManager
-							.createAssignProductoToOwner(productManager.searchProductById(2), ownerManager.searchOwner(1)));
-					ownerManager.addAssignProductoToOwner(ownerManager
-							.createAssignProductoToOwner(productManager.searchProductById(3), ownerManager.searchOwner(1)));
-				} catch (ExceptionSearchId e) {
-					e.printStackTrace();
-				}
+		try {
+			ownerManager.addAssignProductoToOwner(ownerManager
+					.createAssignProductoToOwner(productManager.searchProductById(0), ownerManager.searchOwner(1)));
+			ownerManager.addAssignProductoToOwner(ownerManager
+					.createAssignProductoToOwner(productManager.searchProductById(1), ownerManager.searchOwner(1)));
+			ownerManager.addAssignProductoToOwner(ownerManager
+					.createAssignProductoToOwner(productManager.searchProductById(2), ownerManager.searchOwner(1)));
+			ownerManager.addAssignProductoToOwner(ownerManager
+					.createAssignProductoToOwner(productManager.searchProductById(3), ownerManager.searchOwner(1)));
+		} catch (ExceptionSearchId e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -127,6 +127,7 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 			createProduct();
 			break;
 		case GENERATE_ORDER:
+			generateorderToProductsSelected();
 			break;
 		case CREATE_PRODUCT_NEW:
 			showDialogcreateProduct();
@@ -178,12 +179,17 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 			fillRestaurantsRegistrated();
 			break;
 		case CANCEL_PRODUCT_MY_SHOPPING:
-			removeProductToListMYShopping(Integer.parseInt(((JButton)event.getSource()).getName()));
+			removeProductToListMYShopping(Integer.parseInt(((JButton) event.getSource()).getName()));
 			break;
 		}
 	}
 
-	private void chargeOwnersOnPersistence(){
+	private void generateorderToProductsSelected() {
+		seis.fillPanelStateToOrders(orderManager.getShoppingCarList());
+//		orderManager.removeAllProductOfShoppingCarList(); esto borra la lista que ya compro
+	}
+
+	private void chargeOwnersOnPersistence() {
 		try {
 			ownerManager.updateOwnerList(fileRead.readFileOwner());
 		} catch (IOException e) {
@@ -191,7 +197,7 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 		}
 	}
 
-	private void chargeUsersOnPersistence(){
+	private void chargeUsersOnPersistence() {
 		try {
 			userManager.updateUserList(fileRead.readFileUser());
 		} catch (IOException e) {
@@ -215,7 +221,7 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 	}
 
 	private void fillOrdersPanelSeis() {
-		seis.fillPnelCenterToOrders(userManager.getAssignOrderList());
+		seis.fillPanelStateToOrders(orderManager.getShoppingCarList());
 	}
 
 	private void generateShoppingCar() {
@@ -227,7 +233,8 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 		seis.setVisible(true);
 	}
 
-	//Este metodo es para mostrar las ordenes que tiene un restaurante. Utilizar el metodo de la clase Diez, agregarpaneles
+	// Este metodo es para mostrar las ordenes que tiene un restaurante.
+	// Utilizar el metodo de la clase Diez, agregarpaneles
 	private void showOrdersOwner() {
 	}
 
@@ -239,13 +246,14 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 		}
 	}
 
-	private void searchOwnersByUser(){
+	private void searchOwnersByUser() {
 		seis.addPanelsToDialogForProducts(ownerManager.searchOwnersByWord(seis.getWordOnSpace()));
 	}
 
 	private void searchProductsByOwner() {
 		try {
-			ArrayList<Product> products = ownerManager.searchProductByWord(viewDiez.getWordOnSpace(), ownerManager.searchAssignProductoToOwner(ownerActual.getId()));
+			ArrayList<Product> products = ownerManager.searchProductByWord(viewDiez.getWordOnSpace(),
+					ownerManager.searchAssignProductoToOwner(ownerActual.getId()));
 			viewDiez.addPanelsToDialogForProducts(products);
 		} catch (ExceptionSearchId e) {
 			e.printStackTrace();
@@ -255,7 +263,8 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 	private void saveEditedProductByOwner() {
 		try {
 			Product product = productManager.searchProductById(position);
-			product.setAttributes(doce.getNameProduct(), doce.getDescriptionProduct(), doce.getPriceProduct(), doce.getImageProduct());
+			product.setAttributes(doce.getNameProduct(), doce.getDescriptionProduct(), doce.getPriceProduct(),
+					doce.getImageProduct());
 			viewDiez.addPanelsToDialogForProducts(ownerManager.searchAssignProductoToOwner(ownerActual.getId()));
 			viewDiez.setVisible(true);
 			doce.setVisible(false);
@@ -372,7 +381,7 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 				seis.setVisible(true);
 				dialogLogIn.setVisible(false);
 				dialogLogIn.clear();
-			}else{
+			} else {
 				dialogLogIn.invalidPassword();
 			}
 		} catch (ExceptionSearchId e) {
@@ -381,15 +390,16 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 				if (password.equals(owner.getPassword())) {
 
 					ownerActual = owner;
-					viewDiez.addPanelsToDialogForProducts(ownerManager.searchAssignProductoToOwner(ownerActual.getId()));
+					viewDiez.addPanelsToDialogForProducts(
+							ownerManager.searchAssignProductoToOwner(ownerActual.getId()));
 					viewDiez.setVisible(true);
 					dialogLogIn.setVisible(false);
 					dialogLogIn.clear();
-				}else{
+				} else {
 					dialogLogIn.invalidPassword();
 				}
 			} catch (ExceptionSearchId f) {
-				//				JOptionPane.showMessageDialog(mainWindow, f.getMessage());
+				// JOptionPane.showMessageDialog(mainWindow, f.getMessage());
 			}
 		}
 	}
@@ -461,10 +471,12 @@ public class Controller implements ActionListener, KeyListener, DropTargetListen
 		dtde.acceptDrop(DnDConstants.ACTION_COPY);
 		try {
 			if (doce.isVisible() == true) {
-				doce.addImage(dtde.getTransferable().getTransferData(DataFlavor.javaFileListFlavor).toString().replace("[", "").replace("]", "").replace("\\", "/"));
+				doce.addImage(dtde.getTransferable().getTransferData(DataFlavor.javaFileListFlavor).toString()
+						.replace("[", "").replace("]", "").replace("\\", "/"));
 				Toolkit.getDefaultToolkit().beep();
-			}else if (dialogAddOwner.isVisible() == true) {
-				dialogAddOwner.addImage(dtde.getTransferable().getTransferData(DataFlavor.javaFileListFlavor).toString().replace("[", "").replace("]", "").replace("\\", "/"));
+			} else if (dialogAddOwner.isVisible() == true) {
+				dialogAddOwner.addImage(dtde.getTransferable().getTransferData(DataFlavor.javaFileListFlavor).toString()
+						.replace("[", "").replace("]", "").replace("\\", "/"));
 				Toolkit.getDefaultToolkit().beep();
 			}
 		} catch (UnsupportedFlavorException e) {
