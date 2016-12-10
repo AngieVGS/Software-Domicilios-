@@ -136,6 +136,8 @@ public class DialogLogIn extends JDialog {
 		exit.setBorder(null);
 		exit.setActionCommand(Actions.EXIT.toString());
 		exit.addActionListener(controller);
+		exit.setFocusable(false);
+		
 		JPanel exitPanel = new JPanel();
 		exitPanel.setBackground(ConstantsUI.BACKGROUND_COLOR);
 		exitPanel.setLayout(new GridLayout(1,2));

@@ -32,6 +32,8 @@ public class MainWindow extends JFrame {
 		exit = new JButton(new ImageIcon("src/image/Buttons/exit.png"));
 		exit.setBackground(null);
 		exit.setBorder(null);
+		exit.setFocusable(false);
+		
 		JPanel exitPanel = new JPanel();
 		exitPanel.setBackground(ConstantsUI.BACKGROUND_COLOR);
 		exitPanel.setLayout(new GridLayout(1,2));
